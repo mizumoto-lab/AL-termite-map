@@ -15,12 +15,32 @@
     #map { flex: 1; min-height: 420px; }
     .leaflet-popup-content { line-height: 1.4; }
     .species { font-style: italic; font-weight: 700; }
+    .legend {
+      background: white;
+      padding: 8px 10px;
+      border-radius: 4px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .legend-title { font-weight: 700; margin-bottom: 4px; }
+    .legend-item { white-space: nowrap; }
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+      border: 1px solid #333;
+      vertical-align: -1px;
+    }
+    .legend-species { font-style: italic; }
   </style>
 </head>
 <body>
   <header>
     <h1>Alabama Termite Map</h1>
-    <p>Prototype showing the first 25 museum records with usable Alabama coordinates.</p>
+    <p>Verified specimen records from the AU Natural History Museum dataset.</p>
     <div id="status">Loading AU-termite-samples.csv...</div>
   </header>
   <div id="map"></div>
@@ -35,8 +55,36 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    const palette = [
+      '#1f77b4',
+      '#ff7f0e',
+      '#2ca02c',
+      '#d62728',
+      '#9467bd',
+      '#8c564b',
+      '#e377c2',
+      '#7f7f7f',
+      '#bcbd22',
+      '#17becf',
+      '#393b79',
+      '#637939'
+    ];
+
     function speciesName(row) {
-      return [row.genus, row.species].filter(Boolean).join(' ') || 'Termite specimen';
+      return [row.genus, row.species].filter(Boolean).join(' ') || 'Unidentified termite';
+    }
+
+    function addLegend(speciesColors) {
+      const legend = L.control({ position: 'bottomright' });
+      legend.onAdd = function () {
+        const div = L.DomUtil.create('div', 'legend');
+        const items = Object.entries(speciesColors).map(([species, color]) =>
+          `<div class="legend-item"><span class="legend-dot" style="background:${color}"></span><span class="legend-species">${species}</span></div>`
+        ).join('');
+        div.innerHTML = `<div class="legend-title">Species</div>${items}`;
+        return div;
+      };
+      legend.addTo(map);
     }
 
     async function loadData() {
@@ -62,7 +110,12 @@
         return Number.isFinite(lat) && Number.isFinite(lon) &&
           state === 'AL' && country === 'USA' &&
           lat >= 30.1 && lat <= 35.2 && lon >= -88.6 && lon <= -84.8;
-      }).slice(0, 25);
+      });
+
+      const species = [...new Set(records.map(speciesName))].sort();
+      const speciesColors = Object.fromEntries(
+        species.map((name, index) => [name, palette[index % palette.length]])
+      );
 
       const bounds = [];
 
@@ -81,8 +134,10 @@
 
         L.circleMarker([lat, lon], {
           radius: 6,
+          color: '#333',
           weight: 1,
-          fillOpacity: 0.8
+          fillColor: speciesColors[name],
+          fillOpacity: 0.85
         }).bindPopup(popup).addTo(map);
         bounds.push([lat, lon]);
       }
@@ -91,8 +146,10 @@
         map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
       }
 
+      addLegend(speciesColors);
+
       document.getElementById('status').textContent =
-        `${records.length} Alabama records displayed from ${rows.length} CSV rows.`;
+        `${records.length} Alabama records displayed across ${species.length} species from ${rows.length} CSV rows.`;
     }
 
     loadData().catch(error => {
