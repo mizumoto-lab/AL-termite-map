@@ -4,21 +4,33 @@ Prototype of the Alabama Termite Map.
 
 ## Version 0
 
-Version 0 is intentionally minimal. It reads `AU-termite-samples.xlsx` directly in the browser and displays the first 25 records that have usable coordinates within Alabama.
+Version 0 is a small static Leaflet map with no database or server-side application.
 
-The current purpose is to verify the basic workflow:
+### Data
 
-1. Museum specimen data remain in the Excel workbook.
-2. The web map reads those records.
-3. Valid Alabama coordinates are plotted with Leaflet.
-4. Clicking a point shows basic specimen metadata.
+- `AU-termite-samples.csv`: verified AU voucher specimen records with coordinates.
+- `FSTrecords.csv`: county-level records of *Coptotermes formosanus*, including first detected year.
+- Alabama county boundaries: U.S. Census Bureau TIGERweb GeoJSON service.
 
-The prototype uses Leaflet, OpenStreetMap tiles, and SheetJS. There is no database or server-side application.
+### Current interface
 
-## Next steps
+The map currently focuses on three genera:
 
-- Confirm which workbook columns should become the stable public data schema.
-- Move data preparation from browser-side Excel parsing to an R script that produces GeoJSON.
-- Add species-specific symbols or colors.
-- Add the county-level published-record layer for *Coptotermes formosanus*.
-- Add optional iNaturalist Research Grade records as a separate unverified layer.
+- *Coptotermes*
+- *Reticulitermes*
+- *Kalotermes*
+
+Users can select a genus and independently show or hide:
+
+- verified specimen points
+- FST county records
+
+The FST county layer is associated with *Coptotermes* and is displayed only when *Coptotermes* or all genera are selected.
+
+Point colors represent genus. County shading represents documented county-level occurrence and should not be interpreted as occurrence throughout the county.
+
+## Development direction
+
+The current browser-side CSV workflow is intentionally simple. Later versions can move data preparation into R and generate derived GeoJSON while keeping the public site static and easy to maintain.
+
+Potential next additions include species-level filtering within each genus and optional iNaturalist Research Grade observations as a separate unverified layer.
