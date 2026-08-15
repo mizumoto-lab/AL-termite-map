@@ -7,39 +7,49 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
     html, body { margin: 0; height: 100%; font-family: Arial, sans-serif; }
-    body { overflow: hidden; }
-    #app { display: flex; height: 100vh; }
-    #sidebar {
-      width: 300px;
-      flex: 0 0 300px;
+    body { display: flex; flex-direction: column; overflow: hidden; }
+    header {
       box-sizing: border-box;
-      padding: 18px;
-      border-right: 1px solid #ddd;
+      padding: 10px 16px 9px;
+      border-bottom: 1px solid #ddd;
       background: #fff;
-      overflow-y: auto;
-      z-index: 1000;
     }
-    h1 { margin: 0 0 8px; font-size: 1.5rem; }
-    .intro { margin: 0 0 20px; color: #555; font-size: 0.9rem; line-height: 1.4; }
-    .control-group { margin-bottom: 18px; }
-    .control-label { display: block; margin-bottom: 6px; font-size: 0.78rem; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.03em; }
-    select { width: 100%; box-sizing: border-box; padding: 7px 8px; font-size: 0.92rem; }
-    .checks { display: flex; flex-direction: column; gap: 9px; font-size: 0.9rem; line-height: 1.3; }
-    .checks label { display: flex; gap: 7px; align-items: flex-start; }
-    .checks input { margin-top: 2px; }
-    #status { padding-top: 12px; border-top: 1px solid #e5e5e5; color: #666; font-size: 0.82rem; line-height: 1.45; }
-    #map { flex: 1; min-width: 0; height: 100%; }
+    h1 { margin: 0 0 3px; font-size: 1.35rem; }
+    .intro { margin: 0; color: #555; font-size: 0.84rem; line-height: 1.3; }
+    #status { margin-top: 3px; color: #777; font-size: 0.78rem; }
+    #map { flex: 1; min-height: 0; }
     .leaflet-popup-content { line-height: 1.4; }
     .species { font-style: italic; font-weight: 700; }
-    .legend {
-      background: white;
-      padding: 8px 10px;
-      border-radius: 4px;
+    .map-panel {
+      background: rgba(255, 255, 255, 0.96);
+      padding: 10px 12px;
+      border-radius: 5px;
       box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
-      line-height: 1.5;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
     }
+    .filter-panel { width: 225px; }
+    .control-group + .control-group { margin-top: 11px; }
+    .control-label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .filter-panel select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 5px 7px;
+      font-size: 0.86rem;
+    }
+    .checks { display: flex; flex-direction: column; gap: 6px; line-height: 1.25; }
+    .checks label { display: flex; gap: 6px; align-items: flex-start; }
+    .checks input { margin-top: 2px; }
+    .legend { line-height: 1.45; }
     .legend-title { font-weight: 700; margin-bottom: 4px; }
+    .legend-section { margin-top: 6px; font-size: 0.76rem; font-weight: 700; color: #666; }
     .legend-item { white-space: nowrap; }
     .legend-dot {
       display: inline-block;
@@ -52,13 +62,13 @@
     }
     .legend-dot-inat {
       display: inline-block;
-      width: 9px;
-      height: 9px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      margin: 0 7px 0 1px;
-      border: 1px solid #4a4a4a;
-      background: #666;
-      vertical-align: -1px;
+      margin: 0 8px 0 2px;
+      border: 1px solid currentColor;
+      vertical-align: 0;
+      opacity: 0.65;
     }
     .legend-box {
       display: inline-block;
@@ -70,51 +80,22 @@
       vertical-align: -1px;
     }
     .legend-species { font-style: italic; }
-    @media (max-width: 700px) {
-      body { overflow: auto; }
-      #app { display: block; height: auto; }
-      #sidebar {
-        width: 100%;
-        box-sizing: border-box;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
-        padding: 14px 16px;
-      }
-      .intro { margin-bottom: 12px; }
-      .control-group { margin-bottom: 12px; }
-      #map { height: 68vh; min-height: 440px; }
+    @media (max-width: 620px) {
+      header { padding: 8px 10px 7px; }
+      h1 { font-size: 1.15rem; }
+      .intro { display: none; }
+      .filter-panel { width: 195px; }
+      .map-panel { padding: 8px 9px; font-size: 0.78rem; }
     }
   </style>
 </head>
 <body>
-  <div id="app">
-    <aside id="sidebar">
-      <h1>Alabama Termite Map</h1>
-      <p class="intro">Documented termite records from AU voucher specimens, published county-level FST records, and optional iNaturalist observations.</p>
-
-      <div class="control-group">
-        <label class="control-label" for="genus-select">Genus</label>
-        <select id="genus-select">
-          <option value="all">All genera</option>
-          <option value="Coptotermes">Coptotermes</option>
-          <option value="Reticulitermes">Reticulitermes</option>
-          <option value="Kalotermes">Kalotermes</option>
-        </select>
-      </div>
-
-      <div class="control-group">
-        <span class="control-label">Evidence</span>
-        <div class="checks">
-          <label><input type="checkbox" id="fst-toggle" checked> <span>FST county records</span></label>
-          <label><input type="checkbox" id="specimen-toggle" checked> <span>Verified specimen points</span></label>
-          <label><input type="checkbox" id="inat-toggle"> <span>iNaturalist Research Grade</span></label>
-        </div>
-      </div>
-
-      <div id="status">Loading map data...</div>
-    </aside>
-    <div id="map"></div>
-  </div>
+  <header>
+    <h1>Alabama Termite Map</h1>
+    <p class="intro">Documented termite records from AU voucher specimens, published county-level FST records, and optional iNaturalist observations.</p>
+    <div id="status">Loading map data...</div>
+  </header>
+  <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
@@ -135,6 +116,23 @@
       Kalotermes: '#1a9850'
     };
 
+    const knownSpeciesColors = {
+      'Coptotermes formosanus': '#d73027',
+      'Coptotermes gestroi': '#f46d43',
+      'Reticulitermes flavipes': '#2166ac',
+      'Reticulitermes hageni': '#4393c3',
+      'Reticulitermes virginicus': '#8073ac',
+      'Reticulitermes mississippiensis': '#67a9cf',
+      'Reticulitermes malletei': '#053061',
+      'Kalotermes approximatus': '#1a9850'
+    };
+
+    const genusPalettes = {
+      Coptotermes: ['#d73027', '#f46d43', '#fdae61', '#b2182b'],
+      Reticulitermes: ['#2166ac', '#4393c3', '#67a9cf', '#8073ac', '#053061'],
+      Kalotermes: ['#1a9850', '#66bd63', '#008837', '#5aae61']
+    };
+
     const countyLayer = L.layerGroup().addTo(map);
     const inatLayer = L.layerGroup().addTo(map);
     const specimenLayer = L.layerGroup().addTo(map);
@@ -147,6 +145,33 @@
     let inatError = '';
     let countyGeojson = null;
     let legendControl = null;
+
+    const filterControl = L.control({ position: 'topright' });
+    filterControl.onAdd = function () {
+      const div = L.DomUtil.create('div', 'map-panel filter-panel');
+      div.innerHTML = `
+        <div class="control-group">
+          <label class="control-label" for="genus-select">Genus</label>
+          <select id="genus-select">
+            <option value="all">All genera</option>
+            <option value="Coptotermes">Coptotermes</option>
+            <option value="Reticulitermes">Reticulitermes</option>
+            <option value="Kalotermes">Kalotermes</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <span class="control-label">Evidence</span>
+          <div class="checks">
+            <label><input type="checkbox" id="fst-toggle" checked> <span>FST county records</span></label>
+            <label><input type="checkbox" id="specimen-toggle" checked> <span>Verified specimen points</span></label>
+            <label><input type="checkbox" id="inat-toggle"> <span>iNaturalist Research Grade</span></label>
+          </div>
+        </div>`;
+      L.DomEvent.disableClickPropagation(div);
+      L.DomEvent.disableScrollPropagation(div);
+      return div;
+    };
+    filterControl.addTo(map);
 
     function speciesName(row) {
       return [row.genus, row.species].filter(Boolean).join(' ') || 'Unidentified termite';
@@ -178,6 +203,21 @@
     function fstIsRelevant() {
       const selected = selectedGenus();
       return selected === 'all' || selected === 'Coptotermes';
+    }
+
+    function hashString(text) {
+      let hash = 0;
+      for (let i = 0; i < text.length; i++) {
+        hash = ((hash << 5) - hash) + text.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash);
+    }
+
+    function inatSpeciesColor(row) {
+      if (knownSpeciesColors[row.name]) return knownSpeciesColors[row.name];
+      const palette = genusPalettes[row.genus] || ['#777'];
+      return palette[hashString(row.name) % palette.length];
     }
 
     function pointInRing(lon, lat, ring) {
@@ -215,23 +255,33 @@
       });
     }
 
-    function updateLegend(visibleMuseumRecords, showFst, showInat) {
+    function updateLegend(visibleMuseumRecords, visibleInatRecords, showFst, showInat) {
       if (legendControl) map.removeControl(legendControl);
 
       const visibleGenera = [...new Set(visibleMuseumRecords.map(row => row.genus).filter(Boolean))].sort();
+      const visibleInatSpecies = [...new Map(visibleInatRecords.map(row => [row.name, row])).values()]
+        .sort((a, b) => a.name.localeCompare(b.name));
+
       legendControl = L.control({ position: 'bottomright' });
       legendControl.onAdd = function () {
-        const div = L.DomUtil.create('div', 'legend');
-        const genusItems = visibleGenera.map(genus =>
-          `<div class="legend-item"><span class="legend-dot" style="background:${genusColors[genus]}"></span><span class="legend-species">${genus}</span> specimen</div>`
-        ).join('');
+        const div = L.DomUtil.create('div', 'map-panel legend');
         const fstItem = showFst
           ? '<div class="legend-item"><span class="legend-box"></span><span class="legend-species">Coptotermes formosanus</span> FST county</div>'
           : '';
-        const inatItem = showInat
-          ? '<div class="legend-item"><span class="legend-dot-inat"></span>iNaturalist Research Grade</div>'
-          : '';
-        div.innerHTML = `<div class="legend-title">Records</div>${genusItems}${fstItem}${inatItem}`;
+        const specimenItems = visibleGenera.map(genus =>
+          `<div class="legend-item"><span class="legend-dot" style="background:${genusColors[genus]}"></span><span class="legend-species">${genus}</span> specimen</div>`
+        ).join('');
+        const inatItems = showInat ? visibleInatSpecies.map(row => {
+          const color = inatSpeciesColor(row);
+          return `<div class="legend-item" style="color:${color}"><span class="legend-dot-inat" style="background:${color}"></span><span class="legend-species" style="color:#333">${row.name}</span> <span style="color:#666">iNaturalist</span></div>`;
+        }).join('') : '';
+
+        div.innerHTML = `
+          <div class="legend-title">Records</div>
+          ${fstItem}
+          ${specimenItems ? `<div class="legend-section">Verified specimens</div>${specimenItems}` : ''}
+          ${inatItems ? `<div class="legend-section">iNaturalist Research Grade</div>${inatItems}` : ''}`;
+        L.DomEvent.disableClickPropagation(div);
         return div;
       };
       legendControl.addTo(map);
@@ -276,6 +326,7 @@
 
       if (showInat) {
         for (const row of visibleInatRecords) {
+          const color = inatSpeciesColor(row);
           const popup = [
             `<span class="species">${row.name}</span>`,
             row.place || 'Alabama',
@@ -286,11 +337,12 @@
           ].filter(Boolean).join('<br>');
 
           L.circleMarker([row.lat, row.lon], {
-            radius: 5,
-            color: '#4a4a4a',
-            weight: 1.3,
-            fillColor: '#666',
-            fillOpacity: 0.82
+            radius: 4,
+            color,
+            opacity: 0.72,
+            weight: 1,
+            fillColor: color,
+            fillOpacity: 0.45
           }).bindPopup(popup).addTo(inatLayer);
         }
       }
@@ -320,7 +372,12 @@
         }
       }
 
-      updateLegend(showSpecimens ? visibleMuseumRecords : [], showFst && Boolean(countyGeojson), showInat);
+      updateLegend(
+        showSpecimens ? visibleMuseumRecords : [],
+        showInat ? visibleInatRecords : [],
+        showFst && Boolean(countyGeojson),
+        showInat
+      );
 
       const pointCount = showSpecimens ? visibleMuseumRecords.length : 0;
       const inatCount = showInat ? visibleInatRecords.length : 0;
