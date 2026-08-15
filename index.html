@@ -115,6 +115,7 @@
     let inatRecords = [];
     let inatLoaded = false;
     let inatLoading = false;
+    let inatError = '';
     let countyGeojson = null;
     let legendControl = null;
 
@@ -148,6 +149,41 @@
     function fstIsRelevant() {
       const selected = selectedGenus();
       return selected === 'all' || selected === 'Coptotermes';
+    }
+
+    function pointInRing(lon, lat, ring) {
+      let inside = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const xi = ring[i][0];
+        const yi = ring[i][1];
+        const xj = ring[j][0];
+        const yj = ring[j][1];
+        const intersect = ((yi > lat) !== (yj > lat)) &&
+          (lon < ((xj - xi) * (lat - yi) / (yj - yi)) + xi);
+        if (intersect) inside = !inside;
+      }
+      return inside;
+    }
+
+    function pointInPolygon(lon, lat, polygon) {
+      if (!polygon.length || !pointInRing(lon, lat, polygon[0])) return false;
+      for (let i = 1; i < polygon.length; i++) {
+        if (pointInRing(lon, lat, polygon[i])) return false;
+      }
+      return true;
+    }
+
+    function pointInAlabama(lon, lat) {
+      if (!countyGeojson) return false;
+      return countyGeojson.features.some(feature => {
+        const geometry = feature.geometry;
+        if (!geometry) return false;
+        if (geometry.type === 'Polygon') return pointInPolygon(lon, lat, geometry.coordinates);
+        if (geometry.type === 'MultiPolygon') {
+          return geometry.coordinates.some(polygon => pointInPolygon(lon, lat, polygon));
+        }
+        return false;
+      });
     }
 
     function updateLegend(visibleMuseumRecords, showFst, showInat) {
@@ -267,6 +303,7 @@
         if (inatLoading) parts.push('loading iNaturalist records');
         else if (inatLoaded) parts.push(`${inatCount} iNaturalist Research Grade observations`);
       }
+      if (inatError) parts.push('iNaturalist layer unavailable');
       document.getElementById('status').textContent = `${parts.join('; ')}.`;
     }
 
@@ -274,8 +311,9 @@
       const records = [];
       let page = 1;
       let total = 1;
+      let received = 0;
 
-      while (records.length < total) {
+      while (received < total) {
         const params = new URLSearchParams({
           taxon_name: genus,
           quality_grade: 'research',
@@ -293,13 +331,16 @@
         if (!response.ok) throw new Error(`iNaturalist request failed: ${response.status}`);
         const data = await response.json();
         total = data.total_results || 0;
+        const results = data.results || [];
+        received += results.length;
 
-        for (const obs of data.results || []) {
+        for (const obs of results) {
           const coordinates = obs.geojson && obs.geojson.coordinates;
           if (!coordinates || coordinates.length < 2) continue;
           const lon = Number(coordinates[0]);
           const lat = Number(coordinates[1]);
           if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+          if (!pointInAlabama(lon, lat)) continue;
           records.push({
             id: obs.id,
             genus,
@@ -311,7 +352,7 @@
           });
         }
 
-        if (!data.results || data.results.length === 0) break;
+        if (results.length === 0) break;
         page += 1;
       }
 
@@ -321,6 +362,7 @@
     async function ensureInatLoaded() {
       if (inatLoaded || inatLoading) return;
       inatLoading = true;
+      inatError = '';
       drawMap();
       try {
         const results = await Promise.all(focalGenera.map(fetchInatGenus));
@@ -328,8 +370,8 @@
         inatLoaded = true;
       } catch (error) {
         document.getElementById('inat-toggle').checked = false;
+        inatError = error.message;
         console.error(error);
-        document.getElementById('status').textContent = `Could not load iNaturalist records: ${error.message}`;
       } finally {
         inatLoading = false;
         drawMap();
