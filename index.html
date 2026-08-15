@@ -39,6 +39,16 @@
       border: 1px solid #333;
       vertical-align: -1px;
     }
+    .legend-dot-small {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin: 0 8px 0 2px;
+      border: 1px solid #666;
+      background: #999;
+      vertical-align: 0;
+    }
     .legend-box {
       display: inline-block;
       width: 11px;
@@ -54,7 +64,7 @@
 <body>
   <header>
     <h1>Alabama Termite Map</h1>
-    <p>Documented termite records from AU voucher specimens and published county-level FST records.</p>
+    <p>Documented termite records from AU voucher specimens, published county-level FST records, and optional iNaturalist observations.</p>
     <div id="controls">
       <div class="control-group">
         <label class="control-label" for="genus-select">Genus</label>
@@ -68,8 +78,9 @@
       <div class="control-group">
         <span class="control-label">Evidence</span>
         <div class="checks">
-          <label><input type="checkbox" id="specimen-toggle" checked> Verified specimen points</label>
           <label><input type="checkbox" id="fst-toggle" checked> FST county records</label>
+          <label><input type="checkbox" id="specimen-toggle" checked> Verified specimen points</label>
+          <label><input type="checkbox" id="inat-toggle"> iNaturalist Research Grade</label>
         </div>
       </div>
     </div>
@@ -88,6 +99,7 @@
     }).addTo(map);
 
     const countyUrl = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/19/query?where=STATE%3D%2701%27&outFields=GEOID%2CBASENAME%2CNAME&returnGeometry=true&outSR=4326&f=geojson";
+    const focalGenera = ['Coptotermes', 'Reticulitermes', 'Kalotermes'];
 
     const genusColors = {
       Coptotermes: '#d73027',
@@ -95,14 +107,14 @@
       Kalotermes: '#1a9850'
     };
 
-    const fallbackColors = [
-      '#762a83', '#fdae61', '#5e3c99', '#9970ab', '#b35806', '#4d4d4d'
-    ];
-
-    const specimenLayer = L.layerGroup().addTo(map);
     const countyLayer = L.layerGroup().addTo(map);
+    const inatLayer = L.layerGroup().addTo(map);
+    const specimenLayer = L.layerGroup().addTo(map);
     let museumRecords = [];
     let fstRecords = [];
+    let inatRecords = [];
+    let inatLoaded = false;
+    let inatLoading = false;
     let countyGeojson = null;
     let legendControl = null;
 
@@ -124,14 +136,6 @@
       return parsed.data;
     }
 
-    function recordColor(row) {
-      if (genusColors[row.genus]) return genusColors[row.genus];
-      const name = speciesName(row);
-      let hash = 0;
-      for (let i = 0; i < name.length; i++) hash = ((hash << 5) - hash) + name.charCodeAt(i);
-      return fallbackColors[Math.abs(hash) % fallbackColors.length];
-    }
-
     function selectedGenus() {
       return document.getElementById('genus-select').value;
     }
@@ -146,7 +150,7 @@
       return selected === 'all' || selected === 'Coptotermes';
     }
 
-    function updateLegend(visibleMuseumRecords, showFst) {
+    function updateLegend(visibleMuseumRecords, showFst, showInat) {
       if (legendControl) map.removeControl(legendControl);
 
       const visibleGenera = [...new Set(visibleMuseumRecords.map(row => row.genus).filter(Boolean))].sort();
@@ -154,49 +158,30 @@
       legendControl.onAdd = function () {
         const div = L.DomUtil.create('div', 'legend');
         const genusItems = visibleGenera.map(genus =>
-          `<div class="legend-item"><span class="legend-dot" style="background:${genusColors[genus] || '#777'}"></span><span class="legend-species">${genus}</span> specimens</div>`
+          `<div class="legend-item"><span class="legend-dot" style="background:${genusColors[genus]}"></span><span class="legend-species">${genus}</span> specimen</div>`
         ).join('');
         const fstItem = showFst
           ? '<div class="legend-item"><span class="legend-box"></span><span class="legend-species">Coptotermes formosanus</span> FST county</div>'
           : '';
-        div.innerHTML = `<div class="legend-title">Records</div>${genusItems}${fstItem}`;
+        const inatItem = showInat
+          ? '<div class="legend-item"><span class="legend-dot-small"></span>iNaturalist Research Grade</div>'
+          : '';
+        div.innerHTML = `<div class="legend-title">Records</div>${genusItems}${fstItem}${inatItem}`;
         return div;
       };
       legendControl.addTo(map);
     }
 
     function drawMap() {
-      specimenLayer.clearLayers();
       countyLayer.clearLayers();
+      inatLayer.clearLayers();
+      specimenLayer.clearLayers();
 
       const showSpecimens = document.getElementById('specimen-toggle').checked;
       const showFst = document.getElementById('fst-toggle').checked && fstIsRelevant();
+      const showInat = document.getElementById('inat-toggle').checked && inatLoaded;
       const visibleMuseumRecords = museumRecords.filter(row => genusMatches(row.genus));
-
-      if (showSpecimens) {
-        for (const row of visibleMuseumRecords) {
-          const lat = Number(row.lat);
-          const lon = Number(row.lon);
-          const name = speciesName(row);
-          const place = [row.locality, row.city].filter(Boolean).join(', ');
-          const popup = [
-            `<span class="species">${name}</span>`,
-            row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '',
-            place || 'Alabama',
-            row.date ? `Collected: ${row.date}` : '',
-            'Evidence: verified specimen',
-            'Source: AU Natural History Museum'
-          ].filter(Boolean).join('<br>');
-
-          L.circleMarker([lat, lon], {
-            radius: 6,
-            color: '#333',
-            weight: 1,
-            fillColor: recordColor(row),
-            fillOpacity: 0.88
-          }).bindPopup(popup).addTo(specimenLayer);
-        }
-      }
+      const visibleInatRecords = inatRecords.filter(row => genusMatches(row.genus));
 
       if (showFst && countyGeojson) {
         const fstByCounty = Object.fromEntries(
@@ -224,14 +209,131 @@
         }).addTo(countyLayer);
       }
 
-      updateLegend(showSpecimens ? visibleMuseumRecords : [], showFst && Boolean(countyGeojson));
+      if (showInat) {
+        for (const row of visibleInatRecords) {
+          const popup = [
+            `<span class="species">${row.name}</span>`,
+            row.place ? row.place : 'Alabama',
+            row.observedOn ? `Observed: ${row.observedOn}` : '',
+            'Evidence: iNaturalist Research Grade',
+            'Not independently verified by the Alabama Termite Identification Service',
+            `<a href="https://www.inaturalist.org/observations/${row.id}" target="_blank" rel="noopener">View iNaturalist observation</a>`
+          ].filter(Boolean).join('<br>');
+
+          L.circleMarker([row.lat, row.lon], {
+            radius: 4,
+            color: '#666',
+            weight: 1,
+            fillColor: '#999',
+            fillOpacity: 0.62
+          }).bindPopup(popup).addTo(inatLayer);
+        }
+      }
+
+      if (showSpecimens) {
+        for (const row of visibleMuseumRecords) {
+          const lat = Number(row.lat);
+          const lon = Number(row.lon);
+          const name = speciesName(row);
+          const place = [row.locality, row.city].filter(Boolean).join(', ');
+          const popup = [
+            `<span class="species">${name}</span>`,
+            row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '',
+            place || 'Alabama',
+            row.date ? `Collected: ${row.date}` : '',
+            'Evidence: verified specimen',
+            'Source: AU Natural History Museum'
+          ].filter(Boolean).join('<br>');
+
+          L.circleMarker([lat, lon], {
+            radius: 6,
+            color: '#333',
+            weight: 1,
+            fillColor: genusColors[row.genus],
+            fillOpacity: 0.88
+          }).bindPopup(popup).addTo(specimenLayer);
+        }
+      }
+
+      updateLegend(showSpecimens ? visibleMuseumRecords : [], showFst && Boolean(countyGeojson), showInat);
 
       const fstCount = showFst ? fstRecords.length : 0;
       const pointCount = showSpecimens ? visibleMuseumRecords.length : 0;
+      const inatCount = showInat ? visibleInatRecords.length : 0;
       const selected = selectedGenus() === 'all' ? 'all three focal genera' : selectedGenus();
-      document.getElementById('status').textContent =
-        `${pointCount} specimen records shown for ${selected}` +
-        (showFst ? `; ${fstCount} FST counties shown.` : '.');
+      const parts = [`${pointCount} verified specimens for ${selected}`];
+      if (showFst) parts.push(`${fstCount} FST counties`);
+      if (document.getElementById('inat-toggle').checked) {
+        if (inatLoading) parts.push('loading iNaturalist records');
+        else if (inatLoaded) parts.push(`${inatCount} iNaturalist Research Grade observations`);
+      }
+      document.getElementById('status').textContent = `${parts.join('; ')}.`;
+    }
+
+    async function fetchInatGenus(genus) {
+      const records = [];
+      let page = 1;
+      let total = 1;
+
+      while (records.length < total) {
+        const params = new URLSearchParams({
+          taxon_name: genus,
+          quality_grade: 'research',
+          geo: 'true',
+          swlat: '30.1',
+          swlng: '-88.6',
+          nelat: '35.2',
+          nelng: '-84.8',
+          per_page: '200',
+          page: String(page),
+          order_by: 'id',
+          order: 'asc'
+        });
+        const response = await fetch(`https://api.inaturalist.org/v1/observations?${params}`);
+        if (!response.ok) throw new Error(`iNaturalist request failed: ${response.status}`);
+        const data = await response.json();
+        total = data.total_results || 0;
+
+        for (const obs of data.results || []) {
+          const coordinates = obs.geojson && obs.geojson.coordinates;
+          if (!coordinates || coordinates.length < 2) continue;
+          const lon = Number(coordinates[0]);
+          const lat = Number(coordinates[1]);
+          if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+          records.push({
+            id: obs.id,
+            genus,
+            name: obs.taxon && obs.taxon.name ? obs.taxon.name : (obs.species_guess || genus),
+            lat,
+            lon,
+            observedOn: obs.observed_on || '',
+            place: obs.place_guess || ''
+          });
+        }
+
+        if (!data.results || data.results.length === 0) break;
+        page += 1;
+      }
+
+      return records;
+    }
+
+    async function ensureInatLoaded() {
+      if (inatLoaded || inatLoading) return;
+      inatLoading = true;
+      drawMap();
+      try {
+        const results = await Promise.all(focalGenera.map(fetchInatGenus));
+        inatRecords = results.flat();
+        inatLoaded = true;
+      } catch (error) {
+        document.getElementById('inat-toggle').checked = false;
+        console.error(error);
+        document.getElementById('status').textContent = `Could not load iNaturalist records: ${error.message}`;
+      } finally {
+        inatLoading = false;
+        drawMap();
+      }
     }
 
     async function loadData() {
@@ -257,7 +359,7 @@
         return Number.isFinite(lat) && Number.isFinite(lon) &&
           state === 'AL' && country === 'USA' &&
           lat >= 30.1 && lat <= 35.2 && lon >= -88.6 && lon <= -84.8 &&
-          ['Coptotermes', 'Reticulitermes', 'Kalotermes'].includes(row.genus);
+          focalGenera.includes(row.genus);
       });
 
       drawMap();
@@ -266,6 +368,10 @@
     document.getElementById('genus-select').addEventListener('change', drawMap);
     document.getElementById('specimen-toggle').addEventListener('change', drawMap);
     document.getElementById('fst-toggle').addEventListener('change', drawMap);
+    document.getElementById('inat-toggle').addEventListener('change', async event => {
+      if (event.target.checked) await ensureInatLoaded();
+      else drawMap();
+    });
 
     loadData().catch(error => {
       document.getElementById('status').textContent = `Could not load map data: ${error.message}`;
