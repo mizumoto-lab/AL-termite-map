@@ -21,12 +21,12 @@
   <header>
     <h1>Alabama Termite Map</h1>
     <p>Prototype showing the first 25 museum records with usable Alabama coordinates.</p>
-    <div id="status">Loading AU-termite-samples.xlsx...</div>
+    <div id="status">Loading AU-termite-samples.csv...</div>
   </header>
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script>
     const map = L.map('map').setView([32.8, -86.8], 7);
 
@@ -35,75 +35,47 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    const candidates = {
-      latitude: ['latitude', 'Latitude', 'latitude..N....S...', 'decimalLatitude'],
-      longitude: ['longitude', 'Longitude', 'longitude..E....W...', 'decimalLongitude'],
-      country: ['Country', 'country'],
-      state: ['State', 'state', 'State_Province', 'stateProvince'],
-      county: ['County', 'county'],
-      locality: ['Locality', 'locality'],
-      genus: ['Genus', 'genus'],
-      species: ['Species', 'species'],
-      id: ['Combined_unique_tag', 'AUT_ID', 'voucher_id', 'catalogNumber', 'ID']
-    };
-
-    function value(row, keys) {
-      for (const key of keys) {
-        if (Object.prototype.hasOwnProperty.call(row, key) && row[key] !== '' && row[key] != null) return row[key];
-      }
-      return '';
-    }
-
-    function numberValue(x) {
-      if (typeof x === 'number') return x;
-      if (x == null) return NaN;
-      return Number(String(x).trim());
-    }
-
-    function isAlabama(row) {
-      const country = String(value(row, candidates.country)).trim().toLowerCase();
-      const state = String(value(row, candidates.state)).trim().toLowerCase();
-      const lat = numberValue(value(row, candidates.latitude));
-      const lon = numberValue(value(row, candidates.longitude));
-      const countryOK = !country || ['usa', 'us', 'united states', 'united states of america'].includes(country);
-      const stateOK = !state || ['al', 'alabama'].includes(state);
-      const bboxOK = lat >= 30.1 && lat <= 35.2 && lon >= -88.6 && lon <= -84.8;
-      return countryOK && stateOK && bboxOK;
-    }
-
     function speciesName(row) {
-      const genus = String(value(row, candidates.genus)).trim();
-      const species = String(value(row, candidates.species)).trim();
-      return [genus, species].filter(Boolean).join(' ') || 'Termite specimen';
+      return [row.genus, row.species].filter(Boolean).join(' ') || 'Termite specimen';
     }
 
     async function loadData() {
-      const response = await fetch('AU-termite-samples.xlsx');
-      if (!response.ok) throw new Error(`Workbook request failed: ${response.status}`);
-      const buffer = await response.arrayBuffer();
-      const workbook = XLSX.read(buffer, { type: 'array' });
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+      const response = await fetch('AU-termite-samples.csv');
+      if (!response.ok) throw new Error(`CSV request failed: ${response.status}`);
+      const text = await response.text();
+      const parsed = Papa.parse(text, {
+        header: true,
+        skipEmptyLines: true,
+        transformHeader: header => header.replace(/^\uFEFF/, '').trim()
+      });
+
+      if (parsed.errors.length) {
+        throw new Error(parsed.errors[0].message);
+      }
+
+      const rows = parsed.data;
       const records = rows.filter(row => {
-        const lat = numberValue(value(row, candidates.latitude));
-        const lon = numberValue(value(row, candidates.longitude));
-        return Number.isFinite(lat) && Number.isFinite(lon) && isAlabama(row);
+        const lat = Number(row.lat);
+        const lon = Number(row.lon);
+        const state = String(row.state || '').trim().toUpperCase();
+        const country = String(row.country || '').trim().toUpperCase();
+        return Number.isFinite(lat) && Number.isFinite(lon) &&
+          state === 'AL' && country === 'USA' &&
+          lat >= 30.1 && lat <= 35.2 && lon >= -88.6 && lon <= -84.8;
       }).slice(0, 25);
 
       const bounds = [];
 
       for (const row of records) {
-        const lat = numberValue(value(row, candidates.latitude));
-        const lon = numberValue(value(row, candidates.longitude));
+        const lat = Number(row.lat);
+        const lon = Number(row.lon);
         const name = speciesName(row);
-        const county = value(row, candidates.county);
-        const locality = value(row, candidates.locality);
-        const id = value(row, candidates.id);
-        const location = [locality, county ? `${county} County` : ''].filter(Boolean).join(', ');
+        const place = [row.locality, row.city].filter(Boolean).join(', ');
         const popup = [
           `<span class="species">${name}</span>`,
-          location || 'Alabama',
-          id ? `Voucher: ${id}` : '',
+          row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '',
+          place || 'Alabama',
+          row.date ? `Collected: ${row.date}` : '',
           'Source: AU Natural History Museum'
         ].filter(Boolean).join('<br>');
 
@@ -115,12 +87,17 @@
         bounds.push([lat, lon]);
       }
 
-      if (bounds.length) map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
-      document.getElementById('status').textContent = `${records.length} records displayed from ${rows.length} workbook rows.`;
+      if (bounds.length) {
+        map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
+      }
+
+      document.getElementById('status').textContent =
+        `${records.length} Alabama records displayed from ${rows.length} CSV rows.`;
     }
 
     loadData().catch(error => {
       document.getElementById('status').textContent = `Could not load map data: ${error.message}`;
+      console.error(error);
     });
   </script>
 </body>
