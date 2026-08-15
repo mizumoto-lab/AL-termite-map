@@ -11,7 +11,12 @@
     header { padding: 14px 18px 10px; border-bottom: 1px solid #ddd; }
     h1 { margin: 0 0 4px; font-size: 1.45rem; }
     p { margin: 0; color: #555; font-size: 0.92rem; }
-    #status { margin-top: 6px; font-size: 0.82rem; color: #777; }
+    #controls { display: flex; flex-wrap: wrap; gap: 14px 24px; margin-top: 10px; align-items: end; }
+    .control-group { display: flex; flex-direction: column; gap: 4px; }
+    .control-label { font-size: 0.78rem; font-weight: 700; color: #555; }
+    select { padding: 5px 8px; font-size: 0.9rem; }
+    .checks { display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: 0.88rem; }
+    #status { margin-top: 8px; font-size: 0.82rem; color: #777; }
     #map { flex: 1; min-height: 420px; }
     .leaflet-popup-content { line-height: 1.4; }
     .species { font-style: italic; font-weight: 700; }
@@ -34,14 +39,41 @@
       border: 1px solid #333;
       vertical-align: -1px;
     }
+    .legend-box {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      margin-right: 6px;
+      border: 1px solid #a33;
+      background: rgba(215, 48, 39, 0.28);
+      vertical-align: -1px;
+    }
     .legend-species { font-style: italic; }
   </style>
 </head>
 <body>
   <header>
     <h1>Alabama Termite Map</h1>
-    <p>Verified specimen records from the AU Natural History Museum dataset.</p>
-    <div id="status">Loading AU-termite-samples.csv...</div>
+    <p>Documented termite records from AU voucher specimens and published county-level FST records.</p>
+    <div id="controls">
+      <div class="control-group">
+        <label class="control-label" for="genus-select">Genus</label>
+        <select id="genus-select">
+          <option value="all">All genera</option>
+          <option value="Coptotermes">Coptotermes</option>
+          <option value="Reticulitermes">Reticulitermes</option>
+          <option value="Kalotermes">Kalotermes</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <span class="control-label">Evidence</span>
+        <div class="checks">
+          <label><input type="checkbox" id="specimen-toggle" checked> Verified specimen points</label>
+          <label><input type="checkbox" id="fst-toggle" checked> FST county records</label>
+        </div>
+      </div>
+    </div>
+    <div id="status">Loading map data...</div>
   </header>
   <div id="map"></div>
 
@@ -55,102 +87,185 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    const palette = [
-      '#1f77b4',
-      '#ff7f0e',
-      '#2ca02c',
-      '#d62728',
-      '#9467bd',
-      '#8c564b',
-      '#e377c2',
-      '#7f7f7f',
-      '#bcbd22',
-      '#17becf',
-      '#393b79',
-      '#637939'
+    const countyUrl = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/19/query?where=STATE%3D%2701%27&outFields=GEOID%2CBASENAME%2CNAME&returnGeometry=true&outSR=4326&f=geojson";
+
+    const genusColors = {
+      Coptotermes: '#d73027',
+      Reticulitermes: '#2166ac',
+      Kalotermes: '#1a9850'
+    };
+
+    const fallbackColors = [
+      '#762a83', '#fdae61', '#5e3c99', '#9970ab', '#b35806', '#4d4d4d'
     ];
+
+    const specimenLayer = L.layerGroup().addTo(map);
+    const countyLayer = L.layerGroup().addTo(map);
+    let museumRecords = [];
+    let fstRecords = [];
+    let countyGeojson = null;
+    let legendControl = null;
 
     function speciesName(row) {
       return [row.genus, row.species].filter(Boolean).join(' ') || 'Unidentified termite';
     }
 
-    function addLegend(speciesColors) {
-      const legend = L.control({ position: 'bottomright' });
-      legend.onAdd = function () {
-        const div = L.DomUtil.create('div', 'legend');
-        const items = Object.entries(speciesColors).map(([species, color]) =>
-          `<div class="legend-item"><span class="legend-dot" style="background:${color}"></span><span class="legend-species">${species}</span></div>`
-        ).join('');
-        div.innerHTML = `<div class="legend-title">Species</div>${items}`;
-        return div;
-      };
-      legend.addTo(map);
+    function normalizeCounty(name) {
+      return String(name || '').trim().toLowerCase().replace(/\s+county$/, '');
     }
 
-    async function loadData() {
-      const response = await fetch('AU-termite-samples.csv');
-      if (!response.ok) throw new Error(`CSV request failed: ${response.status}`);
-      const text = await response.text();
+    function parseCsv(text) {
       const parsed = Papa.parse(text, {
         header: true,
         skipEmptyLines: true,
         transformHeader: header => header.replace(/^\uFEFF/, '').trim()
       });
+      if (parsed.errors.length) throw new Error(parsed.errors[0].message);
+      return parsed.data;
+    }
 
-      if (parsed.errors.length) {
-        throw new Error(parsed.errors[0].message);
+    function recordColor(row) {
+      if (genusColors[row.genus]) return genusColors[row.genus];
+      const name = speciesName(row);
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) hash = ((hash << 5) - hash) + name.charCodeAt(i);
+      return fallbackColors[Math.abs(hash) % fallbackColors.length];
+    }
+
+    function selectedGenus() {
+      return document.getElementById('genus-select').value;
+    }
+
+    function genusMatches(genus) {
+      const selected = selectedGenus();
+      return selected === 'all' || genus === selected;
+    }
+
+    function fstIsRelevant() {
+      const selected = selectedGenus();
+      return selected === 'all' || selected === 'Coptotermes';
+    }
+
+    function updateLegend(visibleMuseumRecords, showFst) {
+      if (legendControl) map.removeControl(legendControl);
+
+      const visibleGenera = [...new Set(visibleMuseumRecords.map(row => row.genus).filter(Boolean))].sort();
+      legendControl = L.control({ position: 'bottomright' });
+      legendControl.onAdd = function () {
+        const div = L.DomUtil.create('div', 'legend');
+        const genusItems = visibleGenera.map(genus =>
+          `<div class="legend-item"><span class="legend-dot" style="background:${genusColors[genus] || '#777'}"></span><span class="legend-species">${genus}</span> specimens</div>`
+        ).join('');
+        const fstItem = showFst
+          ? '<div class="legend-item"><span class="legend-box"></span><span class="legend-species">Coptotermes formosanus</span> FST county</div>'
+          : '';
+        div.innerHTML = `<div class="legend-title">Records</div>${genusItems}${fstItem}`;
+        return div;
+      };
+      legendControl.addTo(map);
+    }
+
+    function drawMap() {
+      specimenLayer.clearLayers();
+      countyLayer.clearLayers();
+
+      const showSpecimens = document.getElementById('specimen-toggle').checked;
+      const showFst = document.getElementById('fst-toggle').checked && fstIsRelevant();
+      const visibleMuseumRecords = museumRecords.filter(row => genusMatches(row.genus));
+
+      if (showSpecimens) {
+        for (const row of visibleMuseumRecords) {
+          const lat = Number(row.lat);
+          const lon = Number(row.lon);
+          const name = speciesName(row);
+          const place = [row.locality, row.city].filter(Boolean).join(', ');
+          const popup = [
+            `<span class="species">${name}</span>`,
+            row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '',
+            place || 'Alabama',
+            row.date ? `Collected: ${row.date}` : '',
+            'Evidence: verified specimen',
+            'Source: AU Natural History Museum'
+          ].filter(Boolean).join('<br>');
+
+          L.circleMarker([lat, lon], {
+            radius: 6,
+            color: '#333',
+            weight: 1,
+            fillColor: recordColor(row),
+            fillOpacity: 0.88
+          }).bindPopup(popup).addTo(specimenLayer);
+        }
       }
 
-      const rows = parsed.data;
-      const records = rows.filter(row => {
+      if (showFst && countyGeojson) {
+        const fstByCounty = Object.fromEntries(
+          fstRecords.map(row => [normalizeCounty(row.County), row])
+        );
+
+        L.geoJSON(countyGeojson, {
+          filter: feature => Boolean(fstByCounty[normalizeCounty(feature.properties.BASENAME)]),
+          style: {
+            color: '#a32121',
+            weight: 1.2,
+            fillColor: genusColors.Coptotermes,
+            fillOpacity: 0.25
+          },
+          onEachFeature: (feature, layer) => {
+            const record = fstByCounty[normalizeCounty(feature.properties.BASENAME)];
+            layer.bindPopup([
+              '<span class="species">Coptotermes formosanus</span>',
+              `${record.County} County`,
+              `First detected: ${record.FirstDetectedYear}`,
+              'Evidence: published county-level FST record',
+              'County shading indicates documented occurrence, not occurrence throughout the county.'
+            ].join('<br>'));
+          }
+        }).addTo(countyLayer);
+      }
+
+      updateLegend(showSpecimens ? visibleMuseumRecords : [], showFst && Boolean(countyGeojson));
+
+      const fstCount = showFst ? fstRecords.length : 0;
+      const pointCount = showSpecimens ? visibleMuseumRecords.length : 0;
+      const selected = selectedGenus() === 'all' ? 'all three focal genera' : selectedGenus();
+      document.getElementById('status').textContent =
+        `${pointCount} specimen records shown for ${selected}` +
+        (showFst ? `; ${fstCount} FST counties shown.` : '.');
+    }
+
+    async function loadData() {
+      const [museumResponse, fstResponse, countyResponse] = await Promise.all([
+        fetch('AU-termite-samples.csv'),
+        fetch('FSTrecords.csv'),
+        fetch(countyUrl)
+      ]);
+
+      if (!museumResponse.ok) throw new Error(`Museum CSV request failed: ${museumResponse.status}`);
+      if (!fstResponse.ok) throw new Error(`FST CSV request failed: ${fstResponse.status}`);
+      if (!countyResponse.ok) throw new Error(`County boundary request failed: ${countyResponse.status}`);
+
+      const rows = parseCsv(await museumResponse.text());
+      fstRecords = parseCsv(await fstResponse.text());
+      countyGeojson = await countyResponse.json();
+
+      museumRecords = rows.filter(row => {
         const lat = Number(row.lat);
         const lon = Number(row.lon);
         const state = String(row.state || '').trim().toUpperCase();
         const country = String(row.country || '').trim().toUpperCase();
         return Number.isFinite(lat) && Number.isFinite(lon) &&
           state === 'AL' && country === 'USA' &&
-          lat >= 30.1 && lat <= 35.2 && lon >= -88.6 && lon <= -84.8;
+          lat >= 30.1 && lat <= 35.2 && lon >= -88.6 && lon <= -84.8 &&
+          ['Coptotermes', 'Reticulitermes', 'Kalotermes'].includes(row.genus);
       });
 
-      const species = [...new Set(records.map(speciesName))].sort();
-      const speciesColors = Object.fromEntries(
-        species.map((name, index) => [name, palette[index % palette.length]])
-      );
-
-      const bounds = [];
-
-      for (const row of records) {
-        const lat = Number(row.lat);
-        const lon = Number(row.lon);
-        const name = speciesName(row);
-        const place = [row.locality, row.city].filter(Boolean).join(', ');
-        const popup = [
-          `<span class="species">${name}</span>`,
-          row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '',
-          place || 'Alabama',
-          row.date ? `Collected: ${row.date}` : '',
-          'Source: AU Natural History Museum'
-        ].filter(Boolean).join('<br>');
-
-        L.circleMarker([lat, lon], {
-          radius: 6,
-          color: '#333',
-          weight: 1,
-          fillColor: speciesColors[name],
-          fillOpacity: 0.85
-        }).bindPopup(popup).addTo(map);
-        bounds.push([lat, lon]);
-      }
-
-      if (bounds.length) {
-        map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
-      }
-
-      addLegend(speciesColors);
-
-      document.getElementById('status').textContent =
-        `${records.length} Alabama records displayed across ${species.length} species from ${rows.length} CSV rows.`;
+      drawMap();
     }
+
+    document.getElementById('genus-select').addEventListener('change', drawMap);
+    document.getElementById('specimen-toggle').addEventListener('change', drawMap);
+    document.getElementById('fst-toggle').addEventListener('change', drawMap);
 
     loadData().catch(error => {
       document.getElementById('status').textContent = `Could not load map data: ${error.message}`;
