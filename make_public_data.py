@@ -6,7 +6,8 @@ First run
 If ``AU-termite-samples-secret.csv`` does not exist but
 ``AU-termite-samples.csv`` does, the script copies the current CSV to the
 secret filename before generating the public file. This makes the initial
-conversion a one-click operation.
+conversion a one-click operation while the repository still contains the
+original exact-coordinate CSV.
 
 Privacy rule
 ------------
@@ -48,6 +49,16 @@ PUBLIC_FIELDS = [
 ]
 
 
+def public_file_is_already_generalized():
+    """Return True when the current public CSV already has privacy fields."""
+    try:
+        with PUBLIC_FILE.open("r", encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            return "coordinate_generalized" in (reader.fieldnames or [])
+    except OSError:
+        return False
+
+
 def prepare_secret_file():
     if SECRET_FILE.exists():
         return
@@ -56,6 +67,15 @@ def prepare_secret_file():
             f"Could not find {SECRET_FILE} or {PUBLIC_FILE}.\n"
             "Put your exact master CSV in this folder and run again."
         )
+    if public_file_is_already_generalized():
+        raise SystemExit(
+            f"{PUBLIC_FILE} already looks like public/generalized data, but "
+            f"{SECRET_FILE} is missing.\n\n"
+            "Copy your exact master CSV into this folder as:\n"
+            f"  {SECRET_FILE}\n"
+            "and run the script again."
+        )
+
     shutil.copy2(PUBLIC_FILE, SECRET_FILE)
     print(f"Created local private master: {SECRET_FILE}")
     print("This file is ignored by Git and must remain private.")
