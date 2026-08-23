@@ -57,10 +57,10 @@
       "fill_opacity": 0.15
     },
     "inaturalist": {
-      "radius_px": 4,
+      "radius_m": 300,
       "stroke_weight": 1,
       "stroke_opacity": 0.72,
-      "fill_opacity": 0.45
+      "fill_opacity": 0.12
     }
   }
 }
