@@ -83,8 +83,8 @@
       return fetch(path, { cache: 'no-cache' });
     }
 
-    function parseCsv(text) {
-      const parsed = Papa.parse(text, {
+    function parseCsv(value) {
+      const parsed = Papa.parse(value, {
         header: true,
         skipEmptyLines: true,
         transformHeader: header => header.replace(/^\uFEFF/, '').trim()
@@ -94,9 +94,9 @@
     }
 
     function parseCoordinate(value) {
-      const text = String(value ?? '').trim();
-      if (!text) return NaN;
-      const number = Number(text);
+      const cleaned = String(value ?? '').trim();
+      if (!cleaned) return NaN;
+      const number = Number(cleaned);
       return Number.isFinite(number) ? number : NaN;
     }
 
@@ -143,6 +143,10 @@
       return Object.keys(config.taxa);
     }
 
+    function validSpecies() {
+      return new Set(config.valid_species || Object.keys(config.species_colors || {}));
+    }
+
     function taxonConfig(genus) {
       return config.taxa[genus] || {};
     }
@@ -155,15 +159,27 @@
       return config.species_colors[name] || taxonConfig(genus).color || config.fallback_color;
     }
 
+    function speciesAlpha(name) {
+      const value = Number((config.species_alpha || {})[name]);
+      return Number.isFinite(value) && value >= 0 && value <= 1 ? value : 1;
+    }
+
     function scientificName(row) {
       return [row.genus, row.species].filter(Boolean).join(' ') || 'Unidentified termite';
     }
 
-    function displayScientificName(name) {
-      const common = config.scientific_common_names[name];
-      if (common) return `${common} (${name})`;
-      if (name.startsWith('Reticulitermes')) return `Native subterranean termite (${name})`;
+    function normalizedInatName(row) {
+      const name = String(row.name || '').trim();
+      if (name === 'Reticulitermes') return 'Reticulitermes sp';
       return name;
+    }
+
+    function displayScientificName(name) {
+      const displayedName = (config.scientific_display_names || {})[name] || name;
+      const common = config.scientific_common_names[name];
+      if (common) return `${common} (${displayedName})`;
+      if (name.startsWith('Reticulitermes')) return `Native subterranean termite (${displayedName})`;
+      return displayedName;
     }
 
     function museumDisplayName(row) {
@@ -197,6 +213,10 @@
       return String(row.coordinate_generalized || '').trim().toLowerCase() === 'yes';
     }
 
+    function isAlate(row) {
+      return String(row.alate || '').trim() === '1';
+    }
+
     function privacyRadius(row) {
       const value = Number(row.privacy_radius_m);
       return Number.isFinite(value) && value > 0 ? value : 300;
@@ -224,6 +244,12 @@
               <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.museum_specimens)}</span></label>
               <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.inaturalist)}</span></label>
             </div>
+          </div>
+          <div class="control-group">
+            <span class="control-label">${escapeHtml(text.controls.specimen_filters)}</span>
+            <div class="checks">
+              <label><input type="checkbox" id="alate-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.alate_only)}</span></label>
+            </div>
           </div>`;
         L.DomEvent.disableClickPropagation(div);
         L.DomEvent.disableScrollPropagation(div);
@@ -235,10 +261,12 @@
       document.getElementById('fst-toggle').checked = Boolean(config.defaults.published_counties);
       document.getElementById('specimen-toggle').checked = Boolean(config.defaults.museum_specimens);
       document.getElementById('inat-toggle').checked = Boolean(config.defaults.inaturalist);
+      document.getElementById('alate-toggle').checked = Boolean(config.defaults.alate_only);
 
       document.getElementById('genus-select').addEventListener('change', drawMap);
       document.getElementById('specimen-toggle').addEventListener('change', drawMap);
       document.getElementById('fst-toggle').addEventListener('change', drawMap);
+      document.getElementById('alate-toggle').addEventListener('change', drawMap);
       document.getElementById('inat-toggle').addEventListener('change', event => {
         if (!event.target.checked) {
           drawMap();
@@ -291,12 +319,14 @@
         const museumItems = visibleMuseumTaxa.map(row => {
           const name = scientificName(row);
           const color = speciesColor(name, row.genus);
-          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity}"></span><span style="color:#333">${escapeHtml(displayScientificName(name))} ${escapeHtml(text.legend.museum_suffix)}</span></div>`;
+          const alpha = speciesAlpha(name);
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity * alpha}"></span><span style="color:#333">${escapeHtml(displayScientificName(name))}</span></div>`;
         }).join('');
 
         const inatItems = showInat ? visibleInatSpecies.map(row => {
           const color = speciesColor(row.name, row.genus);
-          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity}"></span><span style="color:#333">${escapeHtml(displayScientificName(row.name))} ${escapeHtml(text.legend.inaturalist_suffix)}</span></div>`;
+          const alpha = speciesAlpha(row.name);
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity * alpha}"></span><span style="color:#333">${escapeHtml(displayScientificName(row.name))} ${escapeHtml(text.legend.inaturalist_suffix)}</span></div>`;
         }).join('') : '';
 
         div.innerHTML = `
@@ -320,8 +350,9 @@
     function updateStatus(generalizedMuseum, legacyExactMuseum, showFst, showInat, visibleInatRecords) {
       const museumCount = document.getElementById('specimen-toggle').checked ? generalizedMuseum.length : 0;
       const inatCount = showInat ? visibleInatRecords.length : 0;
-      const parts = [`${museumCount} privacy-generalized museum records for ${selectedDisplayName()}`];
+      const parts = [`${museumCount} verified museum records for ${selectedDisplayName()}`];
 
+      if (document.getElementById('alate-toggle').checked) parts.push('alate specimens only');
       if (document.getElementById('specimen-toggle').checked && legacyExactMuseum.length) {
         parts.push(`${legacyExactMuseum.length} legacy exact-coordinate museum records hidden until public data are regenerated`);
       }
@@ -340,16 +371,15 @@
       specimenLayer.clearLayers();
 
       const showSpecimens = document.getElementById('specimen-toggle').checked;
+      const alateOnly = document.getElementById('alate-toggle').checked;
       const showFst = document.getElementById('fst-toggle').checked && fstIsRelevant();
       const showInat = document.getElementById('inat-toggle').checked && inatLoaded;
-      const visibleMuseumRecords = museumRecords.filter(row => genusMatches(row.genus));
+      const visibleMuseumRecords = museumRecords.filter(row => genusMatches(row.genus) && (!alateOnly || isAlate(row)));
       const visibleInatRecords = inatRecords.filter(row => genusMatches(row.genus));
 
       if (showFst && countyGeojson) {
         const style = config.layers.published_counties;
-        const fstByCounty = Object.fromEntries(
-          fstRecords.map(row => [normalizeCounty(row.County), row])
-        );
+        const fstByCounty = Object.fromEntries(fstRecords.map(row => [normalizeCounty(row.County), row]));
 
         L.geoJSON(countyGeojson, {
           filter: feature => Boolean(fstByCounty[normalizeCounty(feature.properties.BASENAME)]),
@@ -378,6 +408,7 @@
         const style = config.layers.inaturalist;
         for (const row of visibleInatRecords) {
           const color = speciesColor(row.name, row.genus);
+          const alpha = speciesAlpha(row.name);
           const observationUrl = safeInaturalistUrl(row.url);
           const popup = [
             `<span class="taxon-name">${escapeHtml(displayScientificName(row.name))}</span>`,
@@ -393,9 +424,9 @@
             radius: style.radius_m,
             color,
             weight: style.stroke_weight,
-            opacity: style.stroke_opacity,
+            opacity: style.stroke_opacity * alpha,
             fillColor: color,
-            fillOpacity: style.fill_opacity
+            fillOpacity: style.fill_opacity * alpha
           }).bindPopup(popup).addTo(inatLayer);
         }
       }
@@ -422,10 +453,12 @@
           const lon = parseCoordinate(row.lon);
           const name = scientificName(row);
           const color = speciesColor(name, row.genus);
+          const alpha = speciesAlpha(name);
           const popup = [
             `<span class="taxon-name">${escapeHtml(museumDisplayName(row))}</span>`,
             row.date ? `Date: ${escapeHtml(row.date)}` : '',
             row.AUT_ID ? `Voucher: ${escapeHtml(row.AUT_ID)}` : '',
+            isAlate(row) ? 'Alate: yes' : '',
             'Evidence: verified museum specimen',
             `Privacy-generalized public location uncertainty area (${privacyRadius(row)} m radius).`,
             'The circle indicates only the public privacy buffer. It is not the biological range, territory, colony size, or infestation extent.'
@@ -435,9 +468,9 @@
             radius: privacyRadius(row),
             color,
             weight: style.stroke_weight,
-            opacity: style.stroke_opacity,
+            opacity: style.stroke_opacity * alpha,
             fillColor: color,
-            fillOpacity: style.fill_opacity
+            fillOpacity: style.fill_opacity * alpha
           }).bindPopup(popup).addTo(specimenLayer);
         }
       }
@@ -467,10 +500,11 @@
         const response = await fetchLocal('iNaturalist_records.csv');
         if (!response.ok) throw new Error(`iNaturalist snapshot request failed: ${response.status}`);
         const rows = parseCsv(await response.text());
+        const allowed = validSpecies();
         inatRecords = rows.map(row => ({
           id: row.id || row.observation_id || '',
           genus: (row.genus || '').trim(),
-          name: (row.name || row.taxon_name || row.genus || '').trim(),
+          name: normalizedInatName({ name: row.name || row.taxon_name || row.genus || '' }),
           lat: parseCoordinate(row.lat || row.latitude),
           lon: parseCoordinate(row.lon || row.longitude),
           observedOn: (row.observed_on || row.observed_date || '').trim(),
@@ -478,7 +512,7 @@
           observer: (row.observer || '').trim(),
           license: (row.license || row.observation_license || '').trim(),
           url: (row.url || row.observation_url || '').trim()
-        })).filter(row => Number.isFinite(row.lat) && Number.isFinite(row.lon) && focalGenera().includes(row.genus) && Boolean(row.license));
+        })).filter(row => Number.isFinite(row.lat) && Number.isFinite(row.lon) && focalGenera().includes(row.genus) && allowed.has(row.name) && Boolean(row.license));
         inatLoaded = true;
       } catch (error) {
         document.getElementById('inat-toggle').checked = false;
@@ -519,6 +553,7 @@
       addFilterControl();
       addSourceControl();
 
+      const allowed = validSpecies();
       museumRecords = parseCsv(await museumResponse.text()).map(row => ({
         AUT_ID: (row.AUT_ID || '').trim(),
         date: (row.date || '').trim(),
@@ -530,9 +565,10 @@
         country: (row.country || '').trim(),
         genus: (row.genus || '').trim(),
         species: (row.species || '').trim(),
+        alate: (row.alate || '').trim(),
         coordinate_generalized: (row.coordinate_generalized || '').trim(),
         privacy_radius_m: (row.privacy_radius_m || '').trim()
-      })).filter(row => focalGenera().includes(row.genus) && isAlabamaMuseumRecord(row));
+      })).filter(row => focalGenera().includes(row.genus) && allowed.has(scientificName(row)) && isAlabamaMuseumRecord(row));
 
       fstRecords = parseCsv(await fstResponse.text());
       countyGeojson = await countyResponse.json();
