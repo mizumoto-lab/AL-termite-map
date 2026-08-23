@@ -27,6 +27,7 @@ VALID_TAXA = {
 PUBLIC_FIELDS = [
     "AUT_ID",
     "date",
+    "collector",
     "lat",
     "lon",
     "locality",
@@ -35,6 +36,8 @@ PUBLIC_FIELDS = [
     "country",
     "genus",
     "species",
+    "id_method",
+    "id_by",
     "alate",
     "coordinate_generalized",
     "privacy_radius_m",
@@ -147,7 +150,18 @@ def invalid_taxa(rows):
 
 def public_row(row, salt):
     out = {field: "" for field in PUBLIC_FIELDS}
-    for field in ["AUT_ID", "date", "state", "country", "genus", "species", "alate"]:
+    for field in [
+        "AUT_ID",
+        "date",
+        "collector",
+        "state",
+        "country",
+        "genus",
+        "species",
+        "id_method",
+        "id_by",
+        "alate",
+    ]:
         out[field] = (row.get(field) or "").strip()
     coordinates = parse_coordinates(row)
     if coordinates:
