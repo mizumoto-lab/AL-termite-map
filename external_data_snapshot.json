@@ -1,22 +1,22 @@
 {
   "updated": "2026-08-23",
-  "generated_at_utc": "2026-08-23T14:50:22+00:00",
+  "generated_at_utc": "2026-08-23T15:23:31+00:00",
   "inaturalist": {
     "snapshot_date": "2026-08-23",
     "quality_grade": "research",
-    "license_filter": "any",
+    "license_filter": "licensed observations only",
     "genera": [
       "Coptotermes",
       "Reticulitermes",
       "Kalotermes",
       "Incisitermes"
     ],
-    "records": 66,
+    "records": 49,
     "source": "iNaturalist API"
   },
   "counties": {
     "downloaded": "2026-08-23",
-    "refreshed_this_run": true,
+    "refreshed_this_run": false,
     "features": 67,
     "source": "U.S. Census Bureau TIGERweb"
   }
