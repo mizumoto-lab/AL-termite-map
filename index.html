@@ -91,6 +91,13 @@
       return parsed.data;
     }
 
+    function parseCoordinate(value) {
+      const text = String(value ?? '').trim();
+      if (!text) return NaN;
+      const number = Number(text);
+      return Number.isFinite(number) ? number : NaN;
+    }
+
     function focalGenera() {
       return Object.keys(config.taxa);
     }
@@ -222,9 +229,9 @@
     function updateLegend(visibleMuseumRecords, visibleInatRecords, showFst, showInat) {
       if (legendControl) map.removeControl(legendControl);
 
-      const museumGenera = [...new Set(
-        visibleMuseumRecords.filter(isGeneralized).map(row => row.genus).filter(Boolean)
-      )].sort();
+      const visibleMuseumTaxa = [...new Map(
+        visibleMuseumRecords.filter(isGeneralized).map(row => [scientificName(row), row])
+      ).values()].sort((a, b) => scientificName(a).localeCompare(scientificName(b)));
 
       const visibleInatSpecies = [...new Map(
         visibleInatRecords.map(row => [row.name, row])
@@ -238,9 +245,10 @@
           ? `<div class="legend-item" style="color:${countyStyle.fill_color}"><span class="legend-box" style="background:${countyStyle.fill_color};opacity:${countyStyle.fill_opacity}"></span><span style="color:#333">Formosan subterranean termite county record</span></div>`
           : '';
 
-        const museumItems = museumGenera.map(genus => {
-          const color = taxonConfig(genus).color || config.fallback_color;
-          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity}"></span><span style="color:#333">${genusDisplayName(genus)} privacy-generalized specimen</span></div>`;
+        const museumItems = visibleMuseumTaxa.map(row => {
+          const name = scientificName(row);
+          const color = speciesColor(name, row.genus);
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity}"></span><span style="color:#333">${displayScientificName(name)} privacy-generalized specimen</span></div>`;
         }).join('');
 
         const inatItems = showInat ? visibleInatSpecies.map(row => {
@@ -329,8 +337,8 @@
         for (const row of visibleMuseumRecords) {
           if (!isGeneralized(row)) continue;
 
-          const lat = Number(row.lat);
-          const lon = Number(row.lon);
+          const lat = parseCoordinate(row.lat);
+          const lon = parseCoordinate(row.lon);
           if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
 
           const name = scientificName(row);
@@ -358,7 +366,7 @@
       }
 
       const generalizedMuseum = visibleMuseumRecords.filter(isGeneralized);
-      const legacyExactMuseum = visibleMuseumRecords.filter(row => !isGeneralized(row) && Number.isFinite(Number(row.lat)) && Number.isFinite(Number(row.lon)));
+      const legacyExactMuseum = visibleMuseumRecords.filter(row => !isGeneralized(row) && Number.isFinite(parseCoordinate(row.lat)) && Number.isFinite(parseCoordinate(row.lon)));
       const museumCount = showSpecimens ? generalizedMuseum.length : 0;
       const inatCount = showInat ? visibleInatRecords.length : 0;
       const parts = [`${museumCount} privacy-generalized museum records for ${selectedDisplayName()}`];
@@ -403,8 +411,8 @@
           id: row.id || '',
           genus: row.genus || '',
           name: row.name || row.genus || '',
-          lat: Number(row.lat),
-          lon: Number(row.lon),
+          lat: parseCoordinate(row.lat),
+          lon: parseCoordinate(row.lon),
           observedOn: row.observed_on || '',
           place: row.place || '',
           observer: row.observer || '',
@@ -461,8 +469,8 @@
       }
 
       museumRecords = rows.filter(row => {
-        const lat = Number(row.lat);
-        const lon = Number(row.lon);
+        const lat = parseCoordinate(row.lat);
+        const lon = parseCoordinate(row.lon);
         const state = String(row.state || '').trim().toUpperCase();
         const country = String(row.country || '').trim().toUpperCase();
         return Number.isFinite(lat) &&
