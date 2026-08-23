@@ -85,6 +85,8 @@ All museum records with coordinates are privacy-generalized before publication:
 
 The map renders public museum locations as translucent 300 m-radius circles with no center point. The circle is a public location-uncertainty area only. It is not biological range, territory, colony size, or infestation extent.
 
+The public CSV can contain collection records from outside Alabama. The Alabama map displays only focal-genus museum rows labeled `state=AL`. A generous Alabama bounding box is also applied to valid coordinates to suppress gross state/coordinate mismatches while still allowing a 300 m privacy displacement near the state boundary.
+
 `index.html` intentionally does not plot legacy museum rows that still contain coordinates but do not have `coordinate_generalized=yes`. Regenerate `AU-termite-samples.csv` with the privacy workflow before publishing those records.
 
 ### Published Formosan subterranean termite county records
@@ -129,10 +131,10 @@ To generate the public museum CSV on Windows:
 1. Put the exact specimen master in the repository folder as `AU-termite-samples-secret.csv`.
 2. Keep the existing `.privacy_salt` if one already exists. Reusing it keeps generalized positions stable between runs.
 3. Double-click `make_public_data.bat`.
-4. Review the regenerated `AU-termite-samples.csv`.
+4. Review the regenerated `AU-termite-samples.csv` and any warnings printed by the script.
 5. Commit only the public CSV, not the secret master or salt.
 
-The current privacy generator applies the same 300 m generalization to all specimen taxa with valid coordinates.
+The current privacy generator applies the same 300 m generalization to all specimen taxa with valid latitude/longitude values. It also reports duplicate nonblank `AUT_ID` values so collection-ID problems can be corrected in the private master.
 
 If the public CSV already contains privacy fields and the exact secret master is missing, `make_public_data.py` intentionally stops rather than treating previously generalized coordinates as the exact master.
 
@@ -148,18 +150,20 @@ python update_external_data.py
 
 Normal behavior:
 
-- reuse `alabama_counties.geojson` when it already exists
+- reuse `alabama_counties.geojson` when it already exists, after validating that it is a 67-county GeoJSON snapshot
 - download Alabama's 67 counties from TIGERweb if the county file is missing
 - download a fresh licensed Research Grade iNaturalist snapshot for `Coptotermes`, `Reticulitermes`, `Kalotermes`, and `Incisitermes`
 - filter observations to the actual Alabama county polygons
-- replace `iNaturalist_records.csv`
-- update `external_data_snapshot.json`
+- replace `iNaturalist_records.csv` atomically
+- replace `external_data_snapshot.json` atomically
 
 To force a fresh county download:
 
 ```text
 python update_external_data.py --refresh-counties
 ```
+
+The Windows wrappers preserve the Python script's success/failure exit code and print an explicit error when an update fails. Temporary files and Python cache files are ignored by Git.
 
 There is no GitHub Action for this workflow in Version 0.
 
@@ -178,6 +182,8 @@ At startup, `index.html` loads these local repository files:
 
 `index.html` makes no live Census TIGERweb or iNaturalist API requests. External web requests are limited to the OpenStreetMap basemap tiles and the Leaflet/Papa Parse libraries.
 
+Values from external snapshot data are HTML-escaped before being inserted into map popups, and iNaturalist observation links are restricted to the expected observation-URL format.
+
 ## GitHub Pages
 
-This repository can be published directly with GitHub Pages because `index.html` is in the repository root. Version 0 development is currently on `agent/version-0-map`; do not merge it to `main` until it has been reviewed.
+This repository can be published directly with GitHub Pages because `index.html` is in the repository root. Version 0 is intended to be served from `main`; future wording changes can normally be made in `map_text.json` without changing the application logic.
