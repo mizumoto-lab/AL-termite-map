@@ -29,7 +29,8 @@
     .checks label { display: flex; gap: 6px; align-items: flex-start; }
     .checks input { margin-top: 2px; }
     .legend { line-height: 1.45; }
-    .legend-title { font-weight: 700; margin-bottom: 4px; }
+    .legend summary { cursor: pointer; font-weight: 700; }
+    .legend details[open] summary { margin-bottom: 4px; }
     .legend-section { margin-top: 6px; font-size: .76rem; font-weight: 700; color: #666; }
     .legend-item { white-space: nowrap; }
     .legend-area { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin: 0 4px 0 -2px; border: 1.5px solid currentColor; vertical-align: -4px; }
@@ -45,8 +46,8 @@
 </head>
 <body>
   <header>
-    <h1>Alabama Termite Map</h1>
-    <p class="intro">Documented Alabama termite records from museum vouchers, published county records, and an optional static iNaturalist snapshot.</p>
+    <h1 id="page-title">Alabama Termite Map</h1>
+    <p class="intro" id="page-intro">Documented Alabama termite records from museum vouchers, published county records, and an optional static iNaturalist snapshot.</p>
     <div id="status">Loading map data...</div>
   </header>
   <div id="map"></div>
@@ -66,6 +67,7 @@
     const specimenLayer = L.layerGroup().addTo(map);
 
     let config = null;
+    let text = null;
     let museumRecords = [];
     let fstRecords = [];
     let inatRecords = [];
@@ -75,6 +77,7 @@
     let countyGeojson = null;
     let snapshotDate = 'not available';
     let legendControl = null;
+    let legendOpen = false;
 
     function fetchLocal(path) {
       return fetch(path, { cache: 'no-cache' });
@@ -95,6 +98,17 @@
       if (!text) return NaN;
       const number = Number(text);
       return Number.isFinite(number) ? number : NaN;
+    }
+
+    function formatText(template, values = {}) {
+      return String(template || '').replace(/\{(\w+)\}/g, (_, key) => values[key] ?? `{${key}}`);
+    }
+
+    function applyPageText() {
+      document.title = text.page.title;
+      document.getElementById('page-title').textContent = text.page.title;
+      document.getElementById('page-intro').textContent = text.page.intro;
+      document.getElementById('status').textContent = text.page.loading;
     }
 
     function focalGenera() {
@@ -169,18 +183,18 @@
         ).join('');
         div.innerHTML = `
           <div class="control-group">
-            <label class="control-label" for="genus-select">Termite</label>
+            <label class="control-label" for="genus-select">${text.controls.taxon}</label>
             <select id="genus-select" autocomplete="off">
               ${options}
-              <option value="all">All termites</option>
+              <option value="all">${text.controls.all_taxa}</option>
             </select>
           </div>
           <div class="control-group">
-            <span class="control-label">Evidence</span>
+            <span class="control-label">${text.controls.evidence}</span>
             <div class="checks">
-              <label><input type="checkbox" id="fst-toggle" autocomplete="off"> <span>Published county records</span></label>
-              <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>Verified museum specimens</span></label>
-              <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>iNaturalist Research Grade</span></label>
+              <label><input type="checkbox" id="fst-toggle" autocomplete="off"> <span>${text.controls.published_counties}</span></label>
+              <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>${text.controls.museum_specimens}</span></label>
+              <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>${text.controls.inaturalist}</span></label>
             </div>
           </div>`;
         L.DomEvent.disableClickPropagation(div);
@@ -210,13 +224,15 @@
       const sourceControl = L.control({ position: 'bottomleft' });
       sourceControl.onAdd = function () {
         const div = L.DomUtil.create('div', 'map-panel source-panel');
+        const reference = text.published_reference;
+        const inatText = formatText(text.sources.inaturalist_text, { snapshot_date: snapshotDate });
         div.innerHTML = `
           <details>
-            <summary>Sources & references</summary>
-            <p><strong>Published county records:</strong> Hu, X. P. & Mizumoto, N. (2026, in press). <em>Four decades of inland invasion by Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.</em> <a href="https://doi.org/10.32942/X21H4M" target="_blank" rel="noopener">Preprint</a>.</p>
-            <p><strong>Verified specimens:</strong> Auburn University Natural History Museum / Alabama Termite Identification Service. Public specimen coordinates are privacy-generalized by up to 300 m and are shown only as location-uncertainty areas.</p>
-            <p><strong>iNaturalist:</strong> Static snapshot dated <span id="inat-snapshot-date">${snapshotDate}</span>. Records are licensed Research Grade/community-assessed observations and are not independently verified by the Alabama Termite Identification Service. For visual comparability with museum circles, each iNaturalist observation is displayed as a 300 m-radius map circle. This circle does not indicate privacy generalization or coordinate uncertainty.</p>
-            <p><strong>Boundaries:</strong> Local Alabama county snapshot from U.S. Census Bureau TIGERweb. Basemap tiles are from OpenStreetMap.</p>
+            <summary>${text.sources.title}</summary>
+            <p><strong>${text.sources.published_label}:</strong> ${reference.authors} (${reference.year}). <em>${reference.title}</em> <a href="${reference.url}" target="_blank" rel="noopener">${reference.link_text}</a>.</p>
+            <p><strong>${text.sources.museum_label}:</strong> ${text.sources.museum_text}</p>
+            <p><strong>${text.sources.inaturalist_label}:</strong> <span id="inat-source-text">${inatText}</span></p>
+            <p><strong>${text.sources.boundaries_label}:</strong> ${text.sources.boundaries_text}</p>
           </details>`;
         L.DomEvent.disableClickPropagation(div);
         L.DomEvent.disableScrollPropagation(div);
@@ -241,26 +257,33 @@
         const div = L.DomUtil.create('div', 'map-panel legend');
         const countyStyle = config.layers.published_counties;
         const countyItem = showFst
-          ? `<div class="legend-item" style="color:${countyStyle.fill_color}"><span class="legend-box" style="background:${countyStyle.fill_color};opacity:${countyStyle.fill_opacity}"></span><span style="color:#333">Formosan subterranean termite county record</span></div>`
+          ? `<div class="legend-item" style="color:${countyStyle.fill_color}"><span class="legend-box" style="background:${countyStyle.fill_color};opacity:${countyStyle.fill_opacity}"></span><span style="color:#333">${text.legend.published_counties}</span></div>`
           : '';
 
         const museumItems = visibleMuseumTaxa.map(row => {
           const name = scientificName(row);
           const color = speciesColor(name, row.genus);
-          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity}"></span><span style="color:#333">${displayScientificName(name)} privacy-generalized specimen</span></div>`;
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity}"></span><span style="color:#333">${displayScientificName(name)} ${text.legend.museum_suffix}</span></div>`;
         }).join('');
 
         const inatItems = showInat ? visibleInatSpecies.map(row => {
           const color = speciesColor(row.name, row.genus);
-          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity}"></span><span style="color:#333">${displayScientificName(row.name)} iNaturalist</span></div>`;
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity}"></span><span style="color:#333">${displayScientificName(row.name)} ${text.legend.inaturalist_suffix}</span></div>`;
         }).join('') : '';
 
         div.innerHTML = `
-          <div class="legend-title">Records</div>
-          ${countyItem}
-          ${museumItems ? `<div class="legend-section">Verified specimens</div>${museumItems}` : ''}
-          ${inatItems ? `<div class="legend-section">iNaturalist Research Grade (300 m map circles)</div>${inatItems}` : ''}`;
+          <details class="legend-details" ${legendOpen ? 'open' : ''}>
+            <summary>${text.legend.title}</summary>
+            ${countyItem}
+            ${museumItems ? `<div class="legend-section">${text.legend.museum_heading}</div>${museumItems}` : ''}
+            ${inatItems ? `<div class="legend-section">${text.legend.inaturalist_heading}</div>${inatItems}` : ''}
+          </details>`;
+        const details = div.querySelector('.legend-details');
+        details.addEventListener('toggle', () => {
+          legendOpen = details.open;
+        });
         L.DomEvent.disableClickPropagation(div);
+        L.DomEvent.disableScrollPropagation(div);
         return div;
       };
       legendControl.addTo(map);
@@ -440,12 +463,14 @@
     async function loadData() {
       const [
         configResponse,
+        textResponse,
         museumResponse,
         fstResponse,
         countyResponse,
         metadataResponse
       ] = await Promise.all([
         fetchLocal('map_config.json'),
+        fetchLocal('map_text.json'),
         fetchLocal('AU-termite-samples.csv'),
         fetchLocal('FSTrecords.csv'),
         fetchLocal('alabama_counties.geojson'),
@@ -453,11 +478,14 @@
       ]);
 
       if (!configResponse.ok) throw new Error(`Map config request failed: ${configResponse.status}`);
+      if (!textResponse.ok) throw new Error(`Map text request failed: ${textResponse.status}`);
       if (!museumResponse.ok) throw new Error(`Museum CSV request failed: ${museumResponse.status}`);
       if (!fstResponse.ok) throw new Error(`FST CSV request failed: ${fstResponse.status}`);
       if (!countyResponse.ok) throw new Error(`County boundary request failed: ${countyResponse.status}`);
 
       config = await configResponse.json();
+      text = await textResponse.json();
+      applyPageText();
       addFilterControl();
       addSourceControl();
 
@@ -484,8 +512,8 @@
         snapshotDate = metadata.inaturalist && metadata.inaturalist.snapshot_date
           ? metadata.inaturalist.snapshot_date
           : (metadata.updated || snapshotDate);
-        const target = document.getElementById('inat-snapshot-date');
-        if (target) target.textContent = snapshotDate;
+        const target = document.getElementById('inat-source-text');
+        if (target) target.textContent = formatText(text.sources.inaturalist_text, { snapshot_date: snapshotDate });
       }
 
       const bounds = L.geoJSON(countyGeojson).getBounds();
