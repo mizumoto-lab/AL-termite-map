@@ -10,13 +10,14 @@
     "evidence": "Evidence",
     "published_counties": "Published county records",
     "museum_specimens": "Verified museum specimens",
-    "inaturalist": "iNaturalist Research Grade"
+    "inaturalist": "iNaturalist Research Grade",
+    "specimen_filters": "Specimen filter",
+    "alate_only": "Alate only (alate = 1)"
   },
   "legend": {
     "title": "Records",
     "published_counties": "Formosan subterranean termite county record",
     "museum_heading": "Verified specimens",
-    "museum_suffix": "privacy-generalized specimen",
     "inaturalist_heading": "iNaturalist Research Grade (300 m map circles)",
     "inaturalist_suffix": "iNaturalist"
   },
@@ -26,7 +27,7 @@
     "museum_label": "Verified specimens",
     "inaturalist_label": "iNaturalist",
     "boundaries_label": "Boundaries",
-    "museum_text": "Auburn University Natural History Museum / Alabama Termite Identification Service. Public specimen coordinates are privacy-generalized by up to 300 m and are shown only as location-uncertainty areas.",
+    "museum_text": "Auburn University Natural History Museum / Alabama Termite Identification Service. Verified specimen coordinates are privacy-generalized by up to 300 m before publication and are shown as location-uncertainty circles rather than exact collection points. These circles indicate only the public privacy buffer, not biological range, territory, colony size, or infestation extent.",
     "inaturalist_text": "Static snapshot dated {snapshot_date}. Records are licensed Research Grade/community-assessed observations and are not independently verified by the Alabama Termite Identification Service. For visual comparability with museum circles, each iNaturalist observation is displayed as a 300 m-radius map circle. This circle does not indicate privacy generalization or coordinate uncertainty.",
     "boundaries_text": "Local Alabama county snapshot from U.S. Census Bureau TIGERweb. Basemap tiles are from OpenStreetMap."
   },
