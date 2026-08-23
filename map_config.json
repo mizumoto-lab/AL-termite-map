@@ -1,0 +1,66 @@
+{
+  "defaults": {
+    "taxon": "Coptotermes",
+    "published_counties": true,
+    "museum_specimens": true,
+    "inaturalist": false
+  },
+  "fallback_color": "#777777",
+  "taxa": {
+    "Coptotermes": {
+      "display_name": "Formosan subterranean termite",
+      "selector_label": "Formosan subterranean termite (Coptotermes formosanus)",
+      "color": "#d73027"
+    },
+    "Reticulitermes": {
+      "display_name": "Native subterranean termites",
+      "selector_label": "Native subterranean termites (Reticulitermes spp.)",
+      "color": "#2166ac"
+    },
+    "Kalotermes": {
+      "display_name": "Dark southern drywood termite",
+      "selector_label": "Dark southern drywood termite (Kalotermes approximatus)",
+      "color": "#1a9850"
+    },
+    "Incisitermes": {
+      "display_name": "Southeastern drywood termite",
+      "selector_label": "Southeastern drywood termite (Incisitermes snyderi)",
+      "color": "#7b3294"
+    }
+  },
+  "scientific_common_names": {
+    "Coptotermes formosanus": "Formosan subterranean termite",
+    "Kalotermes approximatus": "Dark southern drywood termite",
+    "Incisitermes snyderi": "Southeastern drywood termite"
+  },
+  "species_colors": {
+    "Coptotermes formosanus": "#d73027",
+    "Coptotermes gestroi": "#f46d43",
+    "Reticulitermes flavipes": "#2166ac",
+    "Reticulitermes hageni": "#4393c3",
+    "Reticulitermes virginicus": "#8073ac",
+    "Reticulitermes mississippiensis": "#67a9cf",
+    "Reticulitermes malletei": "#053061",
+    "Kalotermes approximatus": "#1a9850",
+    "Incisitermes snyderi": "#7b3294"
+  },
+  "layers": {
+    "published_counties": {
+      "stroke_color": "#a32121",
+      "stroke_weight": 1.2,
+      "fill_color": "#d73027",
+      "fill_opacity": 0.25
+    },
+    "museum_specimens": {
+      "stroke_weight": 1.5,
+      "stroke_opacity": 0.9,
+      "fill_opacity": 0.75
+    },
+    "inaturalist": {
+      "radius_m": 300,
+      "stroke_weight": 1,
+      "stroke_opacity": 0.72,
+      "fill_opacity": 0.2
+    }
+  }
+}
