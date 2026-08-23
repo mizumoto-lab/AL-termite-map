@@ -4,6 +4,7 @@ import hashlib
 import math
 import secrets
 import shutil
+from collections import Counter
 from pathlib import Path
 
 SECRET_FILE = Path("AU-termite-samples-secret.csv")
@@ -69,11 +70,17 @@ def load_or_create_salt():
     return salt
 
 
-def valid_coordinate(value):
+def parse_coordinates(row):
     try:
-        return math.isfinite(float(value))
+        lat = float(row.get("lat"))
+        lon = float(row.get("lon"))
     except (TypeError, ValueError):
-        return False
+        return None
+    if not (math.isfinite(lat) and math.isfinite(lon)):
+        return None
+    if not (-90.0 < lat < 90.0 and -180.0 <= lon <= 180.0):
+        return None
+    return lat, lon
 
 
 def deterministic_offset(record_id, salt):
@@ -109,13 +116,19 @@ def record_key(row, lat, lon):
     ])
 
 
+def duplicate_record_ids(rows):
+    ids = [(row.get("AUT_ID") or "").strip() for row in rows]
+    counts = Counter(record_id for record_id in ids if record_id)
+    return sorted(record_id for record_id, count in counts.items() if count > 1)
+
+
 def public_row(row, salt):
     out = {field: "" for field in PUBLIC_FIELDS}
     for field in ["AUT_ID", "date", "state", "country", "genus", "species"]:
         out[field] = (row.get(field) or "").strip()
-    if valid_coordinate(row.get("lat")) and valid_coordinate(row.get("lon")):
-        lat = float(row["lat"])
-        lon = float(row["lon"])
+    coordinates = parse_coordinates(row)
+    if coordinates:
+        lat, lon = coordinates
         east_m, north_m = deterministic_offset(record_key(row, lat, lon), salt)
         public_lat, public_lon = shift_coordinate(lat, lon, east_m, north_m)
         out["lat"] = f"{public_lat:.6f}"
@@ -132,22 +145,25 @@ def main():
     salt = load_or_create_salt()
     with SECRET_FILE.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
+    duplicates = duplicate_record_ids(rows)
     public_rows = [public_row(row, salt) for row in rows]
     with PUBLIC_FILE.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=PUBLIC_FIELDS)
         writer.writeheader()
         writer.writerows(public_rows)
-    generalized = sum(
-        valid_coordinate(row.get("lat")) and valid_coordinate(row.get("lon"))
-        for row in rows
-    )
+    generalized = sum(parse_coordinates(row) is not None for row in rows)
     without_coordinates = len(rows) - generalized
     print()
     print(f"Created public file: {PUBLIC_FILE}")
     print(f"Rows written: {len(public_rows)}")
     print(f"Coordinates generalized within {int(PRIVACY_RADIUS_M)} m: {generalized}")
-    print(f"Rows without coordinates: {without_coordinates}")
+    print(f"Rows without valid coordinates: {without_coordinates}")
     print("Locality and city are omitted from all public specimen rows.")
+    if duplicates:
+        print()
+        print("WARNING: Duplicate AUT_ID values found in the private master:")
+        for record_id in duplicates:
+            print(f"  {record_id}")
     print()
     print("Commit/push AU-termite-samples.csv only.")
     print(f"Keep {SECRET_FILE} and {SALT_FILE} local/private.")
