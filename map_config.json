@@ -38,9 +38,11 @@
     "Coptotermes gestroi": "#f46d43",
     "Reticulitermes flavipes": "#2166ac",
     "Reticulitermes hageni": "#4393c3",
-    "Reticulitermes virginicus": "#8073ac",
+    "Reticulitermes virginicus": "#238b8d",
     "Reticulitermes mississippiensis": "#67a9cf",
-    "Reticulitermes malletei": "#053061",
+    "Reticulitermes malletei": "#084081",
+    "Reticulitermes nelsonae": "#756bb1",
+    "Reticulitermes sp": "#c6dbef",
     "Kalotermes approximatus": "#1a9850",
     "Incisitermes snyderi": "#7b3294"
   },
