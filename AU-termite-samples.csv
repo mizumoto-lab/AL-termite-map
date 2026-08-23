@@ -1,198 +1,198 @@
-﻿AUT_ID,date,alias,collector,lat,lon,alt,locality,city,state,country,Family,genus,species,id_method,id_by,termitophile,note
-AUT-2024-0001,7/2/2024,NM24-0024,NM,34.51117597,-86.955919,180.082352,Wheeler NWR - Dancy Bottoms Nature Trail,Decatur,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0002,10/10/2024,NM24-0116,NM,32.58554,-85.4153,191.7364,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0003,5/23/2024,NM24-0013,NM,30.27496303,-87.64957597,-3.396372,Gulf State Park,Baldwin,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0004,5/23/2024,NM24-0014,NM,30.29329098,-87.57437898,-0.905077,Orange Beach Waterfront Park,,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0005,7/2/2024,NM24-0023,NM,34.51167804,-86.95597901,181.519272,Wheeler NWR - Dancy Bottoms Nature Trail,Decatur,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0006,8/4/2024,NM24-0028,NM,32.58304403,-85.476355,187.94812,Town Creek Park,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0007,9/17/2024,NM24-0029,NM,32.58997897,-85.41721296,198.917969,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,termite ball,
-AUT-2024-0008,10/1/2024,NM24-0034,NM,32.58459,-85.4188,202.1961,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0009,10/10/2024,NM24-0112,NM,32.58603,-85.4146,191.4845,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0010,10/10/2024,NM24-0116,NM,32.58554,-85.4153,191.7364,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,fall alates
-AUT-2024-0011,10/10/2024,NM24-0140,NM,32.58726,-85.4235,210.883,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,spring alates
-AUT-2024-0012,11/14/2024,NM24-0166,NM/EC,33.285344,-110.794651,1749.737915,Pioneer Pass Campground,Globe,AZ,USA,Heterotermitidae,Reticulitermes,tibialis,distribution,,,
-AUT-2024-0013,11/6/2024,NM24-0155,NM/EC,30.34626301,-87.63145496,18.390793,Orange Beach Sportsplex,Orange Beach,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,spring alates
-AUT-2024-0014,11/6/2024,NM24-0157,NM/EC,30.33937904,-87.64049903,24.110508,The Prairie Disc Golf Course at Graham Creek Nature Preserve,Foley,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,spring alates
-AUT-2024-0015,11/14/2024,NM24-0167,NM/EC,33.28527703,-110.794797,1752.322632,Pioneer Pass Campground,Globe,AZ,USA,Heterotermitidae,Reticulitermes,tibialis,distribution,,,
-AUT-2024-0016,9/28/2024,NM24-P01,NM,32.659183,-85.382394,226.59,Monkey Oark,Opelika,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0017,10/1/2024,EC24-002,EC,32.58489,-85.41812,198.83,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0018,11/6/2024,EC24-005,EC,30.28200,-87.61683,8.4531822,Orange Beach Sportsplex,Orange Beach,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0019,11/7/2024,NM24-0160,NM/EC,30.28258997,-87.61662603,10.011832,Gulf State Park,Orange Beach,AL,USA,Heterotermitidae,Reticulitermes,mississippiensis,16s,,,
-AUT-2024-0020,10/26/2024,NM24-P04-2,NM,31.77459456,-85.14434338,68.54611283,White Oak (Creek) Campground,Eufaula,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,Kistnerium,alates
-AUT-2024-0021,10/26/2024,NM24-P04-1,NM,31.77459456,-85.14434338,68.54611283,White Oak (Creek) Campground,Eufaula,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0022,6/13/2024,NM24-0020,NM,32.96634796,-85.64816298,193.46257,Harold Banks Canoe Trail,Tallapoosa ,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,
-AUT-2024-0023,5/23/2024,NM24-0013,NM,30.27496303,-87.64957597,-3.396372,Gulf State Park,Baldwin,AL,USA,Kalotermitidae,Kalotermes,approximatus,morphology,,,
-AUT-2024-0024,5/23/2024,NM24-0010,NM,30.62798004,-87.91693202,10.459705,Village Point Park Preserve,Daphne,AL,USA,Kalotermitidae,Kalotermes,approximatus,morphology,,,
-AUT-2024-0025,10/22/2024,NM24-0144,NM,28.60204898,-81.15540203,22.776218,Econlockhatchee Sandhills Conservation Area,Orlando,FL,USA,Kalotermitidae,Kalotermes,approximatus,morphology,,,
-AUT-2024-0026,4/3/2024,NM24-0005,NM,32.584664,-85.41838903,192.566818,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Kalotermitidae,Kalotermes,approximatus,morphology,,,
-AUT-2024-0027,2024/3/22,NM24-0002,NM,32.673553,-85.51223902,219.364563,Smith Bee Lab,Auburn,AL,USA,Heterotermitidae,Reticulitermes,malletei,,,,
-AUT-2024-0028,11/6/2024,EC24-006,EC,30.28174,-87.61736,9.7313500,Orange Beach Sportsplex,Orange Beach,AL,USA,Heterotermitidae,Reticulitermes,flavipes,16s,,,fall alates
-AUT-2024-0029,2024/3/22,NM24-0003,NM,32.67353497,-85.51200299,220.120346,Smith Bee Lab,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,
-AUT-2024-0030,11/14/2024,NM24-0162,NM/EC,33.27619297,-111.137328,773.69165,Queen Valey,Superior,AZ,USA,Kalotermitidae,Incisitermes,minor,morphology,,,
-AUT-2024-0031,11/14/2024,NM24-0161,NM/EC,33.27618903,-111.137321,773.766296,Queen Valey,Superior,AZ,USA,Kalotermitidae,Marginitermes,hubbardi,morphology,,,
-AUT-2024-0032,11/14/2024,NM24-0164,NM/EC,33.27626003,-111.13726,773.934204,Queen Valey,Superior,AZ,USA,Kalotermitidae,Marginitermes,hubbardi,morphology,,,
-AUT-2024-0033,11/6/2024,NM24-0149,NM/EC,30.27499496,-87.64923097,10.151793,Gulf State Park,Orange Beach,AL,USA,Kalotermitidae,Kalotermes,approximatus,morphology,,,
-AUT-2024-0034,5/23/2024,NM24-0009,NM,30.67825,-88.130389,10.720964,Llanfair,Mobile,AL,USA,Heterotermitidae,Coptotermes,formosanus,morphology,,,
-AUT-2024-0035,11/6/2024,NM24-0151,NM/EC,30.28194297,-87.61686198,10.543682,Orange Beach Sportsplex,Orange Beach,AL,USA,Heterotermitidae,Coptotermes,formosanus,,,,
-AUT-2024-0036,7/2/2024,NM24-0027,Cook Pest Management,34.587589,-87.028852,187,Hotel,Decatur,AL,USA,Heterotermitidae,Coptotermes,formosanus,,,,
-AUT-2024-0037,5/23/2024,NM24-0011,NM,30.62708602,-87.91877604,13.36155,Village Point Park Preserve,Daphne,AL,USA,Rhinotermitidae,Coptotermes,formosanus,,,,
-AUT-2024-0038,10/19/2024,NM24-P03,NM,32.48166962,-84.96526259,83.29542271,Lakebottom Park,Columbus,GA,USA,Rhinotermitidae,Coptotermes,formosanus,,,,
-AUT-2024-0039,7/2/2024,NM24-0026,NM,34.50951098,-86.95644203,179.905075,Wheeler NWR - Dancy Bottoms Nature Trail,Decatur,AL,USA,Rhinotermitidae,Reticulitermes,hageni,,,,
-AUT-2024-0040,10/5/2024,NM24-P02,NM,32.36480985,-86.45387799,49.20167397,Gunter Hills Campground,Montgomery,AL,USA,Rhinotermitidae,Reticulitermes,hageni,,,,
-AUT-2024-0041,7/2/2024,NM24-0022,NM,34.57514204,-86.94387303,179.494522,Point Mallard Archery Park,Decatur,AL,USA,Rhinotermitidae,Reticulitermes,hageni,,,,
-AUT-2024-0042,7/1/2024,NM24-0021,NM,34.50923497,-86.955618,186.165955,Wheeler NWR - Dancy Bottoms Nature Trail,Decatur,AL,USA,Rhinotermitidae,Reticulitermes,virginicus,,,,
-AUT-2024-0043,10/22/2024,NM24-0142,NM,28.589887,-81.15517798,24.00787,Econlockhatchee Sandhills Conservation Area,Orlando,FL,USA,Heterotermitidae,Reticulitermes,nelsonae,,,,
-AUT-2024-0044,5/22/2024,NM24-0008,NM,30.65554904,-88.18710599,64.876297,Medal Honor Park,Mobile,AL,USA,Rhinotermitidae,Coptotermes,formosanus,,,,
-AUT-2024-0045,2024-10-22,NM24-0141,NM,28.58988499,-81.155109,21.945787,Econlockhatchee Sandhills Conservation Area,Orlando,FL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,
-AUT-2025-0001,2025-03-01,NM25-P01,NM,31.77488128,-85.14423243,69.30100881,White Oak (Creek) Campground,Eufaula,AL,USA,Rhinotermitidae,Reticulitermes,flavipes,,,,nymph/alate
-AUT-2025-0002,2025-03-01,NM25-P03,NM,31.77483578,-85.14513673,74.54004096,White Oak (Creek) Campground,Eufaula,AL,USA,Rhinotermitidae,Reticulitermes,flavipes?,,,,nymph/alate
-AUT-2025-0003,2025-03-02,NM25-P05,NM,31.77532308,-85.14281173,53.09734578,White Oak (Creek) Campground,Eufaula,AL,USA,Rhinotermitidae,Reticulitermes,flavipes?,,,,primary queen king
-AUT-2025-0004,2025-03-02,NM25-P06,NM,31.77519974,-85.14294296,50.89561742,White Oak (Creek) Campground,Eufaula,AL,USA,Rhinotermitidae,Reticulitermes,sp,,,,young nympjhs
-AUT-2025-0005,2025-03-02,NM25-P07,NM,31.77545509,-85.14264114,49.91322575,White Oak (Creek) Campground,Eufaula,AL,USA,Rhinotermitidae,Reticulitermes,flavipes,,,,nymph/alate
-AUT-2025-0006,2025-03-02,NM25-P10,NM,31.775031,-85.14457793,59.23214086,White Oak (Creek) Campground,Eufaula,AL,USA,Rhinotermitidae,Reticulitermes,flavipes,,,,nymph/alate
-AUT-2025-0007,2025-03-02,NM25-P11,NM,31.77494978,-85.1444293,57.78148861,White Oak (Creek) Campground,Eufaula,AL,USA,Rhinotermitidae,Reticulitermes,flavipes?,,,,nymph/alate
-AUT-2025-0008,2025-03-08,NM25-P12,NM,30.65606771,-88.18690633,64.7815589,Medal Honor Park,Mobile,AL,USA,Rhinotermitidae,Reticulitermes,nelsonae,,,,nymph (small)
-AUT-2025-0009,2025-03-08,NM25-P13,NM,30.65619085,-88.18655806,71.76889119,Medal Honor Park,Mobile,AL,USA,Rhinotermitidae,Reticulitermes,nelsonae,,,,nymph (small)
-AUT-2025-0010,2025-03-08,NM25-P14,NM,30.65533266,-88.18543412,68.61854772,Medal Honor Park,Mobile,AL,USA,Rhinotermitidae,Reticulitermes,flavipes?,,,,alates
-AUT-2025-0011,2025-03-08,NM25-P15,NM,30.65560418,-88.18520133,69.3601891,Medal Honor Park,Mobile,AL,USA,Rhinotermitidae,Reticulitermes,nelsonae,,,,nymph (small)
-AUT-2025-0012,2025-03-12,NM25-0170,NM,30.34711403,-91.07124201,4.366764,Highland Road Park Observatory,Baton Rouge,LA,USA,Rhinotermitidae,Reticulitermes,flavipes?,,,,"1 alate is left, probably left after major swarming"
-AUT-2025-0013,2025-03-12,NM25-0171,NM,30.34736699,-91.07156496,4.5907,Highland Road Park Observatory,Baton Rouge,LA,USA,Rhinotermitidae,Reticulitermes,flavipes,,,,alates
-AUT-2025-0014,2025-03-12,NM25-0172,NM,30.386111,-91.20090997,11.635372,Riverbend Park,Baton Rouge,LA,USA,Rhinotermitidae,Reticulitermes,flavipes?,,,,"1 alate is left, probably left after major swarming"
-AUT-2025-0015,2025-03-12,NM25-0174,NM,30.38679102,-91.202239,16.776585,Riverbend Park,Baton Rouge,LA,USA,Rhinotermitidae,Reticulitermes,flavipes?,,,,alates
-AUT-2025-0016,2025-03-12,NM25-0175,NM,30.38652901,-91.20207698,18.47477,Riverbend Park,Baton Rouge,LA,USA,Rhinotermitidae,Reticulitermes,flavipes?,,,,alates and many secondary reproductives
-AUT-2025-0017,2025-03-12,NM25-P16,NM,30.34530527,-91.07070962,11.75042442,Highland Road Park Observatory,Baton Rouge,LA,USA,Rhinotermitidae,Reticulitermes,nelsonae,,,,nymph (small)
-AUT-2025-0018,2025-03-13,NM25-0176,NM,30.30970501,-89.61050101,6.802074,Possum Walk Heritage Trail,Pearlington,MS,USA,Rhinotermitidae,Reticulitermes,flavipes,,,,alates
-AUT-2025-0019,2025-03-13,NM25-0177,NM,30.30969101,-89.61095002,6.120934,Possum Walk Heritage Trail,Pearlington,MS,USA,Rhinotermitidae,Reticulitermes,sp,,,,young nymphs. I think it is fall flavipes.
-AUT-2025-0020,2025-03-15,NM25-P17,NM,32.58281248,-85.47683036,173.08231,Towncreek park,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,alate; philotermes
-AUT-2025-0021,2025-03-21,NM25-0180,NM,32.67349499,-85.51205596,216.108154,Smith Bee Lab,Auburn,AL,USA,Rhinotermitidae,Reticulitermes,malletei,,,,
-AUT-2025-0022,2025-03-22,NM25-P18,NM,32.52953709,-84.93094895,114.4413007,Lake Heath,Columbus,GA,USA,Heterotermitidae,Reticulitermes,sp,,,,
-AUT-2025-0023,2025-03-22,NM25-P19,NM,32.53232452,-84.93060095,114.845018,Lake Heath,Columbus,GA,USA,Heterotermitidae,Reticulitermes,flavipes,,,,
-AUT-2025-0024,2025-03-02,NM25-P08,NM,31.77501029,-85.14485045,59.03570269,White Oak (Creek) Campground,Eufaula,AL,USA,Rhinotermitidae,Reticulitermes,flavipes,,,,nymph/alate
-AUT-2025-0025,2025-04-13,NM25-P21,NM,32.578194,-85.487056,,Cloverbrook cir,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,Alates
-AUT-2025-0026,2025-05-15,EC25-CH2,"EC, NM",33.47118,-85.80915,625.9676,Cheaha National Forest,Oxford,AL,USA,Rhinotermitidae,Reticulitermes,malletei,,,,
-AUT-2025-0027,2025-05-15,EC25-CH3,"EC, NM",33.4702,-85.80828,604.254906,Cheaha National Forest,Oxford,AL,USA,Rhinotermitidae,Reticulitermes,nelsonae,,,,
-AUT-2025-0028,2025-05-15,EC25-CH4,"EC, NM",33.46328,-85.80748,588.4126854,Cheaha National Forest,Oxford,AL,USA,Rhinotermitidae,Reticulitermes,malletei,,,,
-AUT-2025-0029,2025-05-15,NM25-0189,"EC, HO, NM, BV, DY",33.47115202,-85.808847,615.508423,Cheaha National Forest,Oxford,AL,USA,Rhinotermitidae,Reticulitermes,malletei,,,,
-AUT-2025-0030,2025-05-27,NM25-0200,"NM, TN",40.56451502,-111.811301,1487.433594,Dimple Dell,Sandy,UT,USA,Heterotermitidae,Reticulitermes,tibialis,,,,
-AUT-2025-0031,2025-06-19,NM25-0208,"EC, NM, TN",32.58438497,-85.41607303,210.873627,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,virginicus,,,,need id
-AUT-2025-0032,2025-06-19,NM25-0209,"EC, NM, TN",32.584347,-85.41752896,198.547791,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,virginicus,,,,Phi(1)
-AUT-2025-0033,2025-06-16,NM25-0205,"EC, NM, TN, BV",29.71110997,-82.45890096,61.657211,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Heterotermitidae,Reticulitermes,nelsonae,,,,"tiny Ret with nymph, need ID"
-AUT-2025-0034,2025-06-16,NM25-0206,"EC, NM, TN, BV",29.71124299,-82.45919902,61.983784,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Heterotermitidae,Reticulitermes,nelsonae,,,,"tiny Ret with nymph, need ID"
-AUT-2025-0035,2025-08-05,EC25-IL1,EC,38.71156,-87.77487,153.3468285,Private woods (~5 acres),Bridgeport,IL,USA,Heterotermitidae,Reticulitermes,hageni,,,,Alates
-AUT-2025-0036,2025-12-19,NM25-0233,NM,30.62810702,-87.919143,7.249948,Village Point Park Preserve,Daphne,AL,USA,Heterotermitidae,Coptotermes,formosanus,,,,
-AUT-2025-0037,2025-12-18,NM25-0229,NM,30.70930897,-88.14540099,22.477636,Mobile Japanese Garden,Mobile,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,A80/A100
-AUT-2025-0038,2025-08-31,NM25-P20,NM,33.443965,-85.841471,,Cheaha National Forest,Oxford,AL,USA,Heterotermitidae,Reticulitermes,malletei,,,,
-AUT-2025-0039,2025-06-19,NM25-0213,"EC, NM, TN",32.58494002,-85.41760499,206.777466,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,malletei,,,,
-AUT-2025-0040,2025-06-24,NM25-0214,"EC, NM, TN",32.581673,-85.41987397,191.241852,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,malletei,,,,
-AUT-2025-0041,2025-06-15,EC25-008,"EC,NM,TN",29.71264,-82.45944,82.4676781,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Kalotermitidae,Kalotermes,approximatus,,,,Alates
-AUT-2025-0042,2025-06-16,C814,"EC, NM, TN, BV",29.71122,-82.460922,62.861279,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Heterotermitidae,Reticulitermes,flavipes(?),,,,tricho seems frosti
-AUT-2025-0043,2025-06-16,C816,"EC, NM, TN, BV",29.711264,-82.461005,72.521637,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,
-AUT-2025-0044,2025-06-16,C817,"EC, NM, TN, BV",29.711213,-82.45876,51.331882,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,tricho seems depressus
-AUT-2025-0045,2025-06-19,C820,"EC, NM, TN",32.587198,-85.423025,198.271301,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,PQK_Tri(fro)_Ph
-AUT-2025-0046,2025-06-19,C822,"EC, NM, TN",32.587192,-85.422078,199.912613,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,Tri(fro)_Phi
-AUT-2025-0047,2025-06-19,C824,"EC, NM, TN",32.587269,-85.421874,216.39183,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,PKQ_Tri(fro)
-AUT-2025-0048,2025-06-19,C826,"EC, NM, TN",32.587274,-85.421149,207.490875,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes?,,,,Kis
-AUT-2025-0049,2025-06-19,C827,"EC, NM, TN",32.584309,-85.417283,207.071198,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,virginicus,,,,Tri(?)_Xen_Phi_Kis
-AUT-2025-0050,2025-06-19,C828,"EC, NM, TN",32.585048,-85.417219,211.916672,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,virginicus(?),,,,SQs_Tri(dep)_Phi_Kis
-AUT-2025-0051,2025-06-24,C831,"EC, NM, TN",32.581876,-85.42027,204.680313,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,Tri(fro)
-AUT-2025-0052,2025-06-24,C830,"EC, NM, TN",32.581714,-85.420354,201.993729,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,Tri(dep)
-AUT-2025-0053,2025-06-19,C825,"EC, NM, TN",32.586977,-85.421248,205.533066,MOT Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,virginicus(?),,,,Phi(?)
-AUT-2025-0054,2025-06-16,NM25-0204,"EC, NM, TN, BV",29.71309698,-82.46048204,65.473465,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,Kistnerium
-AUT-2025-0055,2025-05-15,NM25-0192,"EC, HO, NM, BV, DY",33.46968401,-85.80963397,636.78241,Cheaha National Forest,Oxford,AL,USA,Heterotermitidae,Reticulitermes,sp,,,,alates
-AUT-2025-0056,2025-05-19,25-ID01,"collected by Ward Davis, Circle Pest Control, submitted by Eric Hataway, Territory Manager, Urban Pest Mangaement, Corteva Agriscience",,,,"600 J Saunders Rd, Slocomb",,AL,USA,Heterotermitidae,Coptotermes,formosanus,,,,Alates
-AUT-2025-0057,2025-05-29,NATS-AL02,Jack Brewer,,,,,Malvern / Fairhope,AL,USA,Heterotermitidae,Coptotermes,formosanus,,,,
-AUT-2025-0058,2025-05-19,NATS-AL03,Jennifer Davidson,,,,508 14th St ,Phoenix,AL,USA,Heterotermitidae,Coptotermes,formosanus,,,,
-AUT-2025-0059,2025-03-12,NM25-0173,NM,30.38736099,-91.2029,13.865408,Riverbend Park,Baton Rouge,LA,USA,Rhinotermitidae,Coptotermes,formosanus,,,,
-AUT-2026-0001,2026-05-03,NM26-241,NM,32.458038,-85.65357501,124.266151,Tuskegee Forest,Tuskegee,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,
-AUT-2026-0002,2026-05-06,NM26-244,NM,32.45948003,-85.65339899,112.052277,Tuskegee Forest,Tuskegee,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,
-AUT-2026-0003,2026-05-01,EC26-018,EC,32.68385,-85.51175,218.1247769,Smith bee lab,Auburn,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0004,2026-04-09,EC26-017,EC,32.67367,-85.51202,209.4060733,Smith bee lab,Auburn,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0005,2026-05-03,NM26-243,NM,32.46059298,-85.65460699,96.246086,Tuskegee Forest,Tuskegee,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0006,3/28/2026,EC26-012,EC,32.78683,-85.15434,192.5312157,Private property,Valley,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,duplicated with AUT-2026-0008
-AUT-2026-0007,2026-05-03,NM26-0242,NM,32.45948003,-85.65339899,112.052277,Tuskegee Forest,Tuskegee,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0008,3/28/2026,EC26-012,EC,32.78683,-85.15434,192.5312157,Private property,Valley,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0009,2026-03-28,EC26-011,EC,32.78624,-85.15406,191.352873,Private property,Valley,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,
-AUT-2026-0010,2026-03-31,EC26-016,EC,32.59727,-85.50697,217.3373687,Marine fitness trail,Auburn,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0011,3/28/2026,NM26-P23,NM,33.47030735,-85.82480568,388.0700214,Cheaha State Park,Oxford,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0012,2026-05-06,EC26-019,EC,32.45745,-85.62531,145.2818441,Tuskeegee National Forest,Auburn,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black wing
-AUT-2026-0013,2026-07-09,NM26-0252,NM,41.48343103,-81.57439099,287.581238,Nature Center At Shaker Lakes,"2600 S Park Blvd, Cleveland, OH 44120",OH,USA,Heterotermitidae,Reticulitermes,Sp.,,,,
-AUT-2026-0014,2026-07-09,NM26-0253,NM,41.42789598,-81.60278896,262.948212,Garfield Park Reservation,"11350 Broadway Ave, Garfield Heights, OH 44125",OH,USA,Heterotermitidae,Reticulitermes,Sp.,,,,
-AUT-2026-0015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-AUT-2026-0016,2026-03-14,NM26-239 (P32),NM,32.27638599,-85.12968896,111.0625,Pine And Oak Campsite,Seale,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,
-AUT-2026-0017,2026-05-09,NM26-0246,NM,,,,Callaway Gardens,Pine Mountain Valley,GA,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0018,2026-05-09,NM26-0247,NM,32.80821598,-84.86119799,317.691406,Callaway Gardens,Pine Mountain Valley,GA,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0019,4/12/2026,NM26-WPT21,NM,32.59861186,-85.87563794,101.3409432,Wood Duck Trail,Tallassee,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0020,4/12/2026,NM26-WPT19,NM,32.59792922,-85.87248058,106.76459,Wood Duck Trail,Tallassee,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,black winged
-AUT-2026-0021,2026-03-24,EC26-010,EC,32.60027,-85.48192,214.0382958,Funchess lawn,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,
-AUT-2026-0022,2026-02-20,EC26-002,EC,32.67492,-85.51014,213.0790062,Smith bee lab,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,morphology; phenology,,,
-AUT-2026-0023,2026-02-20,EC26-003,EC,32.67586,-85.51077,243.3251,Smith bee lab,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,morphology; phenology,,,
-AUT-2026-0024,2026-03-06,EC26-004,EC,32.675,-85.51052,228.8088646,Smith bee lab,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,morphology; phenology,,,
-AUT-2026-0025,2026-03-06,EC26-005,EC,32.67547,-85.5105,219.9874535,Smith bee lab,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,morphology; phenology,,,
-AUT-2026-0026,2026-03-28,EC26-014,EC,32.361208,-85.285377,,Front of AU hotel,Auburn,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,
-AUT-2026-0027,2026-05-03,NM25-0244,NM,32.461934,-85.65374298,89.238739,Tuskegee Forest,Tuskegee,AL,USA,Kalotermitidae,Kalotermes,approximatus,,,,
-AUT-2026-0028,2026-05-30,NM26-WPT22,NM,33.330216,-86.751461,165.02,Oak Mountain State Park,"87P9+CG Pelham, Alabama, USA",AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,termite ball
-AUT-2026-0029,2026-04-12,NM26-WPT20,NM,32.59799562,-85.87273584,122.6628955,Wood Duck Trail,Tallassee,AL,USA,Kalotermitidae,Kalotermes,approximatus,,,,
-AUT-2026-0030,2026-06-20,NM26-0248,NM,34.57871801,-80.23140296,218.814056,Cathedral Caverns State Park,Woodville,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,termite ball
-AUT-2026-0031,2026-06-20,NM26-0249,NM,34.57685203,-80.22835597,208.13974,Cathedral Caverns State Park,Woodville,AL,USA,Heterotermitidae,Reticulitermes,Sp.,,,,Phillotermes
-AUT-2026-0032,5/19/2026,,NM,32.578194,-85.487056,,Cloverbrook cir,Auburn,AL,USA,Heterotermitidae,Coptotermes,formosanus,,,,Alates
-AUT-2026-0033,6/11/2026,,MS,32.601569,-85.482034,,Auburn University,Auburn,AL,USA,Kalotermitidae,Kalotermes,approximatus,,,,Alates
-AUT-2024-0045,9/12/2024,,AG,30.5304334,-88.1667876,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0046,6/28/2024,,AG,30.256933,-87.705544,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0047,8/2/2024,,AG,30.8050788,-88.0767814,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0048,8/8/2024,,AG,30.648910,-88.102710,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0049,7/2/2024,,AG,30.743553,-88.262707,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0050,7/8/2024,,AG,30.662885,-88.101733,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0051,7/11/2024,,AG,30.500014,-88.233537,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0052,7/3/2024,,AG,30.757971,-88.076495,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0053,7/24/2024,,AG,30.8575465,-88.1427560,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0054,8/14/2024,,AG,30.6743765,-88.1818328,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0055,7/12/2024,,AG,30.6037236,-88.0958106,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0056,8/7/2024,,PK,30.7078513,-88.0836971,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0057,9/27/2024,,AG,30.9818332,-88.1509877,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0058,7/31/2024,,AG,30.5766558,-88.2401443,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0059,9/20/2024,,AG,30.7103767,-88.3024604,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0060,10/1/2024,,AG,30.5911609,-88.2296726,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0061,7/11/2024,,AG,30.771358,-88.187563,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0062,8/7/2024,,AG,30.481603,-88.343604,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0063,7/30/2024,,PK,30.7118503,-88.1018595,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0064,9/20/2024,,AG,30.7101300,-88.3025560,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0065,8/30/2024,,AG,30.7578784,-88.0762231,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0066,7/9/2024,,AG,30.869327,-88.030289,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0067,8/9/2024,,AG,30.6664096,-88.2590405,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0068,9/25/2024,,AG,30.762297,-88.2135449,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0069,7/22/2024,,AG,30.8059303,-88.0744519,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0070,8/27/2024,,AG,30.4028854,-88.2362551,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0071,8/9/2024,,AG,30.603694,-88.095771,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0072,10/2/2024,,AG,30.5735149,-88.1887227,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0073,7/16/2024,,AG,30.6018943,-88.0610402,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0074,8/1/2024,,AG,30.8647554,-88.0410832,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0075,8/2/2024,,PK,31.0690174,-88.0487117,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0076,9/20/2024,,AG,30.8266033,-88.3125066,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0077,7/12/2024,,AG,30.33.09234,-87.7116117,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0078,9/25/2024,,BB,30.8176929,-88.2618820,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0079,7/2/2024,,AG,30.747057,-88.275743,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0080,7/23/2024,,AG,30.4705010,-88.3159972,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0081,8/26/2024,,AG,30.7660257,-88.1364243,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0082,10/15/2024,,AG,30.6276675,-88.3300868,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0083,10/17/2024,,AG,30.6213693,-88.0737941,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0084,10/3/2024,,AG,30.4310068,-88.3040641,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0085,10/8/2024,,AG,30.6191271,-88.0964376,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0086,10/14/2024,,AG,31.0721028,-88.297468,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0087,10/7/2024,,AG,30.5419907,-88.2727882,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0088,10/17/2024,,AG,30.6909783,-88.1031954,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0089,10/4/2024,,AG,30.8536928,-88.0500867,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0090,11/15/2024,,AG,31.3560872,-88.1666575,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0091,11/7/2024,,AG,30.7138712,-88.2745671,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0092,12/30/2024,,AG,30.6949532,-88.2204070,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0093,11/13/2024,,AG,31.0943412,-88.2468291,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0094,11/12/2024,,AG,30.8714579,-88.0350251,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0095,10/21/2024,,AG,30.711840,-88.101732,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0096,11/25/2024,,AG,30.6599013,-88.0841698,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0097,12/27/2024,,AG,30.6031514,-88.0802686,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0098,11/1/2024,,AG,30.9217448,-87.7730386,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0099,10/31/2024,,AG,30.8179077,-88.0639054,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,,pest management
-AUT-2024-0100,11/7/2024,,AG,30.4492691,-88.2767196,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0101,11/27/2024,,AG,30.8833742,-88.0490138,,,,AL,USA,Heterotermitidae,Reticulitermes,Sp.,soldier,SH,,pest management
-AUT-2024-0102,,,,,,,,,,,,,,,,,
-AUT-2024-0103,,,,,,,,,,,,,,,,,
-AUT-2024-0104,,,,,,,,,,,,,,,,,
+AUT_ID,date,lat,lon,locality,city,state,country,genus,species,coordinate_generalized,privacy_radius_m
+AUT-2024-0001,7/2/2024,34.51117597,-86.955919,Wheeler NWR - Dancy Bottoms Nature Trail,Decatur,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0002,10/10/2024,32.58554,-85.4153,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0003,5/23/2024,30.27496303,-87.64957597,Gulf State Park,Baldwin,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0004,5/23/2024,30.29329098,-87.57437898,Orange Beach Waterfront Park,,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0005,7/2/2024,34.51167804,-86.95597901,Wheeler NWR - Dancy Bottoms Nature Trail,Decatur,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0006,8/4/2024,32.58304403,-85.476355,Town Creek Park,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0007,9/17/2024,32.58997897,-85.41721296,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0008,10/1/2024,32.58459,-85.4188,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0009,10/10/2024,32.58603,-85.4146,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0010,10/10/2024,32.58554,-85.4153,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0011,10/10/2024,32.58726,-85.4235,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0012,11/14/2024,33.285344,-110.794651,Pioneer Pass Campground,Globe,AZ,USA,Reticulitermes,tibialis,,
+AUT-2024-0013,11/6/2024,30.34626301,-87.63145496,Orange Beach Sportsplex,Orange Beach,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0014,11/6/2024,30.33937904,-87.64049903,The Prairie Disc Golf Course at Graham Creek Nature Preserve,Foley,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0015,11/14/2024,33.28527703,-110.794797,Pioneer Pass Campground,Globe,AZ,USA,Reticulitermes,tibialis,,
+AUT-2024-0016,9/28/2024,32.659183,-85.382394,Monkey Oark,Opelika,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0017,10/1/2024,32.58489,-85.41812,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0018,11/6/2024,30.28200,-87.61683,Orange Beach Sportsplex,Orange Beach,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0019,11/7/2024,30.28258997,-87.61662603,Gulf State Park,Orange Beach,AL,USA,Reticulitermes,mississippiensis,,
+AUT-2024-0020,10/26/2024,31.77459456,-85.14434338,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0021,10/26/2024,31.77459456,-85.14434338,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0022,6/13/2024,32.96634796,-85.64816298,Harold Banks Canoe Trail,Tallapoosa,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0023,5/23/2024,30.27496303,-87.64957597,Gulf State Park,Baldwin,AL,USA,Kalotermes,approximatus,,
+AUT-2024-0024,5/23/2024,30.62798004,-87.91693202,Village Point Park Preserve,Daphne,AL,USA,Kalotermes,approximatus,,
+AUT-2024-0025,10/22/2024,28.60204898,-81.15540203,Econlockhatchee Sandhills Conservation Area,Orlando,FL,USA,Kalotermes,approximatus,,
+AUT-2024-0026,4/3/2024,32.584664,-85.41838903,Mary Olive Thomas Demonstration Forest,Auburn,AL,USA,Kalotermes,approximatus,,
+AUT-2024-0027,2024/3/22,32.673553,-85.51223902,Smith Bee Lab,Auburn,AL,USA,Reticulitermes,malletei,,
+AUT-2024-0028,11/6/2024,30.28174,-87.61736,Orange Beach Sportsplex,Orange Beach,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0029,2024/3/22,32.67353497,-85.51200299,Smith Bee Lab,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2024-0030,11/14/2024,33.27619297,-111.137328,Queen Valey,Superior,AZ,USA,Incisitermes,minor,,
+AUT-2024-0031,11/14/2024,33.27618903,-111.137321,Queen Valey,Superior,AZ,USA,Marginitermes,hubbardi,,
+AUT-2024-0032,11/14/2024,33.27626003,-111.13726,Queen Valey,Superior,AZ,USA,Marginitermes,hubbardi,,
+AUT-2024-0033,11/6/2024,30.27499496,-87.64923097,Gulf State Park,Orange Beach,AL,USA,Kalotermes,approximatus,,
+AUT-2024-0034,5/23/2024,30.677731,-88.127611,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0035,11/6/2024,30.284062,-87.616655,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0036,7/2/2024,34.588032,-87.025721,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0037,5/23/2024,30.626224,-87.918441,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0038,10/19/2024,32.483015,-84.964230,,,GA,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0039,7/2/2024,34.50951098,-86.95644203,Wheeler NWR - Dancy Bottoms Nature Trail,Decatur,AL,USA,Reticulitermes,hageni,,
+AUT-2024-0040,10/5/2024,32.36480985,-86.45387799,Gunter Hills Campground,Montgomery,AL,USA,Reticulitermes,hageni,,
+AUT-2024-0041,7/2/2024,34.57514204,-86.94387303,Point Mallard Archery Park,Decatur,AL,USA,Reticulitermes,hageni,,
+AUT-2024-0042,7/1/2024,34.50923497,-86.955618,Wheeler NWR - Dancy Bottoms Nature Trail,Decatur,AL,USA,Reticulitermes,virginicus,,
+AUT-2024-0043,10/22/2024,28.589887,-81.15517798,Econlockhatchee Sandhills Conservation Area,Orlando,FL,USA,Reticulitermes,nelsonae,,
+AUT-2024-0044,5/22/2024,30.654156,-88.187700,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0045,2024-10-22,28.58988499,-81.155109,Econlockhatchee Sandhills Conservation Area,Orlando,FL,USA,Reticulitermes,flavipes,,
+AUT-2025-0001,2025-03-01,31.77488128,-85.14423243,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0002,2025-03-01,31.77483578,-85.14513673,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes?,,
+AUT-2025-0003,2025-03-02,31.77532308,-85.14281173,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes?,,
+AUT-2025-0004,2025-03-02,31.77519974,-85.14294296,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,sp,,
+AUT-2025-0005,2025-03-02,31.77545509,-85.14264114,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0006,2025-03-02,31.775031,-85.14457793,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0007,2025-03-02,31.77494978,-85.1444293,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes?,,
+AUT-2025-0008,2025-03-08,30.65606771,-88.18690633,Medal Honor Park,Mobile,AL,USA,Reticulitermes,nelsonae,,
+AUT-2025-0009,2025-03-08,30.65619085,-88.18655806,Medal Honor Park,Mobile,AL,USA,Reticulitermes,nelsonae,,
+AUT-2025-0010,2025-03-08,30.65533266,-88.18543412,Medal Honor Park,Mobile,AL,USA,Reticulitermes,flavipes?,,
+AUT-2025-0011,2025-03-08,30.65560418,-88.18520133,Medal Honor Park,Mobile,AL,USA,Reticulitermes,nelsonae,,
+AUT-2025-0012,2025-03-12,30.34711403,-91.07124201,Highland Road Park Observatory,Baton Rouge,LA,USA,Reticulitermes,flavipes?,,
+AUT-2025-0013,2025-03-12,30.34736699,-91.07156496,Highland Road Park Observatory,Baton Rouge,LA,USA,Reticulitermes,flavipes,,
+AUT-2025-0014,2025-03-12,30.386111,-91.20090997,Riverbend Park,Baton Rouge,LA,USA,Reticulitermes,flavipes?,,
+AUT-2025-0015,2025-03-12,30.38679102,-91.202239,Riverbend Park,Baton Rouge,LA,USA,Reticulitermes,flavipes?,,
+AUT-2025-0016,2025-03-12,30.38652901,-91.20207698,Riverbend Park,Baton Rouge,LA,USA,Reticulitermes,flavipes?,,
+AUT-2025-0017,2025-03-12,30.34530527,-91.07070962,Highland Road Park Observatory,Baton Rouge,LA,USA,Reticulitermes,nelsonae,,
+AUT-2025-0018,2025-03-13,30.30970501,-89.61050101,Possum Walk Heritage Trail,Pearlington,MS,USA,Reticulitermes,flavipes,,
+AUT-2025-0019,2025-03-13,30.30969101,-89.61095002,Possum Walk Heritage Trail,Pearlington,MS,USA,Reticulitermes,sp,,
+AUT-2025-0020,2025-03-15,32.58281248,-85.47683036,Towncreek park,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0021,2025-03-21,32.67349499,-85.51205596,Smith Bee Lab,Auburn,AL,USA,Reticulitermes,malletei,,
+AUT-2025-0022,2025-03-22,32.52953709,-84.93094895,Lake Heath,Columbus,GA,USA,Reticulitermes,sp,,
+AUT-2025-0023,2025-03-22,32.53232452,-84.93060095,Lake Heath,Columbus,GA,USA,Reticulitermes,flavipes,,
+AUT-2025-0024,2025-03-02,31.77501029,-85.14485045,White Oak (Creek) Campground,Eufaula,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0025,2025-04-13,32.578194,-85.487056,Cloverbrook cir,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0026,2025-05-15,33.47118,-85.80915,Cheaha National Forest,Oxford,AL,USA,Reticulitermes,malletei,,
+AUT-2025-0027,2025-05-15,33.4702,-85.80828,Cheaha National Forest,Oxford,AL,USA,Reticulitermes,nelsonae,,
+AUT-2025-0028,2025-05-15,33.46328,-85.80748,Cheaha National Forest,Oxford,AL,USA,Reticulitermes,malletei,,
+AUT-2025-0029,2025-05-15,33.47115202,-85.808847,Cheaha National Forest,Oxford,AL,USA,Reticulitermes,malletei,,
+AUT-2025-0030,2025-05-27,40.56451502,-111.811301,Dimple Dell,Sandy,UT,USA,Reticulitermes,tibialis,,
+AUT-2025-0031,2025-06-19,32.58438497,-85.41607303,MOT Forest,Auburn,AL,USA,Reticulitermes,virginicus,,
+AUT-2025-0032,2025-06-19,32.584347,-85.41752896,MOT Forest,Auburn,AL,USA,Reticulitermes,virginicus,,
+AUT-2025-0033,2025-06-16,29.71110997,-82.45890096,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Reticulitermes,nelsonae,,
+AUT-2025-0034,2025-06-16,29.71124299,-82.45919902,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Reticulitermes,nelsonae,,
+AUT-2025-0035,2025-08-05,38.71156,-87.77487,Private woods (~5 acres),Bridgeport,IL,USA,Reticulitermes,hageni,,
+AUT-2025-0036,2025-12-19,30.629501,-87.918612,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2025-0037,2025-12-18,30.70930897,-88.14540099,Mobile Japanese Garden,Mobile,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0038,2025-08-31,33.443965,-85.841471,Cheaha National Forest,Oxford,AL,USA,Reticulitermes,malletei,,
+AUT-2025-0039,2025-06-19,32.58494002,-85.41760499,MOT Forest,Auburn,AL,USA,Reticulitermes,malletei,,
+AUT-2025-0040,2025-06-24,32.581673,-85.41987397,MOT Forest,Auburn,AL,USA,Reticulitermes,malletei,,
+AUT-2025-0041,2025-06-15,29.71264,-82.45944,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Kalotermes,approximatus,,
+AUT-2025-0042,2025-06-16,29.71122,-82.460922,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Reticulitermes,flavipes(?),,
+AUT-2025-0043,2025-06-16,29.711264,-82.461005,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Reticulitermes,flavipes,,
+AUT-2025-0044,2025-06-16,29.711213,-82.45876,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Reticulitermes,flavipes,,
+AUT-2025-0045,2025-06-19,32.587198,-85.423025,MOT Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0046,2025-06-19,32.587192,-85.422078,MOT Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0047,2025-06-19,32.587269,-85.421874,MOT Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0048,2025-06-19,32.587274,-85.421149,MOT Forest,Auburn,AL,USA,Reticulitermes,flavipes?,,
+AUT-2025-0049,2025-06-19,32.584309,-85.417283,MOT Forest,Auburn,AL,USA,Reticulitermes,virginicus,,
+AUT-2025-0050,2025-06-19,32.585048,-85.417219,MOT Forest,Auburn,AL,USA,Reticulitermes,virginicus(?),,
+AUT-2025-0051,2025-06-24,32.581876,-85.42027,MOT Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0052,2025-06-24,32.581714,-85.420354,MOT Forest,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2025-0053,2025-06-19,32.586977,-85.421248,MOT Forest,Auburn,AL,USA,Reticulitermes,virginicus(?),,
+AUT-2025-0054,2025-06-16,29.71309698,-82.46048204,San Felasco Hammock Preserve State Park,Gainesville,FL,USA,Reticulitermes,flavipes,,
+AUT-2025-0055,2025-05-15,33.46968401,-85.80963397,Cheaha National Forest,Oxford,AL,USA,Reticulitermes,sp,,
+AUT-2025-0056,2025-05-19,,,,,AL,USA,Coptotermes,formosanus,no_coordinate,
+AUT-2025-0057,2025-05-29,,,,,AL,USA,Coptotermes,formosanus,no_coordinate,
+AUT-2025-0058,2025-05-19,,,,,AL,USA,Coptotermes,formosanus,no_coordinate,
+AUT-2025-0059,2025-03-12,30.385940,-91.205434,,,LA,USA,Coptotermes,formosanus,yes,300
+AUT-2026-0001,2026-05-03,32.458038,-85.65357501,Tuskegee Forest,Tuskegee,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0002,2026-05-06,32.45948003,-85.65339899,Tuskegee Forest,Tuskegee,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0003,2026-05-01,32.68385,-85.51175,Smith bee lab,Auburn,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0004,2026-04-09,32.67367,-85.51202,Smith bee lab,Auburn,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0005,2026-05-03,32.46059298,-85.65460699,Tuskegee Forest,Tuskegee,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0006,3/28/2026,32.78683,-85.15434,Private property,Valley,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0007,2026-05-03,32.45948003,-85.65339899,Tuskegee Forest,Tuskegee,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0008,3/28/2026,32.78683,-85.15434,Private property,Valley,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0009,2026-03-28,32.78624,-85.15406,Private property,Valley,AL,USA,Reticulitermes,flavipes,,
+AUT-2026-0010,2026-03-31,32.59727,-85.50697,Marine fitness trail,Auburn,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0011,3/28/2026,33.47030735,-85.82480568,Cheaha State Park,Oxford,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0012,2026-05-06,32.45745,-85.62531,Tuskeegee National Forest,Auburn,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0013,2026-07-09,41.48343103,-81.57439099,Nature Center At Shaker Lakes,"2600 S Park Blvd, Cleveland, OH 44120",OH,USA,Reticulitermes,Sp.,,
+AUT-2026-0014,2026-07-09,41.42789598,-81.60278896,Garfield Park Reservation,"11350 Broadway Ave, Garfield Heights, OH 44125",OH,USA,Reticulitermes,Sp.,,
+AUT-2026-0015,NA,NA,NA,NA,NA,NA,NA,NA,NA,,
+AUT-2026-0016,2026-03-14,32.27638599,-85.12968896,Pine And Oak Campsite,Seale,AL,USA,Reticulitermes,flavipes,,
+AUT-2026-0017,2026-05-09,,,Callaway Gardens,Pine Mountain Valley,GA,USA,Reticulitermes,Sp.,,
+AUT-2026-0018,2026-05-09,32.80821598,-84.86119799,Callaway Gardens,Pine Mountain Valley,GA,USA,Reticulitermes,Sp.,,
+AUT-2026-0019,4/12/2026,32.59861186,-85.87563794,Wood Duck Trail,Tallassee,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0020,4/12/2026,32.59792922,-85.87248058,Wood Duck Trail,Tallassee,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0021,2026-03-24,32.60027,-85.48192,Funchess lawn,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2026-0022,2026-02-20,32.67492,-85.51014,Smith bee lab,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2026-0023,2026-02-20,32.67586,-85.51077,Smith bee lab,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2026-0024,2026-03-06,32.675,-85.51052,Smith bee lab,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2026-0025,2026-03-06,32.67547,-85.5105,Smith bee lab,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2026-0026,2026-03-28,32.361208,-85.285377,Front of AU hotel,Auburn,AL,USA,Reticulitermes,flavipes,,
+AUT-2026-0027,2026-05-03,32.461934,-85.65374298,Tuskegee Forest,Tuskegee,AL,USA,Kalotermes,approximatus,,
+AUT-2026-0028,2026-05-30,33.330216,-86.751461,Oak Mountain State Park,"87P9+CG Pelham, Alabama, USA",AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0029,2026-04-12,32.59799562,-85.87273584,Wood Duck Trail,Tallassee,AL,USA,Kalotermes,approximatus,,
+AUT-2026-0030,2026-06-20,34.57871801,-80.23140296,Cathedral Caverns State Park,Woodville,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0031,2026-06-20,34.57685203,-80.22835597,Cathedral Caverns State Park,Woodville,AL,USA,Reticulitermes,Sp.,,
+AUT-2026-0032,5/19/2026,32.579967,-85.489146,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2026-0033,6/11/2026,32.601569,-85.482034,Auburn University,Auburn,AL,USA,Kalotermes,approximatus,,
+AUT-2024-0045,9/12/2024,30.5304334,-88.1667876,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0046,6/28/2024,30.254465,-87.706226,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0047,8/2/2024,30.804360,-88.077912,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0048,8/8/2024,30.648992,-88.099888,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0049,7/2/2024,30.745352,-88.262039,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0050,7/8/2024,30.663285,-88.103256,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0051,7/11/2024,30.497954,-88.233941,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0052,7/3/2024,30.756894,-88.077561,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0053,7/24/2024,30.859132,-88.141514,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0054,8/14/2024,30.674125,-88.178768,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0055,7/12/2024,30.603113,-88.094787,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0056,8/7/2024,30.707635,-88.082104,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0057,9/27/2024,30.9818332,-88.1509877,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0058,7/31/2024,30.5766558,-88.2401443,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0059,9/20/2024,30.708981,-88.300002,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0060,10/1/2024,30.589877,-88.230849,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0061,7/11/2024,30.769474,-88.185483,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0062,8/7/2024,30.480706,-88.342668,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0063,7/30/2024,30.709880,-88.103611,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0064,9/20/2024,30.7101300,-88.3025560,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0065,8/30/2024,30.758624,-88.077368,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0066,7/9/2024,30.869327,-88.030289,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0067,8/9/2024,30.667565,-88.260600,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0068,9/25/2024,30.764374,-88.213931,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0069,7/22/2024,30.805234,-88.076973,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0070,8/27/2024,30.4028854,-88.2362551,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0071,8/9/2024,30.603694,-88.095771,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0072,10/2/2024,30.575102,-88.189829,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0073,7/16/2024,30.600432,-88.058430,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0074,8/1/2024,30.8647554,-88.0410832,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0075,8/2/2024,31.0690174,-88.0487117,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0076,9/20/2024,30.8266033,-88.3125066,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0077,7/12/2024,30.33.09234,-87.7116117,,,AL,USA,Coptotermes,formosanus,no_coordinate,
+AUT-2024-0078,9/25/2024,30.8176929,-88.2618820,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0079,7/2/2024,30.746789,-88.277542,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0080,7/23/2024,30.468228,-88.317252,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0081,8/26/2024,30.765613,-88.138287,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0082,10/15/2024,30.6276675,-88.3300868,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0083,10/17/2024,30.619622,-88.072282,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0084,10/3/2024,30.430387,-88.303577,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0085,10/8/2024,30.617965,-88.094515,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0086,10/14/2024,31.0721028,-88.297468,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0087,10/7/2024,30.5419907,-88.2727882,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0088,10/17/2024,30.690821,-88.105234,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0089,10/4/2024,30.8536928,-88.0500867,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0090,11/15/2024,31.353842,-88.167187,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0091,11/7/2024,30.7138712,-88.2745671,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0092,12/30/2024,30.696109,-88.221094,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0093,11/13/2024,31.0943412,-88.2468291,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0094,11/12/2024,30.8714579,-88.0350251,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0095,10/21/2024,30.711840,-88.101732,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0096,11/25/2024,30.659643,-88.082815,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0097,12/27/2024,30.6031514,-88.0802686,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0098,11/1/2024,30.9217448,-87.7730386,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0099,10/31/2024,30.817840,-88.065402,,,AL,USA,Coptotermes,formosanus,yes,300
+AUT-2024-0100,11/7/2024,30.4492691,-88.2767196,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0101,11/27/2024,30.8833742,-88.0490138,,,AL,USA,Reticulitermes,Sp.,,
+AUT-2024-0102,,,,,,,,,,,
+AUT-2024-0103,,,,,,,,,,,
+AUT-2024-0104,,,,,,,,,,,
