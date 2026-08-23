@@ -28,11 +28,11 @@
     .checks { display: flex; flex-direction: column; gap: 6px; line-height: 1.25; }
     .checks label { display: flex; gap: 6px; align-items: flex-start; }
     .checks input { margin-top: 2px; }
-    .legend { line-height: 1.45; }
+    .legend { line-height: 1.45; max-width: calc(100vw - 40px); }
     .legend summary { cursor: pointer; font-weight: 700; }
     .legend details[open] summary { margin-bottom: 4px; }
     .legend-section { margin-top: 6px; font-size: .76rem; font-weight: 700; color: #666; }
-    .legend-item { white-space: nowrap; }
+    .legend-item { white-space: normal; }
     .legend-area { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin: 0 4px 0 -2px; border: 1.5px solid currentColor; vertical-align: -4px; }
     .legend-box { display: inline-block; width: 11px; height: 11px; margin-right: 6px; border: 1px solid currentColor; vertical-align: -1px; }
     @media (max-width: 620px) {
@@ -100,6 +100,15 @@
       return Number.isFinite(number) ? number : NaN;
     }
 
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     function formatText(template, values = {}) {
       return String(template || '').replace(/\{(\w+)\}/g, (_, key) => values[key] ?? `{${key}}`);
     }
@@ -109,6 +118,25 @@
       document.getElementById('page-title').textContent = text.page.title;
       document.getElementById('page-intro').textContent = text.page.intro;
       document.getElementById('status').textContent = text.page.loading;
+    }
+
+    function isAlabamaDisplayCoordinate(lat, lon) {
+      return lat >= 30.1 && lat <= 35.2 && lon >= -88.6 && lon <= -84.8;
+    }
+
+    function isAlabamaMuseumRecord(row) {
+      if (String(row.state || '').trim().toUpperCase() !== 'AL') return false;
+      const country = String(row.country || '').trim().toUpperCase();
+      if (country && !['USA', 'US', 'UNITED STATES', 'UNITED STATES OF AMERICA'].includes(country)) return false;
+      const lat = parseCoordinate(row.lat);
+      const lon = parseCoordinate(row.lon);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) return true;
+      return isAlabamaDisplayCoordinate(lat, lon);
+    }
+
+    function safeInaturalistUrl(value) {
+      const url = String(value || '').trim();
+      return /^https:\/\/www\.inaturalist\.org\/observations\/\d+\/?$/.test(url) ? url : '';
     }
 
     function focalGenera() {
@@ -179,22 +207,22 @@
       filterControl.onAdd = function () {
         const div = L.DomUtil.create('div', 'map-panel filter-panel');
         const options = Object.entries(config.taxa).map(([genus, item]) =>
-          `<option value="${genus}">${item.selector_label}</option>`
+          `<option value="${escapeHtml(genus)}">${escapeHtml(item.selector_label)}</option>`
         ).join('');
         div.innerHTML = `
           <div class="control-group">
-            <label class="control-label" for="genus-select">${text.controls.taxon}</label>
+            <label class="control-label" for="genus-select">${escapeHtml(text.controls.taxon)}</label>
             <select id="genus-select" autocomplete="off">
               ${options}
-              <option value="all">${text.controls.all_taxa}</option>
+              <option value="all">${escapeHtml(text.controls.all_taxa)}</option>
             </select>
           </div>
           <div class="control-group">
-            <span class="control-label">${text.controls.evidence}</span>
+            <span class="control-label">${escapeHtml(text.controls.evidence)}</span>
             <div class="checks">
-              <label><input type="checkbox" id="fst-toggle" autocomplete="off"> <span>${text.controls.published_counties}</span></label>
-              <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>${text.controls.museum_specimens}</span></label>
-              <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>${text.controls.inaturalist}</span></label>
+              <label><input type="checkbox" id="fst-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.published_counties)}</span></label>
+              <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.museum_specimens)}</span></label>
+              <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.inaturalist)}</span></label>
             </div>
           </div>`;
         L.DomEvent.disableClickPropagation(div);
@@ -228,11 +256,11 @@
         const inatText = formatText(text.sources.inaturalist_text, { snapshot_date: snapshotDate });
         div.innerHTML = `
           <details>
-            <summary>${text.sources.title}</summary>
-            <p><strong>${text.sources.published_label}:</strong> ${reference.authors} (${reference.year}). <em>${reference.title}</em> <a href="${reference.url}" target="_blank" rel="noopener">${reference.link_text}</a>.</p>
-            <p><strong>${text.sources.museum_label}:</strong> ${text.sources.museum_text}</p>
-            <p><strong>${text.sources.inaturalist_label}:</strong> <span id="inat-source-text">${inatText}</span></p>
-            <p><strong>${text.sources.boundaries_label}:</strong> ${text.sources.boundaries_text}</p>
+            <summary>${escapeHtml(text.sources.title)}</summary>
+            <p><strong>${escapeHtml(text.sources.published_label)}:</strong> ${escapeHtml(reference.authors)} (${escapeHtml(reference.year)}). <em>${escapeHtml(reference.title)}</em> <a href="${escapeHtml(reference.url)}" target="_blank" rel="noopener">${escapeHtml(reference.link_text)}</a>.</p>
+            <p><strong>${escapeHtml(text.sources.museum_label)}:</strong> ${escapeHtml(text.sources.museum_text)}</p>
+            <p><strong>${escapeHtml(text.sources.inaturalist_label)}:</strong> <span id="inat-source-text">${escapeHtml(inatText)}</span></p>
+            <p><strong>${escapeHtml(text.sources.boundaries_label)}:</strong> ${escapeHtml(text.sources.boundaries_text)}</p>
           </details>`;
         L.DomEvent.disableClickPropagation(div);
         L.DomEvent.disableScrollPropagation(div);
@@ -257,26 +285,26 @@
         const div = L.DomUtil.create('div', 'map-panel legend');
         const countyStyle = config.layers.published_counties;
         const countyItem = showFst
-          ? `<div class="legend-item" style="color:${countyStyle.fill_color}"><span class="legend-box" style="background:${countyStyle.fill_color};opacity:${countyStyle.fill_opacity}"></span><span style="color:#333">${text.legend.published_counties}</span></div>`
+          ? `<div class="legend-item" style="color:${countyStyle.fill_color}"><span class="legend-box" style="background:${countyStyle.fill_color};opacity:${countyStyle.fill_opacity}"></span><span style="color:#333">${escapeHtml(text.legend.published_counties)}</span></div>`
           : '';
 
         const museumItems = visibleMuseumTaxa.map(row => {
           const name = scientificName(row);
           const color = speciesColor(name, row.genus);
-          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity}"></span><span style="color:#333">${displayScientificName(name)} ${text.legend.museum_suffix}</span></div>`;
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity}"></span><span style="color:#333">${escapeHtml(displayScientificName(name))} ${escapeHtml(text.legend.museum_suffix)}</span></div>`;
         }).join('');
 
         const inatItems = showInat ? visibleInatSpecies.map(row => {
           const color = speciesColor(row.name, row.genus);
-          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity}"></span><span style="color:#333">${displayScientificName(row.name)} ${text.legend.inaturalist_suffix}</span></div>`;
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity}"></span><span style="color:#333">${escapeHtml(displayScientificName(row.name))} ${escapeHtml(text.legend.inaturalist_suffix)}</span></div>`;
         }).join('') : '';
 
         div.innerHTML = `
           <details class="legend-details" ${legendOpen ? 'open' : ''}>
-            <summary>${text.legend.title}</summary>
+            <summary>${escapeHtml(text.legend.title)}</summary>
             ${countyItem}
-            ${museumItems ? `<div class="legend-section">${text.legend.museum_heading}</div>${museumItems}` : ''}
-            ${inatItems ? `<div class="legend-section">${text.legend.inaturalist_heading}</div>${inatItems}` : ''}
+            ${museumItems ? `<div class="legend-section">${escapeHtml(text.legend.museum_heading)}</div>${museumItems}` : ''}
+            ${inatItems ? `<div class="legend-section">${escapeHtml(text.legend.inaturalist_heading)}</div>${inatItems}` : ''}
           </details>`;
         const details = div.querySelector('.legend-details');
         details.addEventListener('toggle', () => {
@@ -333,12 +361,13 @@
           },
           onEachFeature: (feature, layer) => {
             const record = fstByCounty[normalizeCounty(feature.properties.BASENAME)];
+            const reference = text.published_reference;
             layer.bindPopup([
               '<span class="taxon-name">Formosan subterranean termite</span> <span class="species">(Coptotermes formosanus)</span>',
-              `${record.County} County`,
-              `First detected: ${record.FirstDetectedYear}`,
+              `${escapeHtml(record.County)} County`,
+              `First detected: ${escapeHtml(record.FirstDetectedYear)}`,
               'Evidence: published county-level record',
-              '<a href="https://doi.org/10.32942/X21H4M" target="_blank" rel="noopener">Hu & Mizumoto (2026, in press)</a>',
+              `<a href="${escapeHtml(reference.url)}" target="_blank" rel="noopener">${escapeHtml(reference.authors)} (${escapeHtml(reference.year)})</a>`,
               'County shading indicates documented occurrence, not occurrence throughout the county.'
             ].join('<br>'));
           }
@@ -349,13 +378,14 @@
         const style = config.layers.inaturalist;
         for (const row of visibleInatRecords) {
           const color = speciesColor(row.name, row.genus);
+          const observationUrl = safeInaturalistUrl(row.url);
           const popup = [
-            `<span class="taxon-name">${displayScientificName(row.name)}</span>`,
-            row.place || 'Alabama',
-            row.observedOn ? `Observed: ${row.observedOn}` : '',
-            row.observer ? `Observer: ${row.observer}` : '',
-            row.license ? `Observation license: ${row.license}` : '',
-            row.url ? `<a href="${row.url}" target="_blank" rel="noopener">View original observation</a>` : '',
+            `<span class="taxon-name">${escapeHtml(displayScientificName(row.name))}</span>`,
+            escapeHtml(row.place || 'Alabama'),
+            row.observedOn ? `Observed: ${escapeHtml(row.observedOn)}` : '',
+            row.observer ? `Observer: ${escapeHtml(row.observer)}` : '',
+            row.license ? `Observation license: ${escapeHtml(row.license)}` : '',
+            observationUrl ? `<a href="${escapeHtml(observationUrl)}" target="_blank" rel="noopener">View original observation</a>` : '',
             'Displayed as a 300 m-radius map circle for visual comparability only; this circle does not indicate privacy generalization or coordinate uncertainty.'
           ].filter(Boolean).join('<br>');
 
@@ -393,9 +423,9 @@
           const name = scientificName(row);
           const color = speciesColor(name, row.genus);
           const popup = [
-            `<span class="taxon-name">${museumDisplayName(row)}</span>`,
-            row.date ? `Date: ${row.date}` : '',
-            row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '',
+            `<span class="taxon-name">${escapeHtml(museumDisplayName(row))}</span>`,
+            row.date ? `Date: ${escapeHtml(row.date)}` : '',
+            row.AUT_ID ? `Voucher: ${escapeHtml(row.AUT_ID)}` : '',
             'Evidence: verified museum specimen',
             `Privacy-generalized public location uncertainty area (${privacyRadius(row)} m radius).`,
             'The circle indicates only the public privacy buffer. It is not the biological range, territory, colony size, or infestation extent.'
@@ -502,7 +532,7 @@
         species: (row.species || '').trim(),
         coordinate_generalized: (row.coordinate_generalized || '').trim(),
         privacy_radius_m: (row.privacy_radius_m || '').trim()
-      })).filter(row => focalGenera().includes(row.genus));
+      })).filter(row => focalGenera().includes(row.genus) && isAlabamaMuseumRecord(row));
 
       fstRecords = parseCsv(await fstResponse.text());
       countyGeojson = await countyResponse.json();
