@@ -32,7 +32,6 @@
     .legend-title { font-weight: 700; margin-bottom: 4px; }
     .legend-section { margin-top: 6px; font-size: .76rem; font-weight: 700; color: #666; }
     .legend-item { white-space: nowrap; }
-    .legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 7px 0 1px; border: 1px solid currentColor; vertical-align: 0; }
     .legend-area { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin: 0 4px 0 -2px; border: 1.5px solid currentColor; vertical-align: -4px; }
     .legend-box { display: inline-block; width: 11px; height: 11px; margin-right: 6px; border: 1px solid currentColor; vertical-align: -1px; }
     @media (max-width: 620px) {
@@ -216,7 +215,7 @@
             <summary>Sources & references</summary>
             <p><strong>Published county records:</strong> Hu, X. P. & Mizumoto, N. (2026, in press). <em>Four decades of inland invasion by Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.</em> <a href="https://doi.org/10.32942/X21H4M" target="_blank" rel="noopener">Preprint</a>.</p>
             <p><strong>Verified specimens:</strong> Auburn University Natural History Museum / Alabama Termite Identification Service. Public specimen coordinates are privacy-generalized by up to 300 m and are shown only as location-uncertainty areas.</p>
-            <p><strong>iNaturalist:</strong> Static snapshot dated <span id="inat-snapshot-date">${snapshotDate}</span>. Records are licensed Research Grade/community-assessed observations and are not independently verified by the Alabama Termite Identification Service. Each point links to the original observation.</p>
+            <p><strong>iNaturalist:</strong> Static snapshot dated <span id="inat-snapshot-date">${snapshotDate}</span>. Records are licensed Research Grade/community-assessed observations and are not independently verified by the Alabama Termite Identification Service. For visual comparability with museum circles, each iNaturalist observation is displayed as a 300 m-radius map circle. This circle does not indicate privacy generalization or coordinate uncertainty.</p>
             <p><strong>Boundaries:</strong> Local Alabama county snapshot from U.S. Census Bureau TIGERweb. Basemap tiles are from OpenStreetMap.</p>
           </details>`;
         L.DomEvent.disableClickPropagation(div);
@@ -253,18 +252,35 @@
 
         const inatItems = showInat ? visibleInatSpecies.map(row => {
           const color = speciesColor(row.name, row.genus);
-          return `<div class="legend-item" style="color:${color}"><span class="legend-dot" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity}"></span><span style="color:#333">${displayScientificName(row.name)}</span> <span style="color:#666">iNaturalist</span></div>`;
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity}"></span><span style="color:#333">${displayScientificName(row.name)} iNaturalist</span></div>`;
         }).join('') : '';
 
         div.innerHTML = `
           <div class="legend-title">Records</div>
           ${countyItem}
           ${museumItems ? `<div class="legend-section">Verified specimens</div>${museumItems}` : ''}
-          ${inatItems ? `<div class="legend-section">iNaturalist Research Grade</div>${inatItems}` : ''}`;
+          ${inatItems ? `<div class="legend-section">iNaturalist Research Grade (300 m map circles)</div>${inatItems}` : ''}`;
         L.DomEvent.disableClickPropagation(div);
         return div;
       };
       legendControl.addTo(map);
+    }
+
+    function updateStatus(generalizedMuseum, legacyExactMuseum, showFst, showInat, visibleInatRecords) {
+      const museumCount = document.getElementById('specimen-toggle').checked ? generalizedMuseum.length : 0;
+      const inatCount = showInat ? visibleInatRecords.length : 0;
+      const parts = [`${museumCount} privacy-generalized museum records for ${selectedDisplayName()}`];
+
+      if (document.getElementById('specimen-toggle').checked && legacyExactMuseum.length) {
+        parts.push(`${legacyExactMuseum.length} legacy exact-coordinate museum records hidden until public data are regenerated`);
+      }
+      if (showFst) parts.push(`${fstRecords.length} published counties`);
+      if (document.getElementById('inat-toggle').checked) {
+        if (inatLoading) parts.push('loading local iNaturalist snapshot');
+        else if (inatLoaded) parts.push(`${inatCount} licensed iNaturalist Research Grade observations`);
+      }
+      if (inatError) parts.push('iNaturalist snapshot unavailable');
+      document.getElementById('status').textContent = `${parts.join('; ')}.`;
     }
 
     function drawMap() {
@@ -316,79 +332,71 @@
             row.observedOn ? `Observed: ${row.observedOn}` : '',
             row.observer ? `Observer: ${row.observer}` : '',
             row.license ? `Observation license: ${row.license}` : '',
-            'Evidence: iNaturalist Research Grade',
-            'Community assessed and not independently verified by the Alabama Termite Identification Service',
-            row.url ? `<a href="${row.url}" target="_blank" rel="noopener">View original iNaturalist observation</a>` : ''
+            row.url ? `<a href="${row.url}" target="_blank" rel="noopener">View original observation</a>` : '',
+            'Displayed as a 300 m-radius map circle for visual comparability only; this circle does not indicate privacy generalization or coordinate uncertainty.'
           ].filter(Boolean).join('<br>');
 
-          L.circleMarker([row.lat, row.lon], {
-            radius: style.radius_px,
+          L.circle([row.lat, row.lon], {
+            radius: style.radius_m,
             color,
-            opacity: style.stroke_opacity,
             weight: style.stroke_weight,
+            opacity: style.stroke_opacity,
             fillColor: color,
             fillOpacity: style.fill_opacity
           }).bindPopup(popup).addTo(inatLayer);
         }
       }
 
-      if (showSpecimens) {
-        const style = config.layers.museum_specimens;
-        for (const row of visibleMuseumRecords) {
-          if (!isGeneralized(row)) continue;
+      let generalizedMuseum = [];
+      let legacyExactMuseum = [];
 
+      if (showSpecimens) {
+        generalizedMuseum = visibleMuseumRecords.filter(row => {
           const lat = parseCoordinate(row.lat);
           const lon = parseCoordinate(row.lon);
-          if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+          return isGeneralized(row) && Number.isFinite(lat) && Number.isFinite(lon);
+        });
 
+        legacyExactMuseum = visibleMuseumRecords.filter(row => {
+          const lat = parseCoordinate(row.lat);
+          const lon = parseCoordinate(row.lon);
+          return !isGeneralized(row) && Number.isFinite(lat) && Number.isFinite(lon);
+        });
+
+        const style = config.layers.museum_specimens;
+        for (const row of generalizedMuseum) {
+          const lat = parseCoordinate(row.lat);
+          const lon = parseCoordinate(row.lon);
           const name = scientificName(row);
           const color = speciesColor(name, row.genus);
-          const radius = privacyRadius(row);
           const popup = [
             `<span class="taxon-name">${museumDisplayName(row)}</span>`,
+            row.date ? `Date: ${row.date}` : '',
             row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '',
-            row.date ? `Collected: ${row.date}` : '',
             'Evidence: verified museum specimen',
-            `Public coordinate displaced by up to ${radius} m for privacy`,
-            `The ${radius} m circle is a location-uncertainty area, not biological range, territory, colony size, or infestation extent`,
-            'Source: Auburn University Natural History Museum'
+            `Privacy-generalized public location uncertainty area (${privacyRadius(row)} m radius).`,
+            'The circle indicates only the public privacy buffer. It is not the biological range, territory, colony size, or infestation extent.'
           ].filter(Boolean).join('<br>');
 
           L.circle([lat, lon], {
-            radius,
+            radius: privacyRadius(row),
             color,
-            opacity: style.stroke_opacity,
             weight: style.stroke_weight,
+            opacity: style.stroke_opacity,
             fillColor: color,
             fillOpacity: style.fill_opacity
           }).bindPopup(popup).addTo(specimenLayer);
         }
       }
 
-      const generalizedMuseum = visibleMuseumRecords.filter(isGeneralized);
-      const legacyExactMuseum = visibleMuseumRecords.filter(row => !isGeneralized(row) && Number.isFinite(parseCoordinate(row.lat)) && Number.isFinite(parseCoordinate(row.lon)));
-      const museumCount = showSpecimens ? generalizedMuseum.length : 0;
-      const inatCount = showInat ? visibleInatRecords.length : 0;
-      const parts = [`${museumCount} privacy-generalized museum records for ${selectedDisplayName()}`];
-
-      if (showSpecimens && legacyExactMuseum.length) {
-        parts.push(`${legacyExactMuseum.length} legacy exact-coordinate museum records hidden until public data are regenerated`);
-      }
-      if (showFst) parts.push(`${fstRecords.length} published counties`);
-      if (document.getElementById('inat-toggle').checked) {
-        if (inatLoading) parts.push('loading local iNaturalist snapshot');
-        else if (inatLoaded) parts.push(`${inatCount} licensed iNaturalist Research Grade observations`);
-      }
-      if (inatError) parts.push('iNaturalist snapshot unavailable');
-
-      document.getElementById('status').textContent = `${parts.join('; ')}.`;
-
       updateLegend(
-        showSpecimens ? visibleMuseumRecords : [],
+        showSpecimens ? generalizedMuseum : [],
         showInat ? visibleInatRecords : [],
-        showFst && Boolean(countyGeojson),
+        showFst,
         showInat
       );
+
+      updateStatus(generalizedMuseum, legacyExactMuseum, showFst, showInat, visibleInatRecords);
     }
 
     async function ensureInatLoaded() {
@@ -405,26 +413,19 @@
       try {
         const response = await fetchLocal('iNaturalist_records.csv');
         if (!response.ok) throw new Error(`iNaturalist snapshot request failed: ${response.status}`);
-
         const rows = parseCsv(await response.text());
         inatRecords = rows.map(row => ({
-          id: row.id || '',
-          genus: row.genus || '',
-          name: row.name || row.genus || '',
-          lat: parseCoordinate(row.lat),
-          lon: parseCoordinate(row.lon),
-          observedOn: row.observed_on || '',
-          place: row.place || '',
-          observer: row.observer || '',
-          license: row.license || '',
-          url: row.url || ''
-        })).filter(row =>
-          Number.isFinite(row.lat) &&
-          Number.isFinite(row.lon) &&
-          focalGenera().includes(row.genus) &&
-          Boolean(row.license)
-        );
-
+          id: row.id || row.observation_id || '',
+          genus: (row.genus || '').trim(),
+          name: (row.name || row.taxon_name || row.genus || '').trim(),
+          lat: parseCoordinate(row.lat || row.latitude),
+          lon: parseCoordinate(row.lon || row.longitude),
+          observedOn: (row.observed_on || row.observed_date || '').trim(),
+          place: (row.place || '').trim(),
+          observer: (row.observer || '').trim(),
+          license: (row.license || row.observation_license || '').trim(),
+          url: (row.url || row.observation_url || '').trim()
+        })).filter(row => Number.isFinite(row.lat) && Number.isFinite(row.lon) && focalGenera().includes(row.genus) && Boolean(row.license));
         inatLoaded = true;
       } catch (error) {
         document.getElementById('inat-toggle').checked = false;
@@ -457,7 +458,24 @@
       if (!countyResponse.ok) throw new Error(`County boundary request failed: ${countyResponse.status}`);
 
       config = await configResponse.json();
-      const rows = parseCsv(await museumResponse.text());
+      addFilterControl();
+      addSourceControl();
+
+      museumRecords = parseCsv(await museumResponse.text()).map(row => ({
+        AUT_ID: (row.AUT_ID || '').trim(),
+        date: (row.date || '').trim(),
+        lat: row.lat || row.latitude || '',
+        lon: row.lon || row.longitude || '',
+        locality: (row.locality || '').trim(),
+        city: (row.city || '').trim(),
+        state: (row.state || '').trim(),
+        country: (row.country || '').trim(),
+        genus: (row.genus || '').trim(),
+        species: (row.species || '').trim(),
+        coordinate_generalized: (row.coordinate_generalized || '').trim(),
+        privacy_radius_m: (row.privacy_radius_m || '').trim()
+      })).filter(row => focalGenera().includes(row.genus));
+
       fstRecords = parseCsv(await fstResponse.text());
       countyGeojson = await countyResponse.json();
 
@@ -465,39 +483,20 @@
         const metadata = await metadataResponse.json();
         snapshotDate = metadata.inaturalist && metadata.inaturalist.snapshot_date
           ? metadata.inaturalist.snapshot_date
-          : metadata.updated || snapshotDate;
+          : (metadata.updated || snapshotDate);
+        const target = document.getElementById('inat-snapshot-date');
+        if (target) target.textContent = snapshotDate;
       }
-
-      museumRecords = rows.filter(row => {
-        const lat = parseCoordinate(row.lat);
-        const lon = parseCoordinate(row.lon);
-        const state = String(row.state || '').trim().toUpperCase();
-        const country = String(row.country || '').trim().toUpperCase();
-        return Number.isFinite(lat) &&
-          Number.isFinite(lon) &&
-          state === 'AL' &&
-          ['USA', 'US', 'UNITED STATES'].includes(country) &&
-          focalGenera().includes(row.genus);
-      });
-
-      addFilterControl();
-      addSourceControl();
-
-      const target = document.getElementById('inat-snapshot-date');
-      if (target) target.textContent = snapshotDate;
 
       const bounds = L.geoJSON(countyGeojson).getBounds();
       if (bounds.isValid()) map.fitBounds(bounds, { padding: [10, 10] });
 
       drawMap();
-
       if (config.defaults.inaturalist) ensureInatLoaded();
-
       setTimeout(() => map.invalidateSize(), 0);
     }
 
     window.addEventListener('resize', () => map.invalidateSize());
-
     loadData().catch(error => {
       document.getElementById('status').textContent = `Could not load map data: ${error.message}`;
       console.error(error);
