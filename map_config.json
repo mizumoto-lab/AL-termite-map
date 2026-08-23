@@ -54,13 +54,13 @@
     "museum_specimens": {
       "stroke_weight": 1.5,
       "stroke_opacity": 0.9,
-      "fill_opacity": 0.15
+      "fill_opacity": 0.75
     },
     "inaturalist": {
       "radius_m": 300,
       "stroke_weight": 1,
       "stroke_opacity": 0.72,
-      "fill_opacity": 0.12
+      "fill_opacity": 0.2
     }
   }
 }
