@@ -27,6 +27,22 @@ def request_json(url, params=None, timeout=60):
         return json.load(response)
 
 
+def validate_counties(data):
+    if not isinstance(data, dict) or data.get("type") != "FeatureCollection":
+        raise RuntimeError("Alabama county file is not a GeoJSON FeatureCollection.")
+    features = data.get("features")
+    if not isinstance(features, list) or len(features) != 67:
+        count = len(features) if isinstance(features, list) else 0
+        raise RuntimeError(f"Expected 67 Alabama counties, received {count}.")
+    names = {
+        str((feature.get("properties") or {}).get("BASENAME") or "").strip()
+        for feature in features
+    }
+    if len(names) != 67 or "" in names:
+        raise RuntimeError("Alabama county file has missing or duplicate county names.")
+    return data
+
+
 def download_counties():
     params = {
         "where": "STATE='01'",
@@ -40,19 +56,20 @@ def download_counties():
     data = request_json(COUNTY_ENDPOINT, params=params)
     if "error" in data:
         raise RuntimeError(f"Census TIGERweb error: {data['error']}")
-    features = data.get("features", [])
-    if len(features) != 67:
-        raise RuntimeError(f"Expected 67 Alabama counties, received {len(features)}.")
+    validate_counties(data)
     tmp = COUNTY_FILE.with_suffix(".geojson.tmp")
     tmp.write_text(json.dumps(data, separators=(",", ":")), encoding="utf-8")
     tmp.replace(COUNTY_FILE)
-    print(f"Saved {len(features)} Alabama counties to {COUNTY_FILE}")
+    print(f"Saved 67 Alabama counties to {COUNTY_FILE}")
     return data
 
 
 def load_counties():
-    with COUNTY_FILE.open("r", encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with COUNTY_FILE.open("r", encoding="utf-8") as f:
+            return validate_counties(json.load(f))
+    except (OSError, json.JSONDecodeError) as error:
+        raise RuntimeError(f"Could not read a valid county snapshot from {COUNTY_FILE}: {error}") from error
 
 
 def point_in_ring(lon, lat, ring):
@@ -167,9 +184,16 @@ def load_previous_meta():
         return {}
     try:
         with META_FILE.open("r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except (OSError, json.JSONDecodeError):
         return {}
+
+
+def write_metadata(metadata):
+    tmp = META_FILE.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    tmp.replace(META_FILE)
 
 
 def main():
@@ -186,7 +210,8 @@ def main():
         county_refreshed = True
     else:
         counties = load_counties()
-        county_date = previous.get("counties", {}).get("downloaded") or "existing local snapshot"
+        county_meta = previous.get("counties") if isinstance(previous.get("counties"), dict) else {}
+        county_date = county_meta.get("downloaded") or "existing local snapshot"
         print(f"Using existing county file: {COUNTY_FILE}")
     records = []
     for genus in FOCAL_GENERA:
@@ -210,7 +235,7 @@ def main():
             "source": "U.S. Census Bureau TIGERweb",
         },
     }
-    META_FILE.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    write_metadata(metadata)
     print()
     print("Update complete.")
     print(f"Snapshot date: {date}")
