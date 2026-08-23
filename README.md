@@ -20,6 +20,7 @@ The default view shows Formosan subterranean termite, published county records, 
 ```text
 index.html
 map_config.json
+map_text.json
 README.md
 .gitignore
 
@@ -37,7 +38,7 @@ update_external_data.bat
 
 ## Map configuration
 
-`map_config.json` contains the display settings that are most likely to be adjusted later without editing `index.html`.
+`map_config.json` contains visual and behavior settings that are likely to be adjusted later without editing `index.html`.
 
 It currently controls:
 
@@ -51,6 +52,22 @@ It currently controls:
 The physical radius of a verified-specimen privacy circle is not a display setting. It comes from `privacy_radius_m` in `AU-termite-samples.csv` because that radius describes location uncertainty and must match the privacy-processing step.
 
 The iNaturalist radius is different: it is a display setting in `map_config.json`. It is currently 300 m so iNaturalist and museum records scale consistently as the map is zoomed. An iNaturalist circle does not imply that the observation was privacy-generalized or that its coordinate uncertainty is 300 m.
+
+## Map text
+
+`map_text.json` contains public-facing wording that can be edited without changing `index.html`.
+
+It currently controls:
+
+- page title and introductory sentence
+- control labels
+- legend title, section headings, and record labels
+- source-panel headings and explanatory text
+- the Hu & Mizumoto published-reference citation and link text
+
+The iNaturalist source text uses `{snapshot_date}` as a placeholder. The website replaces that placeholder with the date stored in `external_data_snapshot.json`.
+
+The Records legend is collapsed by default to reduce the amount of map space it occupies. If a visitor opens it, its open state is preserved when the map redraws because of taxon or layer changes.
 
 ## Data sources
 
@@ -151,6 +168,7 @@ There is no GitHub Action for this workflow in Version 0.
 At startup, `index.html` loads these local repository files:
 
 - `map_config.json`
+- `map_text.json`
 - `AU-termite-samples.csv`
 - `FSTrecords.csv`
 - `alabama_counties.geojson`
