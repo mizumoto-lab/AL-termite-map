@@ -1,3 +1,0 @@
-<script>
-async function ensureInatLoaded(){if(inatLoaded){drawMap();return;}if(inatLoading)return;}
-</script>

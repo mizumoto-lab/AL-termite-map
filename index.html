@@ -32,11 +32,16 @@
     .legend-title { font-weight: 700; margin-bottom: 4px; }
     .legend-section { margin-top: 6px; font-size: .76rem; font-weight: 700; color: #666; }
     .legend-item { white-space: nowrap; }
-    .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; border: 1px solid #333; vertical-align: -1px; }
-    .legend-dot-inat { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin: 0 8px 0 2px; border: 1px solid currentColor; vertical-align: 0; opacity: .65; }
-    .legend-area { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin: 0 4px 0 -2px; border: 1.5px solid #b2182b; background: rgba(215,48,39,.15); vertical-align: -4px; }
-    .legend-box { display: inline-block; width: 11px; height: 11px; margin-right: 6px; border: 1px solid #a33; background: rgba(215,48,39,.28); vertical-align: -1px; }
-    @media (max-width: 620px) { header { padding: 8px 10px 7px; } h1 { font-size: 1.15rem; } .intro { display: none; } .filter-panel { width: 245px; } .map-panel { padding: 8px 9px; font-size: .76rem; } }
+    .legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 7px 0 1px; border: 1px solid currentColor; vertical-align: 0; }
+    .legend-area { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin: 0 4px 0 -2px; border: 1.5px solid currentColor; vertical-align: -4px; }
+    .legend-box { display: inline-block; width: 11px; height: 11px; margin-right: 6px; border: 1px solid currentColor; vertical-align: -1px; }
+    @media (max-width: 620px) {
+      header { padding: 8px 10px 7px; }
+      h1 { font-size: 1.15rem; }
+      .intro { display: none; }
+      .filter-panel { width: 245px; }
+      .map-panel { padding: 8px 9px; font-size: .76rem; }
+    }
   </style>
 </head>
 <body>
@@ -51,18 +56,17 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script>
     const map = L.map('map').setView([32.8, -86.8], 7);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
 
-    const focalGenera = ['Coptotermes', 'Reticulitermes', 'Kalotermes', 'Incisitermes'];
-    const genusColors = { Coptotermes: '#d73027', Reticulitermes: '#2166ac', Kalotermes: '#1a9850', Incisitermes: '#7b3294' };
-    const genusCommonNames = { Coptotermes: 'Formosan subterranean termite', Reticulitermes: 'Native subterranean termites', Kalotermes: 'Dark southern drywood termite', Incisitermes: 'Southeastern drywood termite' };
-    const scientificCommonNames = { 'Coptotermes formosanus': 'Formosan subterranean termite', 'Kalotermes approximatus': 'Dark southern drywood termite', 'Incisitermes snyderi': 'Southeastern drywood termite' };
-    const knownSpeciesColors = { 'Coptotermes formosanus': '#d73027', 'Coptotermes gestroi': '#f46d43', 'Reticulitermes flavipes': '#2166ac', 'Reticulitermes hageni': '#4393c3', 'Reticulitermes virginicus': '#8073ac', 'Reticulitermes mississippiensis': '#67a9cf', 'Reticulitermes malletei': '#053061', 'Kalotermes approximatus': '#1a9850', 'Incisitermes snyderi': '#7b3294' };
-    const genusPalettes = { Coptotermes: ['#d73027','#f46d43','#fdae61','#b2182b'], Reticulitermes: ['#2166ac','#4393c3','#67a9cf','#8073ac','#053061'], Kalotermes: ['#1a9850','#66bd63','#008837','#5aae61'], Incisitermes: ['#7b3294','#c2a5cf','#9970ab','#762a83'] };
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
     const countyLayer = L.layerGroup().addTo(map);
     const inatLayer = L.layerGroup().addTo(map);
     const specimenLayer = L.layerGroup().addTo(map);
+
+    let config = null;
     let museumRecords = [];
     let fstRecords = [];
     let inatRecords = [];
@@ -73,58 +77,182 @@
     let snapshotDate = 'not available';
     let legendControl = null;
 
-    const filterControl = L.control({ position: 'topright' });
-    filterControl.onAdd = function () {
-      const div = L.DomUtil.create('div', 'map-panel filter-panel');
-      div.innerHTML = `<div class="control-group"><label class="control-label" for="genus-select">Termite</label><select id="genus-select"><option value="Coptotermes" selected>Formosan subterranean termite (Coptotermes formosanus)</option><option value="Reticulitermes">Native subterranean termites (Reticulitermes spp.)</option><option value="Kalotermes">Dark southern drywood termite (Kalotermes approximatus)</option><option value="Incisitermes">Southeastern drywood termite (Incisitermes snyderi)</option><option value="all">All termites</option></select></div><div class="control-group"><span class="control-label">Evidence</span><div class="checks"><label><input type="checkbox" id="fst-toggle" checked> <span>Published county records</span></label><label><input type="checkbox" id="specimen-toggle" checked> <span>Verified museum specimens</span></label><label><input type="checkbox" id="inat-toggle"> <span>iNaturalist Research Grade</span></label></div></div>`;
-      L.DomEvent.disableClickPropagation(div);
-      L.DomEvent.disableScrollPropagation(div);
-      return div;
-    };
-    filterControl.addTo(map);
-
-    const sourceControl = L.control({ position: 'bottomleft' });
-    sourceControl.onAdd = function () {
-      const div = L.DomUtil.create('div', 'map-panel source-panel');
-      div.innerHTML = `<details><summary>Sources & references</summary><p><strong>Published county records:</strong> Hu, X. P. & Mizumoto, N. (2026, in press). <em>Four decades of inland invasion by Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.</em> <a href="https://doi.org/10.32942/X21H4M" target="_blank" rel="noopener">Preprint</a>.</p><p><strong>Verified specimens:</strong> Auburn University Natural History Museum / Alabama Termite Identification Service. Privacy-sensitive Formosan subterranean termite records are displaced by up to 300 m and shown only as 300 m-radius location-uncertainty areas.</p><p><strong>iNaturalist:</strong> Static snapshot dated <span id="inat-snapshot-date">${snapshotDate}</span>. Records are licensed Research Grade/community-assessed observations and are not independently verified by the Alabama Termite Identification Service. Each point links to the original observation.</p><p><strong>Boundaries:</strong> Local Alabama county snapshot from U.S. Census Bureau TIGERweb. Basemap tiles are from OpenStreetMap.</p></details>`;
-      L.DomEvent.disableClickPropagation(div);
-      L.DomEvent.disableScrollPropagation(div);
-      return div;
-    };
-    sourceControl.addTo(map);
+    function fetchLocal(path) {
+      return fetch(path, { cache: 'no-cache' });
+    }
 
     function parseCsv(text) {
-      const parsed = Papa.parse(text, { header: true, skipEmptyLines: true, transformHeader: h => h.replace(/^\uFEFF/, '').trim() });
+      const parsed = Papa.parse(text, {
+        header: true,
+        skipEmptyLines: true,
+        transformHeader: header => header.replace(/^\uFEFF/, '').trim()
+      });
       if (parsed.errors.length) throw new Error(parsed.errors[0].message);
       return parsed.data;
     }
-    function scientificName(row) { return [row.genus, row.species].filter(Boolean).join(' ') || 'Unidentified termite'; }
-    function displayScientificName(name) { if (scientificCommonNames[name]) return `${scientificCommonNames[name]} (${name})`; if (name.startsWith('Reticulitermes')) return `Native subterranean termite (${name})`; return name; }
-    function museumDisplayName(row) { return displayScientificName(scientificName(row)); }
-    function genusDisplayName(genus) { return genusCommonNames[genus] || genus; }
-    function normalizeCounty(name) { return String(name || '').trim().toLowerCase().replace(/\s+county$/, ''); }
-    function selectedGenus() { return document.getElementById('genus-select').value; }
-    function selectedDisplayName() { const selected = selectedGenus(); return selected === 'all' ? 'all focal termites' : genusDisplayName(selected); }
-    function genusMatches(genus) { const selected = selectedGenus(); return selected === 'all' || genus === selected; }
-    function fstIsRelevant() { const selected = selectedGenus(); return selected === 'all' || selected === 'Coptotermes'; }
-    function isGeneralized(row) { return String(row.coordinate_generalized || '').trim().toLowerCase() === 'yes'; }
-    function privacyRadius(row) { const value = Number(row.privacy_radius_m); return Number.isFinite(value) && value > 0 ? value : 300; }
-    function hashString(text) { let hash = 0; for (let i = 0; i < text.length; i++) { hash = ((hash << 5) - hash) + text.charCodeAt(i); hash |= 0; } return Math.abs(hash); }
-    function inatSpeciesColor(row) { if (knownSpeciesColors[row.name]) return knownSpeciesColors[row.name]; const palette = genusPalettes[row.genus] || ['#777']; return palette[hashString(row.name) % palette.length]; }
+
+    function focalGenera() {
+      return Object.keys(config.taxa);
+    }
+
+    function taxonConfig(genus) {
+      return config.taxa[genus] || {};
+    }
+
+    function genusDisplayName(genus) {
+      return taxonConfig(genus).display_name || genus;
+    }
+
+    function speciesColor(name, genus) {
+      return config.species_colors[name] || taxonConfig(genus).color || config.fallback_color;
+    }
+
+    function scientificName(row) {
+      return [row.genus, row.species].filter(Boolean).join(' ') || 'Unidentified termite';
+    }
+
+    function displayScientificName(name) {
+      const common = config.scientific_common_names[name];
+      if (common) return `${common} (${name})`;
+      if (name.startsWith('Reticulitermes')) return `Native subterranean termite (${name})`;
+      return name;
+    }
+
+    function museumDisplayName(row) {
+      return displayScientificName(scientificName(row));
+    }
+
+    function normalizeCounty(name) {
+      return String(name || '').trim().toLowerCase().replace(/\s+county$/, '');
+    }
+
+    function selectedGenus() {
+      return document.getElementById('genus-select').value;
+    }
+
+    function selectedDisplayName() {
+      const selected = selectedGenus();
+      return selected === 'all' ? 'all focal termites' : genusDisplayName(selected);
+    }
+
+    function genusMatches(genus) {
+      const selected = selectedGenus();
+      return selected === 'all' || genus === selected;
+    }
+
+    function fstIsRelevant() {
+      const selected = selectedGenus();
+      return selected === 'all' || selected === 'Coptotermes';
+    }
+
+    function isGeneralized(row) {
+      return String(row.coordinate_generalized || '').trim().toLowerCase() === 'yes';
+    }
+
+    function privacyRadius(row) {
+      const value = Number(row.privacy_radius_m);
+      return Number.isFinite(value) && value > 0 ? value : 300;
+    }
+
+    function addFilterControl() {
+      const filterControl = L.control({ position: 'topright' });
+      filterControl.onAdd = function () {
+        const div = L.DomUtil.create('div', 'map-panel filter-panel');
+        const options = Object.entries(config.taxa).map(([genus, item]) =>
+          `<option value="${genus}">${item.selector_label}</option>`
+        ).join('');
+        div.innerHTML = `
+          <div class="control-group">
+            <label class="control-label" for="genus-select">Termite</label>
+            <select id="genus-select" autocomplete="off">
+              ${options}
+              <option value="all">All termites</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <span class="control-label">Evidence</span>
+            <div class="checks">
+              <label><input type="checkbox" id="fst-toggle" autocomplete="off"> <span>Published county records</span></label>
+              <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>Verified museum specimens</span></label>
+              <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>iNaturalist Research Grade</span></label>
+            </div>
+          </div>`;
+        L.DomEvent.disableClickPropagation(div);
+        L.DomEvent.disableScrollPropagation(div);
+        return div;
+      };
+      filterControl.addTo(map);
+
+      document.getElementById('genus-select').value = config.defaults.taxon;
+      document.getElementById('fst-toggle').checked = Boolean(config.defaults.published_counties);
+      document.getElementById('specimen-toggle').checked = Boolean(config.defaults.museum_specimens);
+      document.getElementById('inat-toggle').checked = Boolean(config.defaults.inaturalist);
+
+      document.getElementById('genus-select').addEventListener('change', drawMap);
+      document.getElementById('specimen-toggle').addEventListener('change', drawMap);
+      document.getElementById('fst-toggle').addEventListener('change', drawMap);
+      document.getElementById('inat-toggle').addEventListener('change', event => {
+        if (!event.target.checked) {
+          drawMap();
+          return;
+        }
+        ensureInatLoaded();
+      });
+    }
+
+    function addSourceControl() {
+      const sourceControl = L.control({ position: 'bottomleft' });
+      sourceControl.onAdd = function () {
+        const div = L.DomUtil.create('div', 'map-panel source-panel');
+        div.innerHTML = `
+          <details>
+            <summary>Sources & references</summary>
+            <p><strong>Published county records:</strong> Hu, X. P. & Mizumoto, N. (2026, in press). <em>Four decades of inland invasion by Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.</em> <a href="https://doi.org/10.32942/X21H4M" target="_blank" rel="noopener">Preprint</a>.</p>
+            <p><strong>Verified specimens:</strong> Auburn University Natural History Museum / Alabama Termite Identification Service. Public specimen coordinates are privacy-generalized by up to 300 m and are shown only as location-uncertainty areas.</p>
+            <p><strong>iNaturalist:</strong> Static snapshot dated <span id="inat-snapshot-date">${snapshotDate}</span>. Records are licensed Research Grade/community-assessed observations and are not independently verified by the Alabama Termite Identification Service. Each point links to the original observation.</p>
+            <p><strong>Boundaries:</strong> Local Alabama county snapshot from U.S. Census Bureau TIGERweb. Basemap tiles are from OpenStreetMap.</p>
+          </details>`;
+        L.DomEvent.disableClickPropagation(div);
+        L.DomEvent.disableScrollPropagation(div);
+        return div;
+      };
+      sourceControl.addTo(map);
+    }
 
     function updateLegend(visibleMuseumRecords, visibleInatRecords, showFst, showInat) {
       if (legendControl) map.removeControl(legendControl);
-      const exactGenera = [...new Set(visibleMuseumRecords.filter(row => !isGeneralized(row)).map(row => row.genus).filter(Boolean))].sort();
-      const hasGeneralized = visibleMuseumRecords.some(isGeneralized);
-      const visibleInatSpecies = [...new Map(visibleInatRecords.map(row => [row.name, row])).values()].sort((a,b) => a.name.localeCompare(b.name));
+
+      const museumGenera = [...new Set(
+        visibleMuseumRecords.filter(isGeneralized).map(row => row.genus).filter(Boolean)
+      )].sort();
+
+      const visibleInatSpecies = [...new Map(
+        visibleInatRecords.map(row => [row.name, row])
+      ).values()].sort((a, b) => a.name.localeCompare(b.name));
+
       legendControl = L.control({ position: 'bottomright' });
       legendControl.onAdd = function () {
         const div = L.DomUtil.create('div', 'map-panel legend');
-        const countyItem = showFst ? '<div class="legend-item"><span class="legend-box"></span>Formosan subterranean termite county record</div>' : '';
-        const generalizedItem = hasGeneralized ? '<div class="legend-item"><span class="legend-area"></span>Privacy-generalized specimen uncertainty area</div>' : '';
-        const exactItems = exactGenera.map(genus => `<div class="legend-item"><span class="legend-dot" style="background:${genusColors[genus]}"></span>${genusDisplayName(genus)} specimen</div>`).join('');
-        const inatItems = showInat ? visibleInatSpecies.map(row => { const color = inatSpeciesColor(row); return `<div class="legend-item" style="color:${color}"><span class="legend-dot-inat" style="background:${color}"></span><span style="color:#333">${displayScientificName(row.name)}</span> <span style="color:#666">iNaturalist</span></div>`; }).join('') : '';
-        div.innerHTML = `<div class="legend-title">Records</div>${countyItem}${(generalizedItem || exactItems) ? `<div class="legend-section">Verified specimens</div>${generalizedItem}${exactItems}` : ''}${inatItems ? `<div class="legend-section">iNaturalist Research Grade</div>${inatItems}` : ''}`;
+        const countyStyle = config.layers.published_counties;
+        const countyItem = showFst
+          ? `<div class="legend-item" style="color:${countyStyle.fill_color}"><span class="legend-box" style="background:${countyStyle.fill_color};opacity:${countyStyle.fill_opacity}"></span><span style="color:#333">Formosan subterranean termite county record</span></div>`
+          : '';
+
+        const museumItems = museumGenera.map(genus => {
+          const color = taxonConfig(genus).color || config.fallback_color;
+          return `<div class="legend-item" style="color:${color}"><span class="legend-area" style="background:${color};opacity:${config.layers.museum_specimens.fill_opacity}"></span><span style="color:#333">${genusDisplayName(genus)} privacy-generalized specimen</span></div>`;
+        }).join('');
+
+        const inatItems = showInat ? visibleInatSpecies.map(row => {
+          const color = speciesColor(row.name, row.genus);
+          return `<div class="legend-item" style="color:${color}"><span class="legend-dot" style="background:${color};opacity:${config.layers.inaturalist.fill_opacity}"></span><span style="color:#333">${displayScientificName(row.name)}</span> <span style="color:#666">iNaturalist</span></div>`;
+        }).join('') : '';
+
+        div.innerHTML = `
+          <div class="legend-title">Records</div>
+          ${countyItem}
+          ${museumItems ? `<div class="legend-section">Verified specimens</div>${museumItems}` : ''}
+          ${inatItems ? `<div class="legend-section">iNaturalist Research Grade</div>${inatItems}` : ''}`;
         L.DomEvent.disableClickPropagation(div);
         return div;
       };
@@ -135,6 +263,7 @@
       countyLayer.clearLayers();
       inatLayer.clearLayers();
       specimenLayer.clearLayers();
+
       const showSpecimens = document.getElementById('specimen-toggle').checked;
       const showFst = document.getElementById('fst-toggle').checked && fstIsRelevant();
       const showInat = document.getElementById('inat-toggle').checked && inatLoaded;
@@ -142,54 +271,152 @@
       const visibleInatRecords = inatRecords.filter(row => genusMatches(row.genus));
 
       if (showFst && countyGeojson) {
-        const fstByCounty = Object.fromEntries(fstRecords.map(row => [normalizeCounty(row.County), row]));
-        L.geoJSON(countyGeojson, { filter: feature => Boolean(fstByCounty[normalizeCounty(feature.properties.BASENAME)]), style: { color: '#a32121', weight: 1.2, fillColor: genusColors.Coptotermes, fillOpacity: .25 }, onEachFeature: (feature, layer) => { const record = fstByCounty[normalizeCounty(feature.properties.BASENAME)]; layer.bindPopup(['<span class="taxon-name">Formosan subterranean termite</span> <span class="species">(Coptotermes formosanus)</span>', `${record.County} County`, `First detected: ${record.FirstDetectedYear}`, 'Evidence: published county-level record', '<a href="https://doi.org/10.32942/X21H4M" target="_blank" rel="noopener">Hu & Mizumoto (2026, in press)</a>', 'County shading indicates documented occurrence, not occurrence throughout the county.'].join('<br>')); } }).addTo(countyLayer);
+        const style = config.layers.published_counties;
+        const fstByCounty = Object.fromEntries(
+          fstRecords.map(row => [normalizeCounty(row.County), row])
+        );
+
+        L.geoJSON(countyGeojson, {
+          filter: feature => Boolean(fstByCounty[normalizeCounty(feature.properties.BASENAME)]),
+          style: {
+            color: style.stroke_color,
+            weight: style.stroke_weight,
+            fillColor: style.fill_color,
+            fillOpacity: style.fill_opacity
+          },
+          onEachFeature: (feature, layer) => {
+            const record = fstByCounty[normalizeCounty(feature.properties.BASENAME)];
+            layer.bindPopup([
+              '<span class="taxon-name">Formosan subterranean termite</span> <span class="species">(Coptotermes formosanus)</span>',
+              `${record.County} County`,
+              `First detected: ${record.FirstDetectedYear}`,
+              'Evidence: published county-level record',
+              '<a href="https://doi.org/10.32942/X21H4M" target="_blank" rel="noopener">Hu & Mizumoto (2026, in press)</a>',
+              'County shading indicates documented occurrence, not occurrence throughout the county.'
+            ].join('<br>'));
+          }
+        }).addTo(countyLayer);
       }
 
       if (showInat) {
+        const style = config.layers.inaturalist;
         for (const row of visibleInatRecords) {
-          const color = inatSpeciesColor(row);
-          const popup = [`<span class="taxon-name">${displayScientificName(row.name)}</span>`, row.place || 'Alabama', row.observedOn ? `Observed: ${row.observedOn}` : '', row.observer ? `Observer: ${row.observer}` : '', row.license ? `Observation license: ${row.license}` : '', 'Evidence: iNaturalist Research Grade/community assessed', 'Not independently verified by the Alabama Termite Identification Service', `<a href="${row.url}" target="_blank" rel="noopener">View original iNaturalist observation</a>`].filter(Boolean).join('<br>');
-          L.circleMarker([row.lat, row.lon], { radius: 4, color, opacity: .72, weight: 1, fillColor: color, fillOpacity: .45 }).bindPopup(popup).addTo(inatLayer);
+          const color = speciesColor(row.name, row.genus);
+          const popup = [
+            `<span class="taxon-name">${displayScientificName(row.name)}</span>`,
+            row.place || 'Alabama',
+            row.observedOn ? `Observed: ${row.observedOn}` : '',
+            row.observer ? `Observer: ${row.observer}` : '',
+            row.license ? `Observation license: ${row.license}` : '',
+            'Evidence: iNaturalist Research Grade',
+            'Community assessed and not independently verified by the Alabama Termite Identification Service',
+            row.url ? `<a href="${row.url}" target="_blank" rel="noopener">View original iNaturalist observation</a>` : ''
+          ].filter(Boolean).join('<br>');
+
+          L.circleMarker([row.lat, row.lon], {
+            radius: style.radius_px,
+            color,
+            opacity: style.stroke_opacity,
+            weight: style.stroke_weight,
+            fillColor: color,
+            fillOpacity: style.fill_opacity
+          }).bindPopup(popup).addTo(inatLayer);
         }
       }
 
       if (showSpecimens) {
+        const style = config.layers.museum_specimens;
         for (const row of visibleMuseumRecords) {
+          if (!isGeneralized(row)) continue;
+
           const lat = Number(row.lat);
           const lon = Number(row.lon);
-          const generalized = isGeneralized(row);
-          const popup = [`<span class="taxon-name">${museumDisplayName(row)}</span>`, row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '', !generalized && [row.locality,row.city].filter(Boolean).length ? [row.locality,row.city].filter(Boolean).join(', ') : 'Alabama', row.date ? `Collected: ${row.date}` : '', 'Evidence: verified specimen', generalized ? 'Privacy-generalized location: the public coordinate is displaced by up to 300 m.' : '', generalized ? 'This 300 m-radius circle is a location-uncertainty area only. It does not represent the biological range, territory, colony size, or infestation extent.' : '', 'Source: Auburn University Natural History Museum / Alabama Termite Identification Service'].filter(Boolean).join('<br>');
-          if (generalized) {
-            L.circle([lat, lon], { radius: privacyRadius(row), color: '#b2182b', opacity: .9, weight: 1.5, fillColor: genusColors.Coptotermes, fillOpacity: .15 }).bindPopup(popup).addTo(specimenLayer);
-          } else {
-            L.circleMarker([lat, lon], { radius: 6, color: '#333', weight: 1, fillColor: genusColors[row.genus] || '#777', fillOpacity: .88 }).bindPopup(popup).addTo(specimenLayer);
-          }
+          if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+
+          const name = scientificName(row);
+          const color = speciesColor(name, row.genus);
+          const radius = privacyRadius(row);
+          const popup = [
+            `<span class="taxon-name">${museumDisplayName(row)}</span>`,
+            row.AUT_ID ? `Voucher: ${row.AUT_ID}` : '',
+            row.date ? `Collected: ${row.date}` : '',
+            'Evidence: verified museum specimen',
+            `Public coordinate displaced by up to ${radius} m for privacy`,
+            `The ${radius} m circle is a location-uncertainty area, not biological range, territory, colony size, or infestation extent`,
+            'Source: Auburn University Natural History Museum'
+          ].filter(Boolean).join('<br>');
+
+          L.circle([lat, lon], {
+            radius,
+            color,
+            opacity: style.stroke_opacity,
+            weight: style.stroke_weight,
+            fillColor: color,
+            fillOpacity: style.fill_opacity
+          }).bindPopup(popup).addTo(specimenLayer);
         }
       }
 
-      updateLegend(showSpecimens ? visibleMuseumRecords : [], showInat ? visibleInatRecords : [], showFst && Boolean(countyGeojson), showInat);
-      const museumCount = showSpecimens ? visibleMuseumRecords.length : 0;
-      const generalizedCount = showSpecimens ? visibleMuseumRecords.filter(isGeneralized).length : 0;
+      const generalizedMuseum = visibleMuseumRecords.filter(isGeneralized);
+      const legacyExactMuseum = visibleMuseumRecords.filter(row => !isGeneralized(row) && Number.isFinite(Number(row.lat)) && Number.isFinite(Number(row.lon)));
+      const museumCount = showSpecimens ? generalizedMuseum.length : 0;
       const inatCount = showInat ? visibleInatRecords.length : 0;
-      const parts = [`${museumCount} verified museum records for ${selectedDisplayName()}`];
-      if (generalizedCount) parts.push(`${generalizedCount} privacy-generalized locations`);
+      const parts = [`${museumCount} privacy-generalized museum records for ${selectedDisplayName()}`];
+
+      if (showSpecimens && legacyExactMuseum.length) {
+        parts.push(`${legacyExactMuseum.length} legacy exact-coordinate museum records hidden until public data are regenerated`);
+      }
       if (showFst) parts.push(`${fstRecords.length} published counties`);
-      if (document.getElementById('inat-toggle').checked) { if (inatLoading) parts.push('loading local iNaturalist snapshot'); else if (inatLoaded) parts.push(`${inatCount} licensed iNaturalist Research Grade observations`); }
+      if (document.getElementById('inat-toggle').checked) {
+        if (inatLoading) parts.push('loading local iNaturalist snapshot');
+        else if (inatLoaded) parts.push(`${inatCount} licensed iNaturalist Research Grade observations`);
+      }
       if (inatError) parts.push('iNaturalist snapshot unavailable');
+
       document.getElementById('status').textContent = `${parts.join('; ')}.`;
+
+      updateLegend(
+        showSpecimens ? visibleMuseumRecords : [],
+        showInat ? visibleInatRecords : [],
+        showFst && Boolean(countyGeojson),
+        showInat
+      );
     }
 
     async function ensureInatLoaded() {
-      if (inatLoaded || inatLoading) return;
+      if (inatLoaded) {
+        drawMap();
+        return;
+      }
+      if (inatLoading) return;
+
       inatLoading = true;
       inatError = '';
       drawMap();
+
       try {
-        const response = await fetch('iNaturalist_records.csv');
+        const response = await fetchLocal('iNaturalist_records.csv');
         if (!response.ok) throw new Error(`iNaturalist snapshot request failed: ${response.status}`);
+
         const rows = parseCsv(await response.text());
-        inatRecords = rows.map(row => ({ id: row.id || row.observation_id || '', genus: row.genus || '', name: row.name || row.taxon_name || row.genus || '', lat: Number(row.lat || row.latitude), lon: Number(row.lon || row.longitude), observedOn: row.observed_on || row.observed_date || '', place: row.place || '', observer: row.observer || '', license: row.license || row.observation_license || '', url: row.url || row.observation_url || '' })).filter(row => Number.isFinite(row.lat) && Number.isFinite(row.lon) && focalGenera.includes(row.genus) && Boolean(row.license));
+        inatRecords = rows.map(row => ({
+          id: row.id || '',
+          genus: row.genus || '',
+          name: row.name || row.genus || '',
+          lat: Number(row.lat),
+          lon: Number(row.lon),
+          observedOn: row.observed_on || '',
+          place: row.place || '',
+          observer: row.observer || '',
+          license: row.license || '',
+          url: row.url || ''
+        })).filter(row =>
+          Number.isFinite(row.lat) &&
+          Number.isFinite(row.lon) &&
+          focalGenera().includes(row.genus) &&
+          Boolean(row.license)
+        );
+
         inatLoaded = true;
       } catch (error) {
         document.getElementById('inat-toggle').checked = false;
@@ -202,32 +429,71 @@
     }
 
     async function loadData() {
-      const [museumResponse, fstResponse, countyResponse, metadataResponse] = await Promise.all([fetch('AU-termite-samples.csv'), fetch('FSTrecords.csv'), fetch('alabama_counties.geojson'), fetch('external_data_snapshot.json')]);
+      const [
+        configResponse,
+        museumResponse,
+        fstResponse,
+        countyResponse,
+        metadataResponse
+      ] = await Promise.all([
+        fetchLocal('map_config.json'),
+        fetchLocal('AU-termite-samples.csv'),
+        fetchLocal('FSTrecords.csv'),
+        fetchLocal('alabama_counties.geojson'),
+        fetchLocal('external_data_snapshot.json')
+      ]);
+
+      if (!configResponse.ok) throw new Error(`Map config request failed: ${configResponse.status}`);
       if (!museumResponse.ok) throw new Error(`Museum CSV request failed: ${museumResponse.status}`);
       if (!fstResponse.ok) throw new Error(`FST CSV request failed: ${fstResponse.status}`);
       if (!countyResponse.ok) throw new Error(`County boundary request failed: ${countyResponse.status}`);
+
+      config = await configResponse.json();
       const rows = parseCsv(await museumResponse.text());
       fstRecords = parseCsv(await fstResponse.text());
       countyGeojson = await countyResponse.json();
+
       if (metadataResponse.ok) {
         const metadata = await metadataResponse.json();
-        snapshotDate = metadata.inaturalist && metadata.inaturalist.snapshot_date ? metadata.inaturalist.snapshot_date : (metadata.updated || snapshotDate);
-        const target = document.getElementById('inat-snapshot-date');
-        if (target) target.textContent = snapshotDate;
+        snapshotDate = metadata.inaturalist && metadata.inaturalist.snapshot_date
+          ? metadata.inaturalist.snapshot_date
+          : metadata.updated || snapshotDate;
       }
-      museumRecords = rows.filter(row => { const lat = Number(row.lat); const lon = Number(row.lon); const state = String(row.state || '').trim().toUpperCase(); const country = String(row.country || '').trim().toUpperCase(); return Number.isFinite(lat) && Number.isFinite(lon) && state === 'AL' && country === 'USA' && focalGenera.includes(row.genus); });
+
+      museumRecords = rows.filter(row => {
+        const lat = Number(row.lat);
+        const lon = Number(row.lon);
+        const state = String(row.state || '').trim().toUpperCase();
+        const country = String(row.country || '').trim().toUpperCase();
+        return Number.isFinite(lat) &&
+          Number.isFinite(lon) &&
+          state === 'AL' &&
+          ['USA', 'US', 'UNITED STATES'].includes(country) &&
+          focalGenera().includes(row.genus);
+      });
+
+      addFilterControl();
+      addSourceControl();
+
+      const target = document.getElementById('inat-snapshot-date');
+      if (target) target.textContent = snapshotDate;
+
       const bounds = L.geoJSON(countyGeojson).getBounds();
-      if (bounds.isValid()) map.fitBounds(bounds, { padding: [10,10] });
+      if (bounds.isValid()) map.fitBounds(bounds, { padding: [10, 10] });
+
       drawMap();
+
+      if (config.defaults.inaturalist) ensureInatLoaded();
+
       setTimeout(() => map.invalidateSize(), 0);
     }
 
-    document.getElementById('genus-select').addEventListener('change', drawMap);
-    document.getElementById('specimen-toggle').addEventListener('change', drawMap);
-    document.getElementById('fst-toggle').addEventListener('change', drawMap);
-    document.getElementById('inat-toggle').addEventListener('change', event => { if (event.target.checked) ensureInatLoaded(); else drawMap(); });
     window.addEventListener('resize', () => map.invalidateSize());
-    loadData().catch(error => { document.getElementById('status').textContent = `Could not load map data: ${error.message}`; console.error(error); });
+
+    loadData().catch(error => {
+      document.getElementById('status').textContent = `Could not load map data: ${error.message}`;
+      console.error(error);
+    });
   </script>
 </body>
 </html>
