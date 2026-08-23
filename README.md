@@ -46,9 +46,11 @@ It currently controls:
 - species-specific colors
 - published county polygon styling
 - verified-specimen uncertainty-circle opacity and line width
-- iNaturalist point radius, opacity, and line width
+- iNaturalist map-circle radius, opacity, and line width
 
 The physical radius of a verified-specimen privacy circle is not a display setting. It comes from `privacy_radius_m` in `AU-termite-samples.csv` because that radius describes location uncertainty and must match the privacy-processing step.
+
+The iNaturalist radius is different: it is a display setting in `map_config.json`. It is currently 300 m so iNaturalist and museum records scale consistently as the map is zoomed. An iNaturalist circle does not imply that the observation was privacy-generalized or that its coordinate uncertainty is 300 m.
 
 ## Data sources
 
@@ -83,6 +85,8 @@ County shading indicates documented occurrence in a county. It should not be int
 The updater requests Research Grade observations for the focal genera, retains only observations whose coordinates fall inside the locally stored Alabama county polygons, and retains only observations with an observation license. The CSV stores observation ID, genus, taxon name, coordinates, observed date, place, observer, observation license, and the original observation URL.
 
 The website describes these as Research Grade/community-assessed observations and states that they are not independently verified by the Alabama Termite Identification Service. The snapshot date displayed on the website comes from `external_data_snapshot.json`.
+
+For visual comparability with verified museum records, each iNaturalist observation is rendered as a true 300 m-radius Leaflet map circle instead of a fixed-pixel marker. Its apparent size therefore changes consistently with map zoom. The 300 m radius is only a visualization choice and should not be interpreted as privacy generalization or coordinate uncertainty for the iNaturalist observation.
 
 The layer is lazy-loaded. Turning it off and back on after the CSV has already loaded redraws the cached records without making another request. A full page reload resets the checkbox to the configured default, which is currently off.
 
