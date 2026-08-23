@@ -62,6 +62,13 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    map.createPane('reticulitermesPane');
+    map.getPane('reticulitermesPane').style.zIndex = 410;
+    map.createPane('drywoodPane');
+    map.getPane('drywoodPane').style.zIndex = 420;
+    map.createPane('coptotermesPane');
+    map.getPane('coptotermesPane').style.zIndex = 430;
+
     const countyLayer = L.layerGroup().addTo(map);
     const inatLayer = L.layerGroup().addTo(map);
     const specimenLayer = L.layerGroup().addTo(map);
@@ -155,6 +162,12 @@
       return taxonConfig(genus).display_name || genus;
     }
 
+    function genusPane(genus) {
+      if (genus === 'Coptotermes') return 'coptotermesPane';
+      if (genus === 'Kalotermes' || genus === 'Incisitermes') return 'drywoodPane';
+      return 'reticulitermesPane';
+    }
+
     function speciesColor(name, genus) {
       return config.species_colors[name] || taxonConfig(genus).color || config.fallback_color;
     }
@@ -184,6 +197,15 @@
 
     function museumDisplayName(row) {
       return displayScientificName(scientificName(row));
+    }
+
+    function identificationText(row) {
+      const method = String(row.id_method || '').trim();
+      const identifiedBy = String(row.id_by || '').trim();
+      if (method && identifiedBy) return `${method} by ${identifiedBy}`;
+      if (method) return method;
+      if (identifiedBy) return `by ${identifiedBy}`;
+      return '';
     }
 
     function normalizeCounty(name) {
@@ -421,6 +443,7 @@
           ].filter(Boolean).join('<br>');
 
           L.circle([row.lat, row.lon], {
+            pane: genusPane(row.genus),
             radius: style.radius_m,
             color,
             weight: style.stroke_weight,
@@ -454,17 +477,19 @@
           const name = scientificName(row);
           const color = speciesColor(name, row.genus);
           const alpha = speciesAlpha(name);
+          const identification = identificationText(row);
           const popup = [
             `<span class="taxon-name">${escapeHtml(museumDisplayName(row))}</span>`,
             row.date ? `Date: ${escapeHtml(row.date)}` : '',
             row.AUT_ID ? `Voucher: ${escapeHtml(row.AUT_ID)}` : '',
+            row.collector ? `Collector: ${escapeHtml(row.collector)}` : '',
+            identification ? `Identification: ${escapeHtml(identification)}` : '',
             isAlate(row) ? 'Alate: yes' : '',
-            'Evidence: verified museum specimen',
-            `Privacy-generalized public location uncertainty area (${privacyRadius(row)} m radius).`,
-            'The circle indicates only the public privacy buffer. It is not the biological range, territory, colony size, or infestation extent.'
+            'Evidence: verified museum specimen'
           ].filter(Boolean).join('<br>');
 
           L.circle([lat, lon], {
+            pane: genusPane(row.genus),
             radius: privacyRadius(row),
             color,
             weight: style.stroke_weight,
@@ -557,6 +582,7 @@
       museumRecords = parseCsv(await museumResponse.text()).map(row => ({
         AUT_ID: (row.AUT_ID || '').trim(),
         date: (row.date || '').trim(),
+        collector: (row.collector || '').trim(),
         lat: row.lat || row.latitude || '',
         lon: row.lon || row.longitude || '',
         locality: (row.locality || '').trim(),
@@ -565,6 +591,8 @@
         country: (row.country || '').trim(),
         genus: (row.genus || '').trim(),
         species: (row.species || '').trim(),
+        id_method: (row.id_method || '').trim(),
+        id_by: (row.id_by || '').trim(),
         alate: (row.alate || '').trim(),
         coordinate_generalized: (row.coordinate_generalized || '').trim(),
         privacy_radius_m: (row.privacy_radius_m || '').trim()
