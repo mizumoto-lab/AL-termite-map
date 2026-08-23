@@ -3,9 +3,21 @@
     "taxon": "Coptotermes",
     "published_counties": true,
     "museum_specimens": true,
-    "inaturalist": false
+    "inaturalist": false,
+    "alate_only": false
   },
   "fallback_color": "#777777",
+  "valid_species": [
+    "Coptotermes formosanus",
+    "Reticulitermes flavipes",
+    "Reticulitermes hageni",
+    "Reticulitermes malletei",
+    "Reticulitermes nelsonae",
+    "Reticulitermes sp",
+    "Reticulitermes virginicus",
+    "Kalotermes approximatus",
+    "Incisitermes snyderi"
+  ],
   "taxa": {
     "Coptotermes": {
       "display_name": "Formosan subterranean termite",
@@ -33,18 +45,22 @@
     "Kalotermes approximatus": "Dark southern drywood termite",
     "Incisitermes snyderi": "Southeastern drywood termite"
   },
+  "scientific_display_names": {
+    "Reticulitermes nelsonae": "Reticulitermes nelsonae (complex)"
+  },
   "species_colors": {
     "Coptotermes formosanus": "#d73027",
-    "Coptotermes gestroi": "#f46d43",
     "Reticulitermes flavipes": "#2166ac",
     "Reticulitermes hageni": "#4393c3",
-    "Reticulitermes virginicus": "#238b8d",
-    "Reticulitermes mississippiensis": "#67a9cf",
     "Reticulitermes malletei": "#084081",
     "Reticulitermes nelsonae": "#756bb1",
     "Reticulitermes sp": "#c6dbef",
+    "Reticulitermes virginicus": "#238b8d",
     "Kalotermes approximatus": "#1a9850",
     "Incisitermes snyderi": "#7b3294"
+  },
+  "species_alpha": {
+    "Reticulitermes sp": 0.4
   },
   "layers": {
     "published_counties": {
