@@ -15,7 +15,7 @@ The public-facing taxa are:
 
 These are the only currently valid species labels used by the public map. The public-data generator warns when the private specimen master contains another genus/species combination.
 
-The default view shows Formosan subterranean termite, published county records, and verified museum specimens. The iNaturalist layer is off by default and `iNaturalist_records.csv` is requested only when that layer is enabled. Verified museum specimens can also be filtered to records with `alate=1`.
+The default view shows Formosan subterranean termite, published county records, and verified museum specimens. The iNaturalist layer is off by default and `iNaturalist_records.csv` is requested only when that layer is enabled.
 
 ## Repository files
 
@@ -88,7 +88,7 @@ All museum records with coordinates are privacy-generalized before publication:
 - the public coordinate is displaced by up to 300 m
 - the displacement is deterministic when the same local `.privacy_salt` is reused
 - `locality` and `city` are omitted from the public CSV
-- `alate` is retained for public specimen filtering
+- `alate` is retained as public specimen metadata
 - `coordinate_generalized=yes`
 - `privacy_radius_m=300`
 
@@ -96,15 +96,13 @@ The map renders public museum locations as translucent 300 m-radius circles with
 
 The public CSV can contain collection records from outside Alabama. The Alabama map displays only valid focal-taxon museum rows labeled `state=AL`. A generous Alabama bounding box is also applied to valid coordinates to suppress gross state/coordinate mismatches while still allowing a 300 m privacy displacement near the state boundary.
 
-The specimen filter `Alate only (alate = 1)` restricts the verified-museum layer to rows explicitly marked `1`. When the filter is off, all valid verified museum specimens are shown regardless of `alate` value.
-
 `index.html` intentionally does not plot legacy museum rows that still contain coordinates but do not have `coordinate_generalized=yes`. Regenerate `AU-termite-samples.csv` with the privacy workflow before publishing those records.
 
 ### Published Formosan subterranean termite county records
 
 `FSTrecords.csv` contains county-level first-detection records from:
 
-Hu, X. P. & Mizumoto, N. (2026, in press). *Four decades of inland invasion by Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.* Preprint: https://doi.org/10.32942/X21H4M
+Hu, X. P. & Mizumoto, N. (2026). *Four decades of inland invasion by the Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.* *Urban Ecosystems* 29, 244. https://doi.org/10.1007/s11252-026-02107-z
 
 County shading indicates documented occurrence in a county. It should not be interpreted as occurrence throughout the county or as evidence of absence from unshaded counties.
 
