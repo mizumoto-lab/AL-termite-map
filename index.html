@@ -266,12 +266,6 @@
               <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.museum_specimens)}</span></label>
               <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.inaturalist)}</span></label>
             </div>
-          </div>
-          <div class="control-group">
-            <span class="control-label">${escapeHtml(text.controls.specimen_filters)}</span>
-            <div class="checks">
-              <label><input type="checkbox" id="alate-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.alate_only)}</span></label>
-            </div>
           </div>`;
         L.DomEvent.disableClickPropagation(div);
         L.DomEvent.disableScrollPropagation(div);
@@ -283,12 +277,10 @@
       document.getElementById('fst-toggle').checked = Boolean(config.defaults.published_counties);
       document.getElementById('specimen-toggle').checked = Boolean(config.defaults.museum_specimens);
       document.getElementById('inat-toggle').checked = Boolean(config.defaults.inaturalist);
-      document.getElementById('alate-toggle').checked = Boolean(config.defaults.alate_only);
 
       document.getElementById('genus-select').addEventListener('change', drawMap);
       document.getElementById('specimen-toggle').addEventListener('change', drawMap);
       document.getElementById('fst-toggle').addEventListener('change', drawMap);
-      document.getElementById('alate-toggle').addEventListener('change', drawMap);
       document.getElementById('inat-toggle').addEventListener('change', event => {
         if (!event.target.checked) {
           drawMap();
@@ -374,7 +366,6 @@
       const inatCount = showInat ? visibleInatRecords.length : 0;
       const parts = [`${museumCount} verified museum records for ${selectedDisplayName()}`];
 
-      if (document.getElementById('alate-toggle').checked) parts.push('alate specimens only');
       if (document.getElementById('specimen-toggle').checked && legacyExactMuseum.length) {
         parts.push(`${legacyExactMuseum.length} legacy exact-coordinate museum records hidden until public data are regenerated`);
       }
@@ -393,10 +384,9 @@
       specimenLayer.clearLayers();
 
       const showSpecimens = document.getElementById('specimen-toggle').checked;
-      const alateOnly = document.getElementById('alate-toggle').checked;
       const showFst = document.getElementById('fst-toggle').checked && fstIsRelevant();
       const showInat = document.getElementById('inat-toggle').checked && inatLoaded;
-      const visibleMuseumRecords = museumRecords.filter(row => genusMatches(row.genus) && (!alateOnly || isAlate(row)));
+      const visibleMuseumRecords = museumRecords.filter(row => genusMatches(row.genus));
       const visibleInatRecords = inatRecords.filter(row => genusMatches(row.genus));
 
       if (showFst && countyGeojson) {
