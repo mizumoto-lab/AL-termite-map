@@ -3,8 +3,7 @@
     "taxon": "Coptotermes",
     "published_counties": true,
     "museum_specimens": true,
-    "inaturalist": false,
-    "alate_only": false
+    "inaturalist": false
   },
   "fallback_color": "#777777",
   "valid_species": [
