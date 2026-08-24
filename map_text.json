@@ -10,9 +10,7 @@
     "evidence": "Evidence",
     "published_counties": "Published county records",
     "museum_specimens": "Verified museum specimens",
-    "inaturalist": "iNaturalist Research Grade",
-    "specimen_filters": "Specimen filter",
-    "alate_only": "Alate only (alate = 1)"
+    "inaturalist": "iNaturalist Research Grade"
   },
   "legend": {
     "title": "Records",
@@ -33,9 +31,9 @@
   },
   "published_reference": {
     "authors": "Hu, X. P. & Mizumoto, N.",
-    "year": "2026, in press",
-    "title": "Four decades of inland invasion by Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.",
-    "url": "https://doi.org/10.32942/X21H4M",
-    "link_text": "Preprint"
+    "year": "2026",
+    "title": "Four decades of inland invasion by the Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.",
+    "url": "https://doi.org/10.1007/s11252-026-02107-z",
+    "link_text": "Article"
   }
 }
