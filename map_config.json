@@ -61,9 +61,9 @@
   "layers": {
     "published_counties": {
       "stroke_color": "#a32121",
-      "stroke_weight": 1.2,
+      "stroke_weight": 0.75,
       "fill_color": "#d73027",
-      "fill_opacity": 0.25
+      "fill_opacity": 0.15
     },
     "museum_specimens": {
       "stroke_weight": 5.5,
