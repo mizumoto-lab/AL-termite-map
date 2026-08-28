@@ -53,7 +53,7 @@
     "Reticulitermes hageni": "#6a51a3",
     "Reticulitermes malletei": "#084081",
     "Reticulitermes nelsonae": "#238b8e",
-    "Reticulitermes sp": "#9ecae1",
+    "Reticulitermes sp": "#75bdf0",
     "Reticulitermes virginicus": "#238443",
     "Kalotermes approximatus": "#b35806",
     "Incisitermes snyderi": "#8c2d75"
@@ -66,15 +66,15 @@
       "fill_opacity": 0.25
     },
     "museum_specimens": {
-      "stroke_weight": 2.5,
-      "stroke_opacity": 0.92,
-      "fill_opacity": 0.65
+      "stroke_weight": 5.5,
+      "stroke_opacity": 0.95,
+      "fill_opacity": 0.85
     },
     "inaturalist": {
       "radius_m": 300,
       "stroke_weight": 2.5,
       "stroke_opacity": 0.92,
-      "fill_opacity": 0.18
+      "fill_opacity": 0.35
     }
   }
 }
