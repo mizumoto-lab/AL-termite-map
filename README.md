@@ -2,24 +2,15 @@
 
 Public map of documented termite records in Alabama.
 
-## Version 0
+[Alabama Termite Identification Service](https://mizumoto-lab.com/alabama-termites/)
 
-Version 0 is the initial public release of the Alabama Termite Map. The map is ready for public use, with future changes expected to be minor updates to wording, data, and display settings.
+The map combines three sources of termite records:
 
-The map currently includes:
+- **AU termite specimens** identified by termite researchers at Auburn University
+- **Published county records** for Formosan subterranean termite
+- **iNaturalist Research Grade observations** from a periodically updated static snapshot
 
-- Formosan subterranean termite (*Coptotermes formosanus*)
-- native subterranean termites (*Reticulitermes* spp.)
-- dark southern drywood termite (*Kalotermes approximatus*)
-- southeastern drywood termite (*Incisitermes snyderi*)
-
-Records come from three sources:
-
-1. **AU termite specimens** identified by termite researchers at Auburn University.
-2. **Published county records** for Formosan subterranean termite from Hu & Mizumoto (2026).
-3. **iNaturalist Research Grade observations** from a periodically updated static snapshot.
-
-The map is intended to support the Alabama Termite Identification Service and the accumulation of reliable information on termite distributions in Alabama.
+The map supports the Alabama Termite Identification Service and the accumulation of reliable information on termite distributions in Alabama.
 
 ## Privacy
 
@@ -32,9 +23,9 @@ AU-termite-samples-secret.csv
 .privacy_salt
 ```
 
-These files must remain local and must never be committed to the repository.
+These files must remain local and must never be committed.
 
-To regenerate the public specimen file on Windows, run:
+To regenerate the public specimen file on Windows:
 
 ```text
 make_public_data.bat
@@ -44,7 +35,7 @@ This creates the privacy-filtered `AU-termite-samples.csv` used by the public ma
 
 ## Updating external data
 
-The iNaturalist snapshot and county-boundary data can be updated with:
+To update the iNaturalist snapshot and county-boundary data:
 
 ```text
 update_external_data.bat
@@ -70,12 +61,12 @@ Normal website visitors do not query the iNaturalist API directly. The map uses 
 - `make_public_data.py`: creates the public specimen dataset
 - `update_external_data.py`: updates external map data
 
-## Published Formosan termite records
+## Reference
 
 Hu, X. P. & Mizumoto, N. (2026). *Four decades of inland invasion by the Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.* *Urban Ecosystems* 29, 244. https://doi.org/10.1007/s11252-026-02107-z
 
 ## Development
 
-The map is a static HTML/JavaScript application using [Leaflet](https://leafletjs.com/), [Papa Parse](https://www.papaparse.com/), and [OpenStreetMap](https://www.openstreetmap.org/) basemap tiles.
+The map is a static HTML/JavaScript application using [Leaflet](https://leafletjs.com/), [Papa Parse](https://www.papaparse.com/), and OpenStreetMap/Esri basemap tiles.
 
 Development of the web application and supporting scripts was assisted by ChatGPT (OpenAI).
