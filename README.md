@@ -1,205 +1,81 @@
 # Alabama Termite Map
 
-Static public map of documented termite records in Alabama.
+Public map of documented termite records in Alabama.
 
 ## Version 0
 
-Version 0 uses Leaflet in a single `index.html` file with static repository data. There is no database or server-side application.
+Version 0 is the initial public release of the Alabama Termite Map. The map is ready for public use, with future changes expected to be minor updates to wording, data, and display settings.
 
-The public-facing taxa are:
+The map currently includes:
 
 - Formosan subterranean termite (*Coptotermes formosanus*)
-- Native subterranean termites (*Reticulitermes flavipes*, *R. hageni*, *R. malletei*, *R. nelsonae* complex, *R. virginicus*, and *Reticulitermes* sp.)
-- Dark southern drywood termite (*Kalotermes approximatus*)
-- Southeastern drywood termite (*Incisitermes snyderi*)
+- native subterranean termites (*Reticulitermes* spp.)
+- dark southern drywood termite (*Kalotermes approximatus*)
+- southeastern drywood termite (*Incisitermes snyderi*)
 
-These are the only currently valid species labels used by the public map. The public-data generator warns when the private specimen master contains another genus/species combination.
+Records come from three sources:
 
-The default view shows Formosan subterranean termite, published county records, and AU termite samples. The iNaturalist layer is off by default and `iNaturalist_records.csv` is requested only when that layer is enabled.
+1. **AU termite specimens** identified by termite researchers at Auburn University.
+2. **Published county records** for Formosan subterranean termite from Hu & Mizumoto (2026).
+3. **iNaturalist Research Grade observations** from a periodically updated static snapshot.
 
-When native subterranean termites (*Reticulitermes* spp.) are selected, the map displays an additional species filter. Each named species and the genus-only `Reticulitermes sp` category can be independently turned on or off.
+The map is intended to support the Alabama Termite Identification Service and the accumulation of reliable information on termite distributions in Alabama.
 
-## Repository files
+## Privacy
 
-```text
-index.html
-map_config.json
-map_text.json
-README.md
-.gitignore
+Exact coordinates for AU termite specimens are kept private. Public specimen coordinates are generalized by up to 300 m before publication, and exact locality information is not included in the public data file.
 
-AU-termite-samples.csv
-FSTrecords.csv
-alabama_counties.geojson
-iNaturalist_records.csv
-external_data_snapshot.json
-
-make_public_data.py
-make_public_data.bat
-update_external_data.py
-update_external_data.bat
-```
-
-## Map configuration
-
-`map_config.json` contains visual and behavior settings that are likely to be adjusted later without editing `index.html`.
-
-It currently controls:
-
-- default taxon and layer visibility
-- the valid public species list
-- taxon labels and colors
-- species-specific colors
-- published county polygon styling
-- AU termite specimen uncertainty-circle opacity and line width
-- iNaturalist map-circle radius, opacity, and line width
-
-Named *Reticulitermes* species use distinct blue, purple, teal, and green colors. `Reticulitermes sp` uses a light blue color rather than reduced opacity, so source type can be distinguished consistently by fill opacity.
-
-AU termite specimens and iNaturalist observations use the same taxon color for a given species. AU specimen circles have a stronger fill, while iNaturalist circles use a more transparent fill. Their outline styling is otherwise the same.
-
-The physical radius of an AU termite specimen privacy circle is not a display setting. It comes from `privacy_radius_m` in `AU-termite-samples.csv` because that radius describes location uncertainty and must match the privacy-processing step.
-
-The iNaturalist radius is different: it is a display setting in `map_config.json`. It is currently 300 m. An iNaturalist circle does not imply that the observation was privacy-generalized or that its coordinate uncertainty is 300 m.
-
-Both AU specimen and iNaturalist circles use a thicker screen-pixel outline than before. The geographic circle radius remains 300 m, but the outline remains visible when the map is zoomed out, reducing the tendency for records to disappear at statewide scale without falsely enlarging the mapped area.
-
-## Map text
-
-`map_text.json` contains public-facing wording that can be edited without changing `index.html`.
-
-It currently controls:
-
-- page title and introductory sentence
-- control labels
-- legend title, section headings, and record labels
-- source-panel headings and explanatory text
-- the Hu & Mizumoto published-reference citation and link text
-
-The AU termite specimen source description explains that coordinates are privacy-generalized by up to 300 m and do not represent exact collection locations.
-
-The iNaturalist source text uses `{snapshot_date}` as a placeholder. The website replaces that placeholder with the date stored in `external_data_snapshot.json`.
-
-The Records legend is collapsed by default to reduce the amount of map space it occupies. If a visitor opens it, its open state is preserved when the map redraws because of taxon or layer changes.
-
-## Data sources
-
-### AU termite specimens
-
-`AU-termite-samples.csv` is the public, privacy-filtered map input derived from the local exact specimen master. These specimens are identified by termite researchers at Auburn University and are intended for availability in the Auburn University Natural History Museum.
-
-All AU specimen records with coordinates are privacy-generalized before publication:
-
-- the public coordinate is displaced by up to 300 m
-- the displacement is deterministic when the same local `.privacy_salt` is reused
-- `locality` and `city` are omitted from the public CSV
-- `alate` is retained as public specimen metadata
-- `coordinate_generalized=yes`
-- `privacy_radius_m=300`
-
-The map renders public AU specimen locations as translucent 300 m-radius circles with no center point. The circles do not show exact collection points.
-
-The public CSV can contain collection records from outside Alabama. The Alabama map displays only valid focal-taxon rows labeled `state=AL`. A generous Alabama bounding box is also applied to valid coordinates to suppress gross state/coordinate mismatches while still allowing a 300 m privacy displacement near the state boundary.
-
-`index.html` intentionally does not plot legacy specimen rows that still contain coordinates but do not have `coordinate_generalized=yes`. Regenerate `AU-termite-samples.csv` with the privacy workflow before publishing those records.
-
-### Published Formosan subterranean termite county records
-
-`FSTrecords.csv` contains county-level first-detection records from:
-
-Hu, X. P. & Mizumoto, N. (2026). *Four decades of inland invasion by the Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.* *Urban Ecosystems* 29, 244. https://doi.org/10.1007/s11252-026-02107-z
-
-County shading indicates documented occurrence in a county. It should not be interpreted as occurrence throughout the county or as evidence of absence from unshaded counties.
-
-### iNaturalist
-
-`iNaturalist_records.csv` is a static snapshot. Normal website visitors do not query the iNaturalist API.
-
-The updater requests Research Grade observations for the focal genera, retains only observations whose coordinates fall inside the locally stored Alabama county polygons, and retains only observations with an observation license. The CSV stores observation ID, genus, taxon name, coordinates, observed date, place, observer, observation license, and the original observation URL.
-
-The website describes these as licensed Research Grade/community-assessed observations and states that they are not independently verified by the Alabama Termite Identification Service. The snapshot date displayed on the website comes from `external_data_snapshot.json`.
-
-Only names in the current valid public species list are displayed. A genus-level iNaturalist identification of `Reticulitermes` is displayed as `Reticulitermes sp`.
-
-Each iNaturalist observation is rendered as a true 300 m-radius Leaflet map circle instead of a fixed-pixel marker. It uses the same species color as an AU termite specimen but a more transparent fill. The 300 m radius is only a visualization choice for iNaturalist and should not be interpreted as privacy generalization or coordinate uncertainty for the observation.
-
-The layer is lazy-loaded. Turning it off and back on after the CSV has already loaded redraws the cached records without making another request. A full page reload resets the checkbox to the configured default, which is currently off.
-
-### County boundaries and basemap
-
-`alabama_counties.geojson` is a static local snapshot of Alabama's 67 counties from the U.S. Census Bureau TIGERweb service. Normal website visitors do not query TIGERweb.
-
-OpenStreetMap tiles are requested normally by the Leaflet basemap.
-
-## Privacy workflow
-
-The exact specimen master and privacy salt must remain local/private:
+The private files are:
 
 ```text
 AU-termite-samples-secret.csv
 .privacy_salt
 ```
 
-Both are listed in `.gitignore` and must never be committed.
+These files must remain local and must never be committed to the repository.
 
-To generate the public specimen CSV on Windows:
+To regenerate the public specimen file on Windows, run:
 
-1. Put the exact specimen master in the repository folder as `AU-termite-samples-secret.csv`.
-2. Keep the existing `.privacy_salt` if one already exists. Reusing it keeps generalized positions stable between runs.
-3. Double-click `make_public_data.bat`.
-4. Review the regenerated `AU-termite-samples.csv` and any warnings printed by the script.
-5. Commit only the public CSV, not the secret master or salt.
+```text
+make_public_data.bat
+```
 
-The current privacy generator applies the same 300 m generalization to all specimen taxa with valid latitude/longitude values. It reports duplicate nonblank `AUT_ID` values and warns about any genus/species combination outside the current valid public taxon list. These warnings are shown in the Windows batch window before it pauses.
+This creates the privacy-filtered `AU-termite-samples.csv` used by the public map.
 
-If the public CSV already contains privacy fields and the exact secret master is missing, `make_public_data.py` intentionally stops rather than treating previously generalized coordinates as the exact master.
+## Updating external data
 
-## External-data update workflow
+The iNaturalist snapshot and county-boundary data can be updated with:
 
-Normal monthly updating is manual.
+```text
+update_external_data.bat
+```
 
-Double-click `update_external_data.bat`, or run:
+or:
 
 ```text
 python update_external_data.py
 ```
 
-Normal behavior:
+Normal website visitors do not query the iNaturalist API directly. The map uses the static `iNaturalist_records.csv` snapshot stored in this repository.
 
-- reuse `alabama_counties.geojson` when it already exists, after validating that it is a 67-county GeoJSON snapshot
-- download Alabama's 67 counties from TIGERweb if the county file is missing
-- download a fresh licensed Research Grade iNaturalist snapshot for `Coptotermes`, `Reticulitermes`, `Kalotermes`, and `Incisitermes`
-- filter observations to the actual Alabama county polygons
-- replace `iNaturalist_records.csv` atomically
-- replace `external_data_snapshot.json` atomically
+## Main files
 
-To force a fresh county download:
+- `index.html`: map application
+- `map_config.json`: taxa, colors, and display settings
+- `map_text.json`: public-facing wording and references
+- `AU-termite-samples.csv`: privacy-generalized AU specimen records
+- `FSTrecords.csv`: published Formosan subterranean termite county records
+- `iNaturalist_records.csv`: static iNaturalist Research Grade snapshot
+- `alabama_counties.geojson`: Alabama county boundaries
+- `make_public_data.py`: creates the public specimen dataset
+- `update_external_data.py`: updates external map data
 
-```text
-python update_external_data.py --refresh-counties
-```
+## Published Formosan termite records
 
-The Windows wrappers preserve the Python script's success/failure exit code and print an explicit error when an update fails. Temporary files and Python cache files are ignored by Git.
+Hu, X. P. & Mizumoto, N. (2026). *Four decades of inland invasion by the Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.* *Urban Ecosystems* 29, 244. https://doi.org/10.1007/s11252-026-02107-z
 
-There is no GitHub Action for this workflow in Version 0.
+## Development
 
-## Website loading behavior
+The map is a static HTML/JavaScript application using [Leaflet](https://leafletjs.com/), [Papa Parse](https://www.papaparse.com/), and [OpenStreetMap](https://www.openstreetmap.org/) basemap tiles.
 
-At startup, `index.html` loads these local repository files:
-
-- `map_config.json`
-- `map_text.json`
-- `AU-termite-samples.csv`
-- `FSTrecords.csv`
-- `alabama_counties.geojson`
-- `external_data_snapshot.json`
-
-`iNaturalist_records.csv` is not requested until the user turns on the iNaturalist layer.
-
-`index.html` makes no live Census TIGERweb or iNaturalist API requests. External web requests are limited to the OpenStreetMap basemap tiles and the Leaflet/Papa Parse libraries.
-
-Values from external snapshot data are HTML-escaped before being inserted into map popups, and iNaturalist observation links are restricted to the expected observation-URL format.
-
-## GitHub Pages
-
-This repository can be published directly with GitHub Pages because `index.html` is in the repository root. Version 0 is intended to be served from `main`; future wording changes can normally be made in `map_text.json` without changing the application logic.
+Development of the web application and supporting scripts was assisted by ChatGPT (OpenAI).
