@@ -1,196 +1,196 @@
 AUT_ID,date,collector,lat,lon,locality,city,state,country,genus,species,id_method,id_by,alate,coordinate_generalized,privacy_radius_m
-AUT-2024-0026,2024-04-03,NM,32.583742,-85.419771,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
-AUT-2024-0023,2024-05-23,NM,30.275317,-87.649788,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
-AUT-2024-0024,2024-05-23,NM,30.627867,-87.916433,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
-AUT-2024-0025,2024-10-22,NM,28.604419,-81.154705,,,FL,USA,Kalotermes,approximatus,morphology,NM,1,yes,300
-AUT-2024-0033,2024-11-06,NM/EC,30.272989,-87.649536,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
-AUT-2025-0041,2025-06-15,"EC,NM,TN",29.712964,-82.461886,,,FL,USA,Kalotermes,approximatus,morphology,NM,1,yes,300
-AUT-2026-0029,2026-04-12,NM,32.599927,-85.873640,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
-AUT-2026-0027,2026-05-03,NM,32.461817,-85.654720,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
-AUT-2026-0033,2026-06-11,MS,32.600155,-85.481322,,,AL,USA,Kalotermes,approximatus,morphology,NM,1,yes,300
-AUT-2024-0029,2024-03-22,NM,32.672548,-85.512944,,,AL,USA,Reticulitermes,flavipes,16s,MS,1,yes,300
-AUT-2024-0003,2024-05-23,NM,30.272494,-87.649506,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0004,2024-05-23,NM,30.293811,-87.573081,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0022,2024-06-13,NM,32.968476,-85.647469,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0001,2024-07-02,NM,34.512835,-86.958054,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0005,2024-07-02,NM,34.511833,-86.959239,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0006,2024-08-04,NM,32.585032,-85.475129,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0007,2024-09-17,NM,32.588002,-85.415909,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0016,2024-09-28,NM,32.658776,-85.384941,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2024-0008,2024-10-01,NM,32.583282,-85.416709,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0017,2024-10-01,EC,32.585320,-85.419985,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0002,2024-10-10,NM,32.583970,-85.416146,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2024-0009,2024-10-10,NM,32.588269,-85.414327,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0010,2024-10-10,NM,32.584997,-85.412982,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0011,2024-10-10,NM,32.585336,-85.422592,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
-AUT-2024-0045,2024-10-22,NM,28.589499,-81.157506,,,FL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2024-0020,2024-10-26,NM,31.776343,-85.145773,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2024-0021,2024-10-26,NM,31.773023,-85.145547,,,AL,USA,Reticulitermes,flavipes,16s,MS,,yes,300
-AUT-2024-0013,2024-11-06,NM/EC,30.346436,-87.630095,,,AL,USA,Reticulitermes,flavipes,16s,MS,,yes,300
-AUT-2024-0014,2024-11-06,NM/EC,30.338271,-87.640261,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2024-0018,2024-11-06,EC,30.281230,-87.617763,,,AL,USA,Reticulitermes,flavipes,16s,MS,,yes,300
-AUT-2024-0028,2024-11-06,EC,30.281919,-87.615904,,,AL,USA,Reticulitermes,flavipes,16s,MS,1,yes,300
-AUT-2025-0001,2025-03-01,NM,31.774161,-85.146778,,,AL,USA,Reticulitermes,flavipes,,,1,yes,300
-AUT-2025-0005,2025-03-02,NM,31.773773,-85.144663,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2025-0006,2025-03-02,NM,31.773111,-85.146177,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2025-0024,2025-03-02,NM,31.776321,-85.147552,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2025-0013,2025-03-12,NM,30.348548,-91.072872,,,LA,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2025-0018,2025-03-13,NM,30.309664,-89.610202,,,MS,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2025-0020,2025-03-15,NM,32.584371,-85.479050,,,AL,USA,Reticulitermes,flavipes,,,1,yes,300
-AUT-2025-0023,2025-03-22,NM,32.533812,-84.931024,,,GA,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2025-0025,2025-04-13,NM,32.579185,-85.485180,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
-AUT-2025-0043,2025-06-16,"EC, NM, TN, BV",29.712878,-82.462538,,,FL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2025-0044,2025-06-16,"EC, NM, TN, BV",29.708588,-82.458779,,,FL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2025-0054,2025-06-16,"EC, NM, TN, BV",29.712538,-82.457886,,,FL,USA,Reticulitermes,flavipes,,,,yes,300
-AUT-2025-0045,2025-06-19,"EC, NM, TN",32.585502,-85.423519,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
-AUT-2025-0046,2025-06-19,"EC, NM, TN",32.588106,-85.419632,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
-AUT-2025-0047,2025-06-19,"EC, NM, TN",32.585970,-85.422049,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
-AUT-2025-0050,2025-06-19,"EC, NM, TN",32.586818,-85.417050,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2025-0051,2025-06-24,"EC, NM, TN",32.582997,-85.418542,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2025-0052,2025-06-24,"EC, NM, TN",32.580008,-85.420852,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2025-0037,2025-12-18,NM,30.708124,-88.145292,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
-AUT-2026-0022,2026-02-20,EC,32.674789,-85.510246,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,,,yes,300
-AUT-2026-0023,2026-02-20,EC,32.677297,-85.508234,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,,,yes,300
-AUT-2026-0024,2026-03-06,EC,32.677254,-85.509461,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,,,yes,300
-AUT-2026-0025,2026-03-06,EC,32.675861,-85.511767,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,,,yes,300
-AUT-2026-0016,2026-03-14,NM,32.275389,-85.127924,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,NM,1,yes,300
-AUT-2026-0021,2026-03-24,EC,32.598166,-85.480743,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
-AUT-2026-0009,2026-03-28,EC,32.784200,-85.152053,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
-AUT-2026-0026,2026-03-28,EC,32.361167,-85.284682,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
-AUT-2026-0013,2026-07-09,NM,41.483593,-81.570810,,,OH,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2026-0014,2026-07-09,NM,41.428791,-81.601276,,,OH,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2024-0044,2024-05-22,NM,30.654156,-88.187700,,,AL,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
-AUT-2024-0034,2024-05-23,NM,30.677731,-88.127611,,,AL,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
-AUT-2024-0037,2024-05-23,NM,30.626224,-87.918441,,,AL,USA,Coptotermes,formosanus,morphology,NM,1,yes,300
-AUT-2024-0046,2024-06-28,AG,30.254465,-87.706226,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0036,2024-07-02,Cook Pest Management,34.588032,-87.025721,,,AL,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
-AUT-2024-0049,2024-07-02,AG,30.745352,-88.262039,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0079,2024-07-02,AG,30.746789,-88.277542,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0052,2024-07-03,AG,30.756894,-88.077561,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0050,2024-07-08,AG,30.663285,-88.103256,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0051,2024-07-11,AG,30.497954,-88.233941,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0061,2024-07-11,AG,30.769474,-88.185483,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0055,2024-07-12,AG,30.603113,-88.094787,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0077,2024-07-12,AG,30.330225,-87.711231,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0073,2024-07-16,AG,30.600432,-88.058430,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0069,2024-07-22,AG,30.805234,-88.076973,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0080,2024-07-23,AG,30.468228,-88.317252,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0053,2024-07-24,AG,30.859132,-88.141514,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0063,2024-07-30,PK,30.709880,-88.103611,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0047,2024-08-02,AG,30.804360,-88.077912,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0056,2024-08-07,PK,30.707635,-88.082104,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0062,2024-08-07,AG,30.480706,-88.342668,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0048,2024-08-08,AG,30.648992,-88.099888,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0067,2024-08-09,AG,30.667565,-88.260600,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0054,2024-08-14,AG,30.674125,-88.178768,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0081,2024-08-26,AG,30.765613,-88.138287,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0065,2024-08-30,AG,30.758624,-88.077368,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0059,2024-09-20,AG,30.708981,-88.300002,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0068,2024-09-25,AG,30.764374,-88.213931,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0060,2024-10-01,AG,30.589877,-88.230849,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0072,2024-10-02,AG,30.575102,-88.189829,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0084,2024-10-03,AG,30.430387,-88.303577,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0085,2024-10-08,AG,30.617965,-88.094515,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0083,2024-10-17,AG,30.619622,-88.072282,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0088,2024-10-17,AG,30.690821,-88.105234,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0038,2024-10-19,NM,32.483015,-84.964230,,,GA,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
-AUT-2024-0099,2024-10-31,AG,30.817840,-88.065402,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0035,2024-11-06,NM/EC,30.284062,-87.616655,,,AL,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
-AUT-2024-0090,2024-11-15,AG,31.353842,-88.167187,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0096,2024-11-25,AG,30.659643,-88.082815,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2024-0092,2024-12-30,AG,30.696109,-88.221094,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
-AUT-2025-0059,2025-03-12,NM,30.385940,-91.205434,,,LA,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
+AUT-2024-0001,2024-07-02,NM,34.513355,-86.957288,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0002,2024-10-10,NM,32.587215,-85.412919,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2024-0003,2024-05-23,NM,30.274252,-87.648552,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0004,2024-05-23,NM,30.294508,-87.572339,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0005,2024-07-02,NM,34.509960,-86.956679,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0006,2024-08-04,NM,32.582608,-85.475147,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0007,2024-09-17,NM,32.588892,-85.419012,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0008,2024-10-01,NM,32.585677,-85.417706,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0009,2024-10-10,NM,32.585956,-85.414047,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0010,2024-10-10,NM,32.585666,-85.416051,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0011,2024-10-10,NM,32.586807,-85.425637,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0012,2024-11-14,NM/EC,33.286717,-110.795207,,,AZ,USA,Reticulitermes,tibialis,distribution,,,yes,300
+AUT-2024-0013,2024-11-06,NM/EC,30.345891,-87.630521,,,AL,USA,Reticulitermes,flavipes,16s,MS,,yes,300
+AUT-2024-0014,2024-11-06,NM/EC,30.339726,-87.643528,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2024-0015,2024-11-14,NM/EC,33.285350,-110.792337,,,AZ,USA,Reticulitermes,tibialis,distribution,,,yes,300
+AUT-2024-0016,2024-09-28,NM,32.657828,-85.380654,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2024-0017,2024-10-01,EC,32.584269,-85.415701,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0018,2024-11-06,EC,30.284541,-87.616169,,,AL,USA,Reticulitermes,flavipes,16s,MS,,yes,300
+AUT-2024-0019,2024-11-07,NM/EC,30.281288,-87.615234,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2024-0020,2024-10-26,NM,31.773288,-85.142743,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2024-0021,2024-10-26,NM,31.773723,-85.146690,,,AL,USA,Reticulitermes,flavipes,16s,MS,,yes,300
+AUT-2024-0022,2024-06-13,NM,32.968327,-85.647177,,,AL,USA,Reticulitermes,flavipes,16s,MS,0,yes,300
+AUT-2024-0023,2024-05-23,NM,30.274743,-87.647573,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
+AUT-2024-0024,2024-05-23,NM,30.630542,-87.916072,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
+AUT-2024-0025,2024-10-22,NM,28.604386,-81.155285,,,FL,USA,Kalotermes,approximatus,morphology,NM,1,yes,300
+AUT-2024-0026,2024-04-03,NM,32.584025,-85.417302,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
+AUT-2024-0027,2024-03-22,NM,32.671711,-85.514211,,,AL,USA,Reticulitermes,malletei,,,,yes,300
+AUT-2024-0028,2024-11-06,EC,30.283932,-87.616830,,,AL,USA,Reticulitermes,flavipes,16s,MS,1,yes,300
+AUT-2024-0029,2024-03-22,NM,32.675154,-85.512076,,,AL,USA,Reticulitermes,flavipes,16s,MS,1,yes,300
+AUT-2024-0030,2024-11-14,NM/EC,33.277420,-111.139399,,,AZ,USA,Incisitermes,minor,morphology,,,yes,300
+AUT-2024-0031,2024-11-14,NM/EC,33.274531,-111.137047,,,AZ,USA,Marginitermes,hubbardi,morphology,,,yes,300
+AUT-2024-0032,2024-11-14,NM/EC,33.277141,-111.138620,,,AZ,USA,Marginitermes,hubbardi,morphology,,,yes,300
+AUT-2024-0033,2024-11-06,NM/EC,30.273189,-87.649112,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
+AUT-2024-0034,2024-05-23,NM,30.676704,-88.129565,,,AL,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
+AUT-2024-0035,2024-11-06,NM/EC,30.279511,-87.618189,,,AL,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
+AUT-2024-0036,2024-07-02,Cook Pest Management,34.587204,-87.030477,,,AL,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
+AUT-2024-0037,2024-05-23,NM,30.628471,-87.921011,,,AL,USA,Coptotermes,formosanus,morphology,NM,1,yes,300
+AUT-2024-0038,2024-10-19,NM,32.481807,-84.962713,,,GA,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
+AUT-2024-0039,2024-07-02,NM,34.508233,-86.955542,,,AL,USA,Reticulitermes,hageni,COI,UCR,0,yes,300
+AUT-2024-0040,2024-10-05,NM,32.364978,-86.452543,,,AL,USA,Reticulitermes,hageni,COI,UCR,0,yes,300
+AUT-2024-0041,2024-07-02,NM,34.574767,-86.946251,,,AL,USA,Reticulitermes,hageni,COI,UCR,1,yes,300
+AUT-2024-0042,2024-07-01,NM,34.509550,-86.957437,,,AL,USA,Reticulitermes,virginicus,COI,UCR,0,yes,300
+AUT-2024-0043,2024-10-22,NM,28.588721,-81.153960,,,FL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2024-0044,2024-05-22,NM,30.656547,-88.188252,,,AL,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
+AUT-2024-0045,2024-10-22,NM,28.590213,-81.153936,,,FL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2024-0045,2024-09-12,Anthony Green,30.530761,-88.165592,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0046,2024-06-28,Anthony Green,30.254969,-87.706271,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0047,2024-08-02,Anthony Green,30.807278,-88.077354,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0048,2024-08-08,Anthony Green,30.647044,-88.103738,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0049,2024-07-02,Anthony Green,30.745639,-88.262975,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0050,2024-07-08,Anthony Green,30.663259,-88.104217,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0051,2024-07-11,Anthony Green,30.500989,-88.234300,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0052,2024-07-03,Anthony Green,30.755649,-88.074957,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0053,2024-07-24,Anthony Green,30.857361,-88.143351,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0054,2024-08-14,Anthony Green,30.673536,-88.178937,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0055,2024-07-12,Anthony Green,30.603269,-88.095071,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0056,2024-08-07,PK,30.709414,-88.083504,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0057,2024-09-27,Anthony Green,30.979574,-88.151963,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0058,2024-07-31,Anthony Green,30.575494,-88.241491,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0059,2024-09-20,Anthony Green,30.709757,-88.302468,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0060,2024-10-01,Anthony Green,30.589595,-88.228792,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0061,2024-07-11,Anthony Green,30.770020,-88.189603,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0062,2024-08-07,Anthony Green,30.480042,-88.344451,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0063,2024-07-30,PK,30.712420,-88.103486,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0064,2024-09-20,Anthony Green,30.708831,-88.304962,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0065,2024-08-30,Anthony Green,30.758621,-88.074818,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0066,2024-07-09,Anthony Green,30.871589,-88.029730,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0067,2024-08-09,Anthony Green,30.664540,-88.260299,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0068,2024-09-25,Anthony Green,30.764070,-88.213492,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0069,2024-07-22,Anthony Green,30.805208,-88.072967,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0070,2024-08-27,Anthony Green,30.401462,-88.235265,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0071,2024-08-09,Anthony Green,30.601779,-88.095829,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0072,2024-10-02,Anthony Green,30.571766,-88.186941,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0073,2024-07-16,Anthony Green,30.599552,-88.062318,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0074,2024-08-01,Anthony Green,30.862939,-88.042972,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0075,2024-08-02,PK,31.070287,-88.050769,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0076,2024-09-20,Anthony Green,30.827311,-88.313987,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0077,2024-07-12,Anthony Green,30.331588,-87.714529,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0078,2024-09-25,BB,30.818978,-88.263635,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0079,2024-07-02,Anthony Green,30.747074,-88.275284,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0080,2024-07-23,Anthony Green,30.471793,-88.314507,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0081,2024-08-26,Anthony Green,30.765121,-88.136279,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0082,2024-10-15,Anthony Green,30.626737,-88.329904,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0083,2024-10-17,Anthony Green,30.620900,-88.075094,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0084,2024-10-03,Anthony Green,30.431989,-88.303303,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0085,2024-10-08,Anthony Green,30.617200,-88.096392,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0086,2024-10-14,Anthony Green,31.070956,-88.296854,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0087,2024-10-07,Anthony Green,30.544150,-88.273917,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0088,2024-10-17,Anthony Green,30.690951,-88.103543,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0089,2024-10-04,Anthony Green,30.851440,-88.051706,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0090,2024-11-15,Anthony Green,31.355875,-88.168547,,,AL,USA,Reticulitermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0091,2024-11-07,Anthony Green,30.714249,-88.275188,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0092,2024-12-30,Anthony Green,30.693808,-88.222558,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0093,2024-11-13,Anthony Green,31.093387,-88.249047,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0094,2024-11-12,Anthony Green,30.870409,-88.033661,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0095,2024-10-21,Anthony Green,30.714378,-88.102138,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0096,2024-11-25,Anthony Green,30.661549,-88.083745,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0097,2024-12-27,Anthony Green,30.601866,-88.081266,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0098,2024-11-01,Anthony Green,30.921997,-87.775186,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0099,2024-10-31,Anthony Green,30.816322,-88.064818,,,AL,USA,Coptotermes,formosanus,soldier,SH,0,yes,300
+AUT-2024-0100,2024-11-07,Anthony Green,30.448399,-88.277313,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2024-0101,2024-11-27,Anthony Green,30.881839,-88.049017,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
+AUT-2025-0001,2025-03-01,NM,31.775658,-85.144406,,,AL,USA,Reticulitermes,flavipes,,,1,yes,300
+AUT-2025-0002,2025-03-01,NM,31.773323,-85.146148,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0003,2025-03-02,NM,31.775104,-85.145288,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0004,2025-03-02,NM,31.777512,-85.142257,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0005,2025-03-02,NM,31.774181,-85.144843,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2025-0006,2025-03-02,NM,31.775389,-85.143056,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2025-0007,2025-03-02,NM,31.775317,-85.141881,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0008,2025-03-08,NM,30.653655,-88.187447,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2025-0009,2025-03-08,NM,30.654369,-88.185162,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2025-0010,2025-03-08,NM,30.654301,-88.184023,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0011,2025-03-08,NM,30.656054,-88.182884,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2025-0012,2025-03-12,NM,30.347048,-91.068648,,,LA,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0013,2025-03-12,NM,30.346077,-91.072163,,,LA,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2025-0014,2025-03-12,NM,30.385966,-91.198669,,,LA,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0015,2025-03-12,NM,30.388137,-91.204410,,,LA,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0016,2025-03-12,NM,30.385421,-91.204316,,,LA,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0017,2025-03-12,NM,30.346417,-91.071693,,,LA,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2025-0018,2025-03-13,NM,30.309080,-89.609344,,,MS,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2025-0019,2025-03-13,NM,30.310017,-89.611816,,,MS,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0020,2025-03-15,NM,32.583493,-85.478496,,,AL,USA,Reticulitermes,flavipes,,,1,yes,300
+AUT-2025-0021,2025-03-21,NM,32.672371,-85.511167,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2025-0022,2025-03-22,NM,32.528244,-84.929493,,,GA,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0023,2025-03-22,NM,32.532457,-84.932962,,,GA,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2025-0024,2025-03-02,NM,31.772351,-85.144342,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2025-0025,2025-04-13,NM,32.575709,-85.486974,,,AL,USA,Reticulitermes,flavipes,COI,UCR,1,yes,300
+AUT-2025-0026,2025-05-15,"EC, NM",33.471791,-85.806258,,,AL,USA,Reticulitermes,malletei,,,,yes,300
+AUT-2025-0027,2025-05-15,"EC, NM",33.469929,-85.807311,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2025-0028,2025-05-15,"EC, NM",33.465200,-85.807169,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2025-0029,2025-05-15,"EC, HO, NM, BV, DY",33.471871,-85.809607,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2025-0030,2025-05-27,"NM, TN",40.563592,-111.809393,,,UT,USA,Reticulitermes,tibialis,,,,yes,300
+AUT-2025-0031,2025-06-19,"EC, NM, TN",32.581972,-85.415510,,,AL,USA,Reticulitermes,virginicus,COI,UCR,0,yes,300
+AUT-2025-0032,2025-06-19,"EC, NM, TN",32.584424,-85.420152,,,AL,USA,Reticulitermes,virginicus,COI,UCR,0,yes,300
+AUT-2025-0033,2025-06-16,"EC, NM, TN, BV",29.710314,-82.458273,,,FL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2025-0034,2025-06-16,"EC, NM, TN, BV",29.712900,-82.461066,,,FL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
+AUT-2025-0035,2025-08-05,EC,38.711774,-87.773136,,,IL,USA,Reticulitermes,hageni,COI,UCR,1,yes,300
+AUT-2025-0036,2025-12-19,NM,30.626354,-87.917810,,,AL,USA,Coptotermes,formosanus,soldier,NM,0,yes,300
+AUT-2025-0037,2025-12-18,NM,30.709610,-88.147718,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
+AUT-2025-0038,2025-08-31,NM,33.441609,-85.840058,,,AL,USA,Reticulitermes,malletei,COI,UCR,0,yes,300
+AUT-2025-0039,2025-06-19,"EC, NM, TN",32.587045,-85.418466,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2025-0040,2025-06-24,"EC, NM, TN",32.581001,-85.418132,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2025-0041,2025-06-15,"EC,NM,TN",29.713164,-82.461182,,,FL,USA,Kalotermes,approximatus,morphology,NM,1,yes,300
+AUT-2025-0042,2025-06-16,"EC, NM, TN, BV",29.710058,-82.458221,,,FL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0043,2025-06-16,"EC, NM, TN, BV",29.711978,-82.458349,,,FL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2025-0044,2025-06-16,"EC, NM, TN, BV",29.712070,-82.458550,,,FL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2025-0045,2025-06-19,"EC, NM, TN",32.586589,-85.420053,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
+AUT-2025-0046,2025-06-19,"EC, NM, TN",32.588556,-85.422276,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
+AUT-2025-0047,2025-06-19,"EC, NM, TN",32.589732,-85.422866,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
+AUT-2025-0048,2025-06-19,"EC, NM, TN",32.585929,-85.423812,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0049,2025-06-19,"EC, NM, TN",32.584929,-85.419293,,,AL,USA,Reticulitermes,virginicus,COI,UCR,0,yes,300
+AUT-2025-0050,2025-06-19,"EC, NM, TN",32.584331,-85.418584,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2025-0051,2025-06-24,"EC, NM, TN",32.581727,-85.419323,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2025-0052,2025-06-24,"EC, NM, TN",32.579952,-85.422655,,,AL,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2025-0053,2025-06-19,"EC, NM, TN",32.587095,-85.424008,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2025-0054,2025-06-16,"EC, NM, TN, BV",29.713503,-82.462647,,,FL,USA,Reticulitermes,flavipes,,,,yes,300
+AUT-2025-0055,2025-05-15,"EC, HO, NM, BV, DY",33.468207,-85.812207,,,AL,USA,Reticulitermes,sp,,,,yes,300
 AUT-2025-0056,2025-05-19,"collected by Ward Davis, Circle Pest Control, submitted by Eric Hataway, Territory Manager, Urban Pest Mangaement, Corteva Agriscience",,,,,AL,USA,Coptotermes,formosanus,morphology,NM,1,no_coordinate,
-AUT-2025-0058,2025-05-19,Jennifer Davidson,,,,,AL,USA,Coptotermes,formosanus,morphology,NM,1,no_coordinate,
 AUT-2025-0057,2025-05-29,Jack Brewer,,,,,AL,USA,Coptotermes,formosanus,morphology,NM,1,no_coordinate,
-AUT-2025-0036,2025-12-19,NM,30.629501,-87.918612,,,AL,USA,Coptotermes,formosanus,soldier,NM,0,yes,300
-AUT-2026-0032,2026-05-19,NM,32.579967,-85.489146,,,AL,USA,Coptotermes,formosanus,morphology,NM,1,yes,300
-AUT-2024-0039,2024-07-02,NM,34.509807,-86.958876,,,AL,USA,Reticulitermes,hageni,COI,UCR,0,yes,300
-AUT-2024-0041,2024-07-02,NM,34.574612,-86.943181,,,AL,USA,Reticulitermes,hageni,COI,UCR,1,yes,300
-AUT-2024-0040,2024-10-05,NM,32.363562,-86.455944,,,AL,USA,Reticulitermes,hageni,COI,UCR,0,yes,300
-AUT-2025-0035,2025-08-05,EC,38.714078,-87.774933,,,IL,USA,Reticulitermes,hageni,COI,UCR,1,yes,300
-AUT-2024-0031,2024-11-14,NM/EC,33.274855,-111.136264,,,AZ,USA,Marginitermes,hubbardi,morphology,,,yes,300
-AUT-2024-0032,2024-11-14,NM/EC,33.277584,-111.136178,,,AZ,USA,Marginitermes,hubbardi,morphology,,,yes,300
-AUT-2024-0027,2024-03-22,NM,32.675397,-85.513409,,,AL,USA,Reticulitermes,malletei,,,,yes,300
-AUT-2025-0021,2025-03-21,NM,32.672971,-85.515118,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2025-0026,2025-05-15,"EC, NM",33.470542,-85.809342,,,AL,USA,Reticulitermes,malletei,,,,yes,300
-AUT-2025-0028,2025-05-15,"EC, NM",33.465347,-85.809222,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2025-0029,2025-05-15,"EC, HO, NM, BV, DY",33.470378,-85.809644,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2025-0039,2025-06-19,"EC, NM, TN",32.584943,-85.418514,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2025-0040,2025-06-24,"EC, NM, TN",32.580303,-85.417133,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2025-0038,2025-08-31,NM,33.445721,-85.841427,,,AL,USA,Reticulitermes,malletei,COI,UCR,0,yes,300
-AUT-2026-0010,2026-03-31,EC,32.597694,-85.505871,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2026-0004,2026-04-09,EC,32.672659,-85.509692,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2026-0019,2026-04-12,NM,32.600409,-85.873413,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2026-0020,2026-04-12,NM,32.597725,-85.869295,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2026-0003,2026-05-01,EC,32.681847,-85.513639,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2026-0018,2026-05-09,NM,32.809150,-84.862166,,,GA,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2024-0030,2024-11-14,NM/EC,33.274526,-111.138041,,,AZ,USA,Incisitermes,minor,morphology,,,yes,300
+AUT-2025-0058,2025-05-19,Jennifer Davidson,,,,,AL,USA,Coptotermes,formosanus,morphology,NM,1,no_coordinate,
+AUT-2025-0059,2025-03-12,NM,30.385646,-91.205083,,,LA,USA,Coptotermes,formosanus,morphology,NM,0,yes,300
+AUT-2026-0001,2026-05-03,NM,32.458811,-85.650785,,,AL,USA,Reticulitermes,virginicus,COI,UCR,1,yes,300
+AUT-2026-0002,2026-05-06,NM,32.473693,-85.613473,,,AL,USA,Reticulitermes,virginicus,COI,UCR,1,yes,300
+AUT-2026-0003,2026-05-01,EC,32.682575,-85.512849,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2026-0004,2026-04-09,EC,32.674548,-85.511264,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2026-0005,2026-05-03,NM,32.460781,-85.651687,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,1,yes,300
 AUT-2026-0006,NA,NA,,,,,NA,NA,NA,NA,NA,NA,NA,no_coordinate,
+AUT-2026-0007,2026-05-03,NM,32.461275,-85.652031,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,1,yes,300
+AUT-2026-0008,2026-03-28,EC,32.787840,-85.154312,,,AL,USA,Reticulitermes,virginicus,COI,UCR,1,yes,300
+AUT-2026-0009,2026-03-28,EC,32.786524,-85.151938,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
+AUT-2026-0010,2026-03-31,EC,32.596817,-85.506627,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2026-0011,2026-03-28,NM,33.468223,-85.824413,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,1,yes,300
+AUT-2026-0012,2026-05-06,EC,32.456656,-85.625619,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,1,yes,300
+AUT-2026-0013,2026-07-09,NM,41.483203,-81.576092,,,OH,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
+AUT-2026-0014,2026-07-09,NM,41.428078,-81.601733,,,OH,USA,Reticulitermes,flavipes,COI,UCR,0,yes,300
 AUT-2026-0015,NA,NA,,,,,NA,NA,NA,NA,NA,NA,NA,no_coordinate,
-AUT-2024-0043,2024-10-22,NM,28.589412,-81.154561,,,FL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2024-0019,2024-11-07,NM/EC,30.285026,-87.616817,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2025-0008,2025-03-08,NM,30.657160,-88.185429,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2025-0009,2025-03-08,NM,30.655955,-88.185928,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2025-0011,2025-03-08,NM,30.655138,-88.187376,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2025-0017,2025-03-12,NM,30.342981,-91.072063,,,LA,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2025-0027,2025-05-15,"EC, NM",33.469560,-85.807224,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2025-0033,2025-06-16,"EC, NM, TN, BV",29.711557,-82.460922,,,FL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2025-0034,2025-06-16,"EC, NM, TN, BV",29.709504,-82.461563,,,FL,USA,Reticulitermes,nelsonae,COI,UCR,0,yes,300
-AUT-2026-0011,2026-03-28,NM,33.472078,-85.823972,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,1,yes,300
-AUT-2026-0005,2026-05-03,NM,32.461248,-85.654521,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,1,yes,300
-AUT-2026-0007,2026-05-03,NM,32.457567,-85.651869,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,1,yes,300
-AUT-2026-0012,2026-05-06,EC,32.458902,-85.623718,,,AL,USA,Reticulitermes,nelsonae,COI,UCR,1,yes,300
-,,,,,,,,,Reticulitermes,nelsonae,COI,UCR,0,no_coordinate,
-AUT-2024-0066,2024-07-09,AG,30.871447,-88.031981,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0058,2024-07-31,AG,30.574948,-88.242019,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0074,2024-08-01,AG,30.862972,-88.039693,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0075,2024-08-02,PK,31.068430,-88.047088,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0071,2024-08-09,AG,30.601864,-88.096010,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0070,2024-08-27,AG,30.404655,-88.235039,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0045,2024-09-12,AG,30.530048,-88.169231,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0064,2024-09-20,AG,30.710576,-88.303945,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0076,2024-09-20,AG,30.828088,-88.313731,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0078,2024-09-25,BB,30.817144,-88.261256,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0057,2024-09-27,AG,30.982051,-88.150572,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0089,2024-10-04,AG,30.853012,-88.048626,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0087,2024-10-07,AG,30.541765,-88.270576,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0086,2024-10-14,AG,31.071310,-88.295858,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0082,2024-10-15,AG,30.629273,-88.327978,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0095,2024-10-21,AG,30.710226,-88.102389,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0098,2024-11-01,AG,30.923378,-87.771320,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0091,2024-11-07,AG,30.713143,-88.277353,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0100,2024-11-07,AG,30.450052,-88.276539,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0094,2024-11-12,AG,30.871850,-88.033343,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0093,2024-11-13,AG,31.093398,-88.246104,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0101,2024-11-27,AG,30.883874,-88.046589,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2024-0097,2024-12-27,AG,30.601630,-88.079096,,,AL,USA,Reticulitermes,sp,soldier,SH,0,yes,300
-AUT-2025-0002,2025-03-01,NM,31.775521,-85.142228,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0003,2025-03-02,NM,31.774150,-85.142107,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0004,2025-03-02,NM,31.776434,-85.141881,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0007,2025-03-02,NM,31.773338,-85.143564,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0010,2025-03-08,NM,30.657262,-88.186350,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0012,2025-03-12,NM,30.346212,-91.071750,,,LA,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0014,2025-03-12,NM,30.387677,-91.202166,,,LA,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0015,2025-03-12,NM,30.386833,-91.201038,,,LA,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0016,2025-03-12,NM,30.386578,-91.202289,,,LA,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0019,2025-03-13,NM,30.309215,-89.609468,,,MS,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0022,2025-03-22,NM,32.529121,-84.930067,,,GA,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0055,2025-05-15,"EC, HO, NM, BV, DY",33.467574,-85.810028,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0042,2025-06-16,"EC, NM, TN, BV",29.711076,-82.460767,,,FL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0048,2025-06-19,"EC, NM, TN",32.585010,-85.421012,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2025-0053,2025-06-19,"EC, NM, TN",32.587076,-85.422460,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2026-0016,2026-03-14,NM,32.274842,-85.130443,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,NM,1,yes,300
 AUT-2026-0017,2026-05-09,NM,,,,,GA,USA,Reticulitermes,sp,,,1,no_coordinate,
-AUT-2026-0028,2026-05-30,NM,33.332614,-86.751887,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2026-0030,2026-06-20,NM,34.576945,-80.231229,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2026-0031,2026-06-20,NM,34.578616,-80.226091,,,AL,USA,Reticulitermes,sp,,,,yes,300
-AUT-2024-0012,2024-11-14,NM/EC,33.284969,-110.793700,,,AZ,USA,Reticulitermes,tibialis,distribution,,,yes,300
-AUT-2024-0015,2024-11-14,NM/EC,33.284905,-110.797072,,,AZ,USA,Reticulitermes,tibialis,distribution,,,yes,300
-AUT-2025-0030,2025-05-27,"NM, TN",40.564874,-111.814608,,,UT,USA,Reticulitermes,tibialis,,,,yes,300
-AUT-2024-0042,2024-07-01,NM,34.509340,-86.954130,,,AL,USA,Reticulitermes,virginicus,COI,UCR,0,yes,300
-AUT-2025-0031,2025-06-19,"EC, NM, TN",32.583480,-85.415856,,,AL,USA,Reticulitermes,virginicus,COI,UCR,0,yes,300
-AUT-2025-0032,2025-06-19,"EC, NM, TN",32.582432,-85.419217,,,AL,USA,Reticulitermes,virginicus,COI,UCR,0,yes,300
-AUT-2025-0049,2025-06-19,"EC, NM, TN",32.582814,-85.418334,,,AL,USA,Reticulitermes,virginicus,COI,UCR,0,yes,300
-AUT-2026-0008,2026-03-28,EC,32.785006,-85.155652,,,AL,USA,Reticulitermes,virginicus,COI,UCR,1,yes,300
-AUT-2026-0001,2026-05-03,NM,32.458092,-85.654428,,,AL,USA,Reticulitermes,virginicus,COI,UCR,1,yes,300
-AUT-2026-0002,2026-05-06,NM,32.457417,-85.655229,,,AL,USA,Reticulitermes,virginicus,COI,UCR,1,yes,300
+AUT-2026-0018,2026-05-09,NM,32.807035,-84.860443,,,GA,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2026-0019,2026-04-12,NM,32.598967,-85.873432,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2026-0020,2026-04-12,NM,32.599219,-85.874345,,,AL,USA,Reticulitermes,malletei,COI,UCR,1,yes,300
+AUT-2026-0021,2026-03-24,EC,32.600231,-85.481853,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
+AUT-2026-0022,2026-02-20,EC,32.676239,-85.511951,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,,,yes,300
+AUT-2026-0023,2026-02-20,EC,32.673639,-85.510819,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,,,yes,300
+AUT-2026-0024,2026-03-06,EC,32.674096,-85.511295,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,,,yes,300
+AUT-2026-0025,2026-03-06,EC,32.675060,-85.511040,,,AL,USA,Reticulitermes,flavipes,morphology; phenology,,,yes,300
+AUT-2026-0026,2026-03-28,EC,32.361658,-85.286268,,,AL,USA,Reticulitermes,flavipes,,,,yes,300
+AUT-2026-0027,2026-05-03,NM,32.461181,-85.653228,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
+AUT-2026-0028,2026-05-30,NM,33.332117,-86.751628,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2026-0029,2026-04-12,NM,32.598413,-85.870143,,,AL,USA,Kalotermes,approximatus,morphology,NM,0,yes,300
+AUT-2026-0030,2026-06-20,NM,34.576946,-80.231552,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2026-0031,2026-06-20,NM,34.578316,-80.228364,,,AL,USA,Reticulitermes,sp,,,,yes,300
+AUT-2026-0032,2026-05-19,NM,32.577087,-85.485448,,,AL,USA,Coptotermes,formosanus,morphology,NM,1,yes,300
+AUT-2026-0033,2026-06-11,MS,32.603386,-85.483486,,,AL,USA,Kalotermes,approximatus,morphology,NM,1,yes,300
+,,,,,,,,,Reticulitermes,nelsonae,COI,UCR,0,no_coordinate,
