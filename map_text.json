@@ -1,40 +1,41 @@
 {
   "page": {
     "title": "Alabama Termite Map",
-    "intro": "Documented Alabama termite records from museum vouchers, published county records, and an optional static iNaturalist snapshot.",
+    "intro": "Documented Alabama termite records from AU termite specimens, published county records, and an optional static iNaturalist snapshot.",
     "loading": "Loading map data..."
   },
   "controls": {
     "taxon": "Termite",
     "all_taxa": "All termites",
+    "reticulitermes_species": "Reticulitermes species",
+    "all_reticulitermes": "All Reticulitermes",
     "evidence": "Evidence",
     "published_counties": "Published county records",
-    "museum_specimens": "Verified museum specimens",
+    "museum_specimens": "AU termite samples",
     "inaturalist": "iNaturalist Research Grade"
   },
   "legend": {
     "title": "Records",
     "published_counties": "Formosan subterranean termite county record",
-    "museum_heading": "Verified specimens",
-    "museum_suffix": "privacy-generalized specimen",
-    "inaturalist_heading": "iNaturalist Research Grade (300 m map circles)",
-    "inaturalist_suffix": ""
+    "museum_heading": "AU termite specimens",
+    "inaturalist_heading": "iNaturalist Research Grade",
+    "inaturalist_suffix": "iNaturalist"
   },
   "sources": {
     "title": "Sources & references",
     "published_label": "Published county records",
-    "museum_label": "Verified specimens",
+    "museum_label": "AU termite specimens",
     "inaturalist_label": "iNaturalist",
     "boundaries_label": "Boundaries",
-    "museum_text": "Auburn University Natural History Museum / Alabama Termite Identification Service. Public specimen coordinates are privacy-generalized by up to 300 m and are shown only as location-uncertainty areas.",
-    "inaturalist_text": "Static snapshot dated {snapshot_date}. Records are licensed Research Grade/community-assessed observations and are not independently verified by the Alabama Termite Identification Service. For visual comparability with museum circles, each iNaturalist observation is displayed as a 300 m-radius map circle. This circle does not indicate privacy generalization or coordinate uncertainty.",
+    "museum_text": "Specimens identified by termite researchers at Auburn University. Coordinates are privacy-generalized by up to 300 m and do not reflect exact collection points. Specimens will be available in the Auburn University Natural History Museum.",
+    "inaturalist_text": "Static snapshot dated {snapshot_date}. Records are licensed Research Grade/community-assessed observations and are not independently verified by the Alabama Termite Identification Service. Each iNaturalist observation is displayed as a 300 m-radius map circle.",
     "boundaries_text": "Local Alabama county snapshot from U.S. Census Bureau TIGERweb. Basemap tiles are from OpenStreetMap."
   },
   "published_reference": {
     "authors": "Hu, X. P. & Mizumoto, N.",
-    "year": "2026, in press",
-    "title": "Four decades of inland invasion by Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.",
-    "url": "https://doi.org/10.32942/X21H4M",
-    "link_text": "Preprint"
+    "year": "2026",
+    "title": "Four decades of inland invasion by the Formosan subterranean termite in Alabama: expansion associated with transportation infrastructure.",
+    "url": "https://doi.org/10.1007/s11252-026-02107-z",
+    "link_text": "Article"
   }
 }

@@ -6,6 +6,17 @@
     "inaturalist": false
   },
   "fallback_color": "#777777",
+  "valid_species": [
+    "Coptotermes formosanus",
+    "Reticulitermes flavipes",
+    "Reticulitermes hageni",
+    "Reticulitermes malletei",
+    "Reticulitermes nelsonae",
+    "Reticulitermes sp",
+    "Reticulitermes virginicus",
+    "Kalotermes approximatus",
+    "Incisitermes snyderi"
+  ],
   "taxa": {
     "Coptotermes": {
       "display_name": "Formosan subterranean termite",
@@ -15,17 +26,17 @@
     "Reticulitermes": {
       "display_name": "Native subterranean termites",
       "selector_label": "Native subterranean termites (Reticulitermes spp.)",
-      "color": "#2166ac"
+      "color": "#2171b5"
     },
     "Kalotermes": {
       "display_name": "Dark southern drywood termite",
       "selector_label": "Dark southern drywood termite (Kalotermes approximatus)",
-      "color": "#1a9850"
+      "color": "#b35806"
     },
     "Incisitermes": {
       "display_name": "Southeastern drywood termite",
       "selector_label": "Southeastern drywood termite (Incisitermes snyderi)",
-      "color": "#7b3294"
+      "color": "#8c2d75"
     }
   },
   "scientific_common_names": {
@@ -33,34 +44,37 @@
     "Kalotermes approximatus": "Dark southern drywood termite",
     "Incisitermes snyderi": "Southeastern drywood termite"
   },
+  "scientific_display_names": {
+    "Reticulitermes nelsonae": "Reticulitermes nelsonae (complex)"
+  },
   "species_colors": {
     "Coptotermes formosanus": "#d73027",
-    "Coptotermes gestroi": "#f46d43",
-    "Reticulitermes flavipes": "#2166ac",
-    "Reticulitermes hageni": "#4393c3",
-    "Reticulitermes virginicus": "#8073ac",
-    "Reticulitermes mississippiensis": "#67a9cf",
-    "Reticulitermes malletei": "#053061",
-    "Kalotermes approximatus": "#1a9850",
-    "Incisitermes snyderi": "#7b3294"
+    "Reticulitermes flavipes": "#2171b5",
+    "Reticulitermes hageni": "#6a51a3",
+    "Reticulitermes malletei": "#084081",
+    "Reticulitermes nelsonae": "#238b8e",
+    "Reticulitermes sp": "#75bdf0",
+    "Reticulitermes virginicus": "#238443",
+    "Kalotermes approximatus": "#b35806",
+    "Incisitermes snyderi": "#8c2d75"
   },
   "layers": {
     "published_counties": {
       "stroke_color": "#a32121",
-      "stroke_weight": 1.2,
+      "stroke_weight": 0.75,
       "fill_color": "#d73027",
-      "fill_opacity": 0.25
+      "fill_opacity": 0.15
     },
     "museum_specimens": {
-      "stroke_weight": 1.5,
-      "stroke_opacity": 0.9,
-      "fill_opacity": 0.75
+      "stroke_weight": 5.5,
+      "stroke_opacity": 0.95,
+      "fill_opacity": 0.85
     },
     "inaturalist": {
       "radius_m": 300,
-      "stroke_weight": 1,
-      "stroke_opacity": 0.72,
-      "fill_opacity": 0.2
+      "stroke_weight": 2.5,
+      "stroke_opacity": 0.92,
+      "fill_opacity": 0.35
     }
   }
 }

@@ -12,9 +12,22 @@ PUBLIC_FILE = Path("AU-termite-samples.csv")
 SALT_FILE = Path(".privacy_salt")
 PRIVACY_RADIUS_M = 300.0
 
+VALID_TAXA = {
+    ("Reticulitermes", "flavipes"),
+    ("Reticulitermes", "hageni"),
+    ("Reticulitermes", "malletei"),
+    ("Reticulitermes", "nelsonae"),
+    ("Reticulitermes", "sp"),
+    ("Reticulitermes", "virginicus"),
+    ("Coptotermes", "formosanus"),
+    ("Kalotermes", "approximatus"),
+    ("Incisitermes", "snyderi"),
+}
+
 PUBLIC_FIELDS = [
     "AUT_ID",
     "date",
+    "collector",
     "lat",
     "lon",
     "locality",
@@ -23,6 +36,9 @@ PUBLIC_FIELDS = [
     "country",
     "genus",
     "species",
+    "id_method",
+    "id_by",
+    "alate",
     "coordinate_generalized",
     "privacy_radius_m",
 ]
@@ -122,9 +138,30 @@ def duplicate_record_ids(rows):
     return sorted(record_id for record_id, count in counts.items() if count > 1)
 
 
+def invalid_taxa(rows):
+    invalid = []
+    for row in rows:
+        genus = (row.get("genus") or "").strip()
+        species = (row.get("species") or "").strip()
+        if (genus, species) not in VALID_TAXA:
+            invalid.append(((row.get("AUT_ID") or "").strip(), genus, species))
+    return invalid
+
+
 def public_row(row, salt):
     out = {field: "" for field in PUBLIC_FIELDS}
-    for field in ["AUT_ID", "date", "state", "country", "genus", "species"]:
+    for field in [
+        "AUT_ID",
+        "date",
+        "collector",
+        "state",
+        "country",
+        "genus",
+        "species",
+        "id_method",
+        "id_by",
+        "alate",
+    ]:
         out[field] = (row.get(field) or "").strip()
     coordinates = parse_coordinates(row)
     if coordinates:
@@ -146,6 +183,7 @@ def main():
     with SECRET_FILE.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
     duplicates = duplicate_record_ids(rows)
+    invalid = invalid_taxa(rows)
     public_rows = [public_row(row, salt) for row in rows]
     with PUBLIC_FILE.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=PUBLIC_FIELDS)
@@ -164,6 +202,18 @@ def main():
         print("WARNING: Duplicate AUT_ID values found in the private master:")
         for record_id in duplicates:
             print(f"  {record_id}")
+    if invalid:
+        print()
+        print("WARNING: Unrecognized taxon names found in the private master:")
+        for record_id, genus, species in invalid:
+            name = " ".join(part for part in [genus, species] if part) or "<blank>"
+            print(f"  {record_id or '<no AUT_ID>'}: {name}")
+        print("Valid public taxa are:")
+        for genus, species in sorted(VALID_TAXA):
+            label = f"{genus} {species}"
+            if label == "Reticulitermes nelsonae":
+                label += " (complex)"
+            print(f"  {label}")
     print()
     print("Commit/push AU-termite-samples.csv only.")
     print(f"Keep {SECRET_FILE} and {SALT_FILE} local/private.")
