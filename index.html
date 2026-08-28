@@ -62,9 +62,31 @@
   <script>
     const map = L.map('map').setView([32.8, -86.8], 7);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const lightBasemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxNativeZoom: 16,
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: 'Tiles &copy; Esri'
+    });
+
+    const streetBasemap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors',
+      referrerPolicy: 'strict-origin-when-cross-origin'
+    });
+
+    const satelliteBasemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
+      attribution: 'Tiles &copy; Esri'
+    });
+
+    lightBasemap.addTo(map);
+    L.control.layers({
+      'Light': lightBasemap,
+      'Street': streetBasemap,
+      'Satellite': satelliteBasemap
+    }, null, {
+      position: 'topleft',
+      collapsed: true
     }).addTo(map);
 
     map.createPane('reticulitermesPane');
