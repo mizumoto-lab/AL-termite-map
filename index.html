@@ -21,6 +21,7 @@
     .taxon-name { font-weight: 700; }
     .map-panel { background: rgba(255,255,255,.96); padding: 10px 12px; border-radius: 5px; box-shadow: 0 1px 5px rgba(0,0,0,.35); font-size: .84rem; }
     .filter-panel { width: 290px; }
+    .filter-details > summary { display: none; cursor: pointer; font-weight: 700; }
     .source-panel { width: 350px; max-width: calc(100vw - 40px); font-size: .75rem; line-height: 1.35; }
     .source-panel summary { cursor: pointer; font-weight: 700; }
     .source-panel p { margin: 7px 0 0; }
@@ -48,7 +49,10 @@
       h1 { font-size: 1.15rem; }
       .service-link { font-size: .74rem; }
       .intro { display: none; }
-      .filter-panel { width: 245px; }
+      .filter-panel { width: 245px; max-width: calc(100vw - 40px); }
+      .filter-panel.filter-collapsed { width: auto; }
+      .filter-details > summary { display: list-item; }
+      .filter-details[open] > summary { margin-bottom: 8px; }
       .map-panel { padding: 8px 9px; font-size: .76rem; }
     }
   </style>
@@ -313,29 +317,37 @@
           const color = speciesColor(name, 'Reticulitermes');
           return `<label><input type="checkbox" class="retic-species-toggle" id="retic-species-${index}" data-species="${escapeHtml(name)}" autocomplete="off" checked> <span class="species-swatch" style="background:${escapeHtml(color)}"></span><em>${escapeHtml(displayedScientificOnly(name))}</em></label>`;
         }).join('');
+        const filterOpen = window.matchMedia('(min-width: 621px)').matches ? 'open' : '';
         div.innerHTML = `
-          <div class="control-group">
-            <label class="control-label" for="genus-select">${escapeHtml(text.controls.taxon)}</label>
-            <select id="genus-select" autocomplete="off">
-              ${options}
-              <option value="all">${escapeHtml(text.controls.all_taxa)}</option>
-            </select>
-          </div>
-          <div class="control-group retic-species-group" id="retic-species-group" hidden>
-            <span class="control-label">${escapeHtml(text.controls.reticulitermes_species)}</span>
-            <div class="checks subchecks">
-              <label><input type="checkbox" id="retic-all-toggle" autocomplete="off" checked> <strong>${escapeHtml(text.controls.all_reticulitermes)}</strong></label>
-              ${reticulitermesChecks}
+          <details class="filter-details" ${filterOpen}>
+            <summary>${escapeHtml(text.controls.filters || 'Filters')}</summary>
+            <div class="control-group">
+              <label class="control-label" for="genus-select">${escapeHtml(text.controls.taxon)}</label>
+              <select id="genus-select" autocomplete="off">
+                ${options}
+                <option value="all">${escapeHtml(text.controls.all_taxa)}</option>
+              </select>
             </div>
-          </div>
-          <div class="control-group">
-            <span class="control-label">${escapeHtml(text.controls.evidence)}</span>
-            <div class="checks">
-              <label><input type="checkbox" id="fst-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.published_counties)}</span></label>
-              <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.museum_specimens)}</span></label>
-              <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.inaturalist)}</span></label>
+            <div class="control-group retic-species-group" id="retic-species-group" hidden>
+              <span class="control-label">${escapeHtml(text.controls.reticulitermes_species)}</span>
+              <div class="checks subchecks">
+                <label><input type="checkbox" id="retic-all-toggle" autocomplete="off" checked> <strong>${escapeHtml(text.controls.all_reticulitermes)}</strong></label>
+                ${reticulitermesChecks}
+              </div>
             </div>
-          </div>`;
+            <div class="control-group">
+              <span class="control-label">${escapeHtml(text.controls.evidence)}</span>
+              <div class="checks">
+                <label><input type="checkbox" id="fst-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.published_counties)}</span></label>
+                <label><input type="checkbox" id="specimen-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.museum_specimens)}</span></label>
+                <label><input type="checkbox" id="inat-toggle" autocomplete="off"> <span>${escapeHtml(text.controls.inaturalist)}</span></label>
+              </div>
+            </div>
+          </details>`;
+        const details = div.querySelector('.filter-details');
+        const syncPanelState = () => div.classList.toggle('filter-collapsed', !details.open);
+        details.addEventListener('toggle', syncPanelState);
+        syncPanelState();
         L.DomEvent.disableClickPropagation(div);
         L.DomEvent.disableScrollPropagation(div);
         return div;
