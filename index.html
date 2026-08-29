@@ -497,24 +497,13 @@
         const fstByCounty = Object.fromEntries(fstRecords.map(row => [normalizeCounty(row.County), row]));
 
         L.geoJSON(countyGeojson, {
+          interactive: false,
           filter: feature => Boolean(fstByCounty[normalizeCounty(feature.properties.BASENAME)]),
           style: {
             color: style.stroke_color,
             weight: style.stroke_weight,
             fillColor: style.fill_color,
             fillOpacity: style.fill_opacity
-          },
-          onEachFeature: (feature, layer) => {
-            const record = fstByCounty[normalizeCounty(feature.properties.BASENAME)];
-            const reference = text.published_reference;
-            layer.bindPopup([
-              '<span class="taxon-name">Formosan subterranean termite</span> <span class="species">(Coptotermes formosanus)</span>',
-              `${escapeHtml(record.County)} County`,
-              `First detected: ${escapeHtml(record.FirstDetectedYear)}`,
-              'Evidence: published county-level record',
-              `<a href="${escapeHtml(reference.url)}" target="_blank" rel="noopener">${escapeHtml(reference.authors)} (${escapeHtml(reference.year)})</a>`,
-              'County shading indicates documented occurrence, not occurrence throughout the county.'
-            ].join('<br>'));
           }
         }).addTo(countyLayer);
       }
