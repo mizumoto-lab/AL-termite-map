@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reticulitermes nelsonae and R. malletei Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    html, body { margin: 0; height: 100%; font-family: Arial, sans-serif; }
+    body { display: flex; flex-direction: column; overflow: hidden; }
+    header { padding: 10px 16px 9px; border-bottom: 1px solid #ddd; background: #fff; }
+    h1 { margin: 0 0 3px; font-size: 1.35rem; }
+    .intro { margin: 0; color: #555; font-size: .84rem; line-height: 1.35; }
+    .file-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+    .file-row input { font-size: .78rem; }
+    #status { color: #777; font-size: .78rem; }
+    #map { flex: 1; min-height: 0; }
+    .map-panel { background: rgba(255,255,255,.96); padding: 9px 11px; border-radius: 5px; box-shadow: 0 1px 5px rgba(0,0,0,.32); font-size: .82rem; }
+    .panel-title { font-weight: 700; margin-bottom: 6px; }
+    .filter-panel label { display: flex; align-items: center; gap: 7px; margin: 6px 0; }
+    .swatch { width: 11px; height: 11px; border-radius: 50%; border: 1px solid rgba(0,0,0,.3); flex: 0 0 11px; }
+    .leaflet-popup-content { line-height: 1.4; }
+    .popup-name { font-weight: 700; font-style: italic; margin-bottom: 5px; }
+    .popup-row { margin: 2px 0; }
+    .popup-label { color: #666; }
+    .error { color: #a32121 !important; }
+    @media (max-width: 620px) {
+      header { padding: 8px 10px 7px; }
+      h1 { font-size: 1.12rem; }
+      .intro { display: none; }
+      .map-panel { font-size: .76rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><em>Reticulitermes nelsonae</em> and <em>R. malletei</em></h1>
+    <p class="intro">A simple record map using the same visual style as the Alabama Termite Map.</p>
+    <div class="file-row">
+      <input id="file-input" type="file" accept=".xlsx,.xls">
+      <span id="status">Trying to load nelsonae-malletei.xlsx...</span>
+    </div>
+  </header>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>
+    const colors = {
+      nelsonae: '#238b8e',
+      malletei: '#084081'
+    };
+
+    const map = L.map('map').setView([32.8, -86.8], 7);
+
+    const lightBasemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxNativeZoom: 16,
+      maxZoom: 19,
+      attribution: 'Tiles &copy; Esri'
+    });
+
+    const streetBasemap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+
+    const satelliteBasemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
+      attribution: 'Tiles &copy; Esri'
+    });
+
+    lightBasemap.addTo(map);
+
+    L.control.layers({
+      'Light': lightBasemap,
+      'Street': streetBasemap,
+      'Satellite': satelliteBasemap
+    }, null, {
+      position: 'topleft',
+      collapsed: true
+    }).addTo(map);
+
+    const groups = {
+      nelsonae: L.layerGroup().addTo(map),
+      malletei: L.layerGroup().addTo(map)
+    };
+
+    let filterControl = null;
+
+    function normalize(value) {
+      return String(value ?? '').trim().toLowerCase().replace(/[\s_-]+/g, '');
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function findKey(row, candidates) {
+      const keys = Object.keys(row);
+      for (const candidate of candidates) {
+        const match = keys.find(key => normalize(key) === normalize(candidate));
+        if (match) return match;
+      }
+      return null;
+    }
+
+    function numberValue(value) {
+      const n = Number(String(value ?? '').trim());
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    function speciesForRow(row) {
+      const speciesKey = findKey(row, ['species', 'scientific name', 'scientific_name', 'scientificname', 'taxon', 'name']);
+      const genusKey = findKey(row, ['genus']);
+      const species = speciesKey ? String(row[speciesKey] ?? '').trim() : '';
+      const genus = genusKey ? String(row[genusKey] ?? '').trim() : '';
+      const combined = `${genus} ${species} ${Object.values(row).join(' ')}`.toLowerCase();
+      if (combined.includes('nelsonae')) return 'nelsonae';
+      if (combined.includes('malletei')) return 'malletei';
+      return null;
+    }
+
+    function displayName(species) {
+      return species === 'nelsonae' ? 'Reticulitermes nelsonae' : 'Reticulitermes malletei';
+    }
+
+    function popupHtml(row, species) {
+      const priority = [
+        'AUT_ID', 'ID', 'id', 'sample_id', 'specimen_id', 'voucher',
+        'date', 'collection_date', 'county', 'locality', 'city', 'state', 'country',
+        'collector', 'source', 'reference', 'notes', 'note'
+      ];
+      const used = new Set();
+      let html = `<div class="popup-name">${escapeHtml(displayName(species))}</div>`;
+
+      for (const candidate of priority) {
+        const key = findKey(row, [candidate]);
+        if (!key || used.has(key)) continue;
+        const value = row[key];
+        if (value === undefined || value === null || String(value).trim() === '') continue;
+        used.add(key);
+        html += `<div class="popup-row"><span class="popup-label">${escapeHtml(key)}:</span> ${escapeHtml(value)}</div>`;
+      }
+
+      return html;
+    }
+
+    function clearMap() {
+      groups.nelsonae.clearLayers();
+      groups.malletei.clearLayers();
+      if (filterControl) {
+        map.removeControl(filterControl);
+        filterControl = null;
+      }
+    }
+
+    function addFilter(counts) {
+      filterControl = L.control({ position: 'topright' });
+      filterControl.onAdd = function() {
+        const div = L.DomUtil.create('div', 'map-panel filter-panel');
+        div.innerHTML = '<div class="panel-title">Show records</div>';
+
+        for (const species of ['nelsonae', 'malletei']) {
+          const label = document.createElement('label');
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = true;
+          const swatch = document.createElement('span');
+          swatch.className = 'swatch';
+          swatch.style.background = colors[species];
+          const text = document.createElement('span');
+          text.innerHTML = `<em>${displayName(species)}</em> (${counts[species] || 0})`;
+          label.append(checkbox, swatch, text);
+          div.appendChild(label);
+
+          checkbox.addEventListener('change', () => {
+            if (checkbox.checked) groups[species].addTo(map);
+            else map.removeLayer(groups[species]);
+          });
+        }
+
+        L.DomEvent.disableClickPropagation(div);
+        return div;
+      };
+      filterControl.addTo(map);
+    }
+
+    function mapRows(rows) {
+      clearMap();
+
+      if (!rows.length) throw new Error('The spreadsheet contains no data rows.');
+
+      const latKey = findKey(rows[0], ['lat', 'latitude', 'decimalLatitude', 'decimal_latitude', 'y']);
+      const lonKey = findKey(rows[0], ['lon', 'lng', 'long', 'longitude', 'decimalLongitude', 'decimal_longitude', 'x']);
+
+      if (!latKey || !lonKey) {
+        throw new Error(`Could not find latitude/longitude columns. Columns found: ${Object.keys(rows[0]).join(', ')}`);
+      }
+
+      const counts = { nelsonae: 0, malletei: 0 };
+      const bounds = [];
+      let skipped = 0;
+
+      for (const row of rows) {
+        const species = speciesForRow(row);
+        if (!species) continue;
+
+        const lat = numberValue(row[latKey]);
+        const lon = numberValue(row[lonKey]);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
+          skipped += 1;
+          continue;
+        }
+
+        L.circleMarker([lat, lon], {
+          radius: 6,
+          color: '#ffffff',
+          weight: 1.5,
+          fillColor: colors[species],
+          fillOpacity: 0.9
+        }).bindPopup(popupHtml(row, species)).addTo(groups[species]);
+
+        counts[species] += 1;
+        bounds.push([lat, lon]);
+      }
+
+      addFilter(counts);
+
+      if (bounds.length) {
+        map.fitBounds(bounds, { padding: [28, 28], maxZoom: 10 });
+      } else {
+        map.setView([32.8, -86.8], 7);
+      }
+
+      const total = counts.nelsonae + counts.malletei;
+      const status = document.getElementById('status');
+      status.classList.remove('error');
+      status.textContent = `${total} mapped records · R. nelsonae: ${counts.nelsonae} · R. malletei: ${counts.malletei}` + (skipped ? ` · ${skipped} rows skipped for missing coordinates` : '');
+    }
+
+    function readWorkbook(data) {
+      const workbook = XLSX.read(data, { type: 'array', cellDates: true });
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(sheet, { defval: '', raw: false });
+      mapRows(rows);
+    }
+
+    async function loadDefaultFile() {
+      try {
+        const response = await fetch('nelsonae-malletei.xlsx', { cache: 'no-cache' });
+        if (!response.ok) throw new Error('not found');
+        readWorkbook(await response.arrayBuffer());
+      } catch {
+        const status = document.getElementById('status');
+        status.textContent = 'Choose nelsonae-malletei.xlsx to display the records.';
+      }
+    }
+
+    document.getElementById('file-input').addEventListener('change', async event => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const status = document.getElementById('status');
+      status.classList.remove('error');
+      status.textContent = `Loading ${file.name}...`;
+
+      try {
+        readWorkbook(await file.arrayBuffer());
+      } catch (error) {
+        status.classList.add('error');
+        status.textContent = error.message;
+      }
+    });
+
+    loadDefaultFile();
+  </script>
+</body>
+</html>
