@@ -10,6 +10,8 @@ The map combines three sources of termite records:
 - **Published county records** for Formosan subterranean termite
 - **iNaturalist Research Grade observations** from a periodically updated static snapshot
 
+Published county records are historical county-level evidence. A county can therefore be shaded even when no preserved AU specimen is currently available from that county.
+
 The map supports the Alabama Termite Identification Service and the accumulation of reliable information on termite distributions in Alabama.
 
 ## Privacy
@@ -49,6 +51,12 @@ python update_external_data.py
 
 Normal website visitors do not query the iNaturalist API directly. The map uses the static `iNaturalist_records.csv` snapshot stored in this repository.
 
+## Google My Maps
+
+`google_my_maps_counties.csv` is a convenience import file for the published Formosan county records. Its `Location` column uses county names such as `Mobile County, Alabama` so Google My Maps can place the county-level records without treating them as specimen coordinates. The marker location is only a county reference and is not a collection point.
+
+AU specimens can be imported directly from `AU-termite-samples.csv` using the `lat` and `lon` columns. The optional iNaturalist layer can be imported from `iNaturalist_records.csv` using its `lat` and `lon` columns.
+
 ## Main files
 
 - `index.html`: map application
@@ -56,6 +64,7 @@ Normal website visitors do not query the iNaturalist API directly. The map uses 
 - `map_text.json`: public-facing wording and references
 - `AU-termite-samples.csv`: privacy-generalized AU specimen records
 - `FSTrecords.csv`: published Formosan subterranean termite county records
+- `google_my_maps_counties.csv`: Google My Maps import file for county-level records
 - `iNaturalist_records.csv`: static iNaturalist Research Grade snapshot
 - `alabama_counties.geojson`: Alabama county boundaries
 - `make_public_data.py`: creates the public specimen dataset
