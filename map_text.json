@@ -5,7 +5,7 @@
     "loading": "Loading map data..."
   },
   "controls": {
-    "taxon": "Termite",
+    "taxon": "Termite group",
     "all_taxa": "All termites",
     "reticulitermes_species": "Reticulitermes species",
     "all_reticulitermes": "All Reticulitermes",
