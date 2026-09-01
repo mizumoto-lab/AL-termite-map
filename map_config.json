@@ -1,6 +1,6 @@
 {
   "defaults": {
-    "taxon": "Coptotermes",
+    "taxon": "all",
     "published_counties": true,
     "museum_specimens": true,
     "inaturalist": false
