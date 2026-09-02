@@ -2,7 +2,7 @@
 
 Public map of documented termite records in Alabama.
 
-[Alabama Termite Identification Service](https://mizumoto-lab.com/alabama-termites/)
+[Free Alabama Termite Identification Service](https://mizumoto-lab.com/alabama-termites/)
 
 The map combines three sources of termite records:
 
@@ -12,7 +12,7 @@ The map combines three sources of termite records:
 
 Published county records are historical county-level evidence. A county can therefore be shaded even when no preserved AU specimen is currently available from that county.
 
-The map supports the Alabama Termite Identification Service and the accumulation of reliable information on termite distributions in Alabama.
+The map supports the free Alabama Termite Identification Service and the accumulation of reliable information on termite distributions in Alabama.
 
 ## Privacy
 
