@@ -2,7 +2,7 @@
 setlocal
 cd /d "%~dp0"
 
-echo Creating privacy-filtered AU-termite-samples.csv and Google My Maps data...
+echo Creating privacy-filtered AU-termite-samples.csv and three Google My Maps layers...
 echo.
 
 where py >nul 2>nul
