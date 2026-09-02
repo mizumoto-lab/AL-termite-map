@@ -12,9 +12,16 @@ SECRET_FILE = Path("AU-termite-samples-secret.csv")
 PUBLIC_FILE = Path("AU-termite-samples.csv")
 GOOGLE_MY_MAPS_FILE = Path("google_my_maps_AU_sample.csv")
 MAP_CONFIG_FILE = Path("map_config.json")
+COUNTY_FILE = Path("alabama_counties.geojson")
 SALT_FILE = Path(".privacy_salt")
 PRIVACY_RADIUS_M = 300.0
 ALABAMA_COUNTRY_NAMES = {"", "USA", "US", "UNITED STATES", "UNITED STATES OF AMERICA"}
+FAMILY_BY_GENUS = {
+    "Coptotermes": "Heterotermitidae",
+    "Reticulitermes": "Heterotermitidae",
+    "Kalotermes": "Kalotermitidae",
+    "Incisitermes": "Kalotermitidae",
+}
 
 PUBLIC_FIELDS = [
     "AUT_ID",
@@ -24,8 +31,10 @@ PUBLIC_FIELDS = [
     "lon",
     "locality",
     "city",
+    "county",
     "state",
     "country",
+    "Family",
     "genus",
     "species",
     "id_method",
@@ -34,11 +43,20 @@ PUBLIC_FIELDS = [
     "coordinate_generalized",
     "privacy_radius_m",
 ]
-GOOGLE_MY_MAPS_FIELDS = (
-    PUBLIC_FIELDS[:11]
-    + ["scientific_name", "common_name"]
-    + PUBLIC_FIELDS[11:]
-)
+GOOGLE_MY_MAPS_FIELDS = [
+    "Category",
+    "Scientific name",
+    "Latitude",
+    "Longitude",
+    "Date",
+    "County",
+    "Family",
+    "AU id",
+    "collector",
+    "id_method",
+    "id_by",
+    "alate",
+]
 
 
 def public_file_is_already_generalized():
@@ -148,6 +166,17 @@ def load_map_config():
     return config
 
 
+def load_counties():
+    try:
+        with COUNTY_FILE.open("r", encoding="utf-8") as handle:
+            data = json.load(handle)
+    except OSError as error:
+        raise SystemExit(f"Could not read {COUNTY_FILE}: {error}") from error
+    except json.JSONDecodeError as error:
+        raise SystemExit(f"Could not parse {COUNTY_FILE}: {error}") from error
+    return data.get("features", [])
+
+
 def valid_taxa(config):
     return {
         tuple(name.split(" ", 1))
@@ -166,24 +195,86 @@ def invalid_taxa(rows, accepted_taxa):
     return invalid
 
 
-def public_row(row, salt):
+def point_on_segment(lon, lat, start, end):
+    x1, y1 = start[:2]
+    x2, y2 = end[:2]
+    cross = (lon - x1) * (y2 - y1) - (lat - y1) * (x2 - x1)
+    if abs(cross) > 1e-10:
+        return False
+    return (
+        min(x1, x2) - 1e-10 <= lon <= max(x1, x2) + 1e-10
+        and min(y1, y2) - 1e-10 <= lat <= max(y1, y2) + 1e-10
+    )
+
+
+def point_in_ring(lon, lat, ring):
+    inside = False
+    for index, end in enumerate(ring):
+        start = ring[index - 1]
+        if point_on_segment(lon, lat, start, end):
+            return True
+        x1, y1 = start[:2]
+        x2, y2 = end[:2]
+        if (y1 > lat) != (y2 > lat):
+            intersection = (x2 - x1) * (lat - y1) / (y2 - y1) + x1
+            if lon < intersection:
+                inside = not inside
+    return inside
+
+
+def point_in_polygon(lon, lat, polygon):
+    if not polygon or not point_in_ring(lon, lat, polygon[0]):
+        return False
+    return not any(point_in_ring(lon, lat, hole) for hole in polygon[1:])
+
+
+def county_for_point(lat, lon, counties):
+    for feature in counties:
+        geometry = feature.get("geometry") or {}
+        coordinates = geometry.get("coordinates") or []
+        geometry_type = geometry.get("type")
+        if geometry_type == "Polygon":
+            matched = point_in_polygon(lon, lat, coordinates)
+        elif geometry_type == "MultiPolygon":
+            matched = any(point_in_polygon(lon, lat, polygon) for polygon in coordinates)
+        else:
+            matched = False
+        if matched:
+            properties = feature.get("properties") or {}
+            return (properties.get("NAME") or properties.get("BASENAME") or "").strip()
+    return ""
+
+
+def public_row(row, salt, counties):
     out = {field: "" for field in PUBLIC_FIELDS}
     for field in [
         "AUT_ID",
         "date",
         "collector",
+        "county",
         "state",
         "country",
+        "Family",
         "genus",
         "species",
         "id_method",
         "id_by",
         "alate",
     ]:
-        out[field] = (row.get(field) or "").strip()
+        source = row.get(field)
+        if source is None and field == "county":
+            source = row.get("County")
+        if source is None and field == "Family":
+            source = row.get("family")
+        out[field] = (source or "").strip()
+    genus = out["genus"]
+    if genus in FAMILY_BY_GENUS:
+        out["Family"] = FAMILY_BY_GENUS[genus]
     coordinates = parse_coordinates(row)
     if coordinates:
         lat, lon = coordinates
+        if not out["county"] and out["state"].upper() == "AL":
+            out["county"] = county_for_point(lat, lon, counties)
         east_m, north_m = deterministic_offset(record_key(row, lat, lon), salt)
         public_lat, public_lon = shift_coordinate(lat, lon, east_m, north_m)
         out["lat"] = f"{public_lat:.6f}"
@@ -230,10 +321,25 @@ def google_my_maps_row(row, config):
         common_name = config.get("taxa", {}).get(genus, {}).get("display_name", "")
     if not scientific_name or not common_name:
         raise RuntimeError(f"Could not determine map names for {name or '<blank taxon>'}.")
-    out = {field: (row.get(field) or "").strip() for field in PUBLIC_FIELDS}
-    out["scientific_name"] = scientific_name
-    out["common_name"] = common_name
-    return out
+    alate = (row.get("alate") or "").strip().lower()
+    return {
+        "Category": common_name,
+        "Scientific name": scientific_name,
+        "Latitude": (row.get("lat") or "").strip(),
+        "Longitude": (row.get("lon") or "").strip(),
+        "Date": (row.get("date") or "").strip(),
+        "County": (row.get("county") or row.get("County") or "").strip(),
+        "Family": (
+            row.get("Family")
+            or row.get("family")
+            or FAMILY_BY_GENUS.get((row.get("genus") or "").strip(), "")
+        ).strip(),
+        "AU id": (row.get("AUT_ID") or "").strip(),
+        "collector": (row.get("collector") or "").strip(),
+        "id_method": (row.get("id_method") or "").strip(),
+        "id_by": (row.get("id_by") or "").strip(),
+        "alate": "yes" if alate in {"1", "yes", "y", "true"} else "no",
+    }
 
 
 def write_google_my_maps_file(public_rows, config):
@@ -254,12 +360,13 @@ def main():
     prepare_secret_file()
     salt = load_or_create_salt()
     config = load_map_config()
+    counties = load_counties()
     with SECRET_FILE.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
     duplicates = duplicate_record_ids(rows)
     accepted_taxa = valid_taxa(config)
     invalid = invalid_taxa(rows, accepted_taxa)
-    public_rows = [public_row(row, salt) for row in rows]
+    public_rows = [public_row(row, salt, counties) for row in rows]
     with PUBLIC_FILE.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=PUBLIC_FIELDS)
         writer.writeheader()
@@ -272,7 +379,7 @@ def main():
     print(f"Rows written: {len(public_rows)}")
     print(f"Coordinates generalized within {int(PRIVACY_RADIUS_M)} m: {generalized}")
     print(f"Rows without valid coordinates: {without_coordinates}")
-    print("Locality and city are omitted from all public specimen rows.")
+    print("Locality and city are omitted; county and family are retained.")
     print()
     print(f"Created Google My Maps file: {GOOGLE_MY_MAPS_FILE}")
     print(f"Alabama map records written: {google_my_maps_rows}")
