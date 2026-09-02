@@ -1,0 +1,155 @@
+AUT_ID,date,collector,lat,lon,locality,city,state,country,genus,species,scientific_name,common_name,id_method,id_by,alate,coordinate_generalized,privacy_radius_m
+AUT-2024-0027,2024-03-22,NM,32.671711,-85.514211,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,,,,yes,300
+AUT-2024-0029,2024-03-22,NM,32.675154,-85.512076,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,1,yes,300
+AUT-2024-0026,2024-04-03,NM,32.584025,-85.417302,,,AL,USA,Kalotermes,approximatus,Kalotermes approximatus,Dark southern drywood termite,morphology,NM,0,yes,300
+AUT-2024-0044,2024-05-22,NM,30.656547,-88.188252,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,morphology,NM,0,yes,300
+AUT-2024-0003,2024-05-23,NM,30.274252,-87.648552,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0004,2024-05-23,NM,30.294508,-87.572339,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0023,2024-05-23,NM,30.274743,-87.647573,,,AL,USA,Kalotermes,approximatus,Kalotermes approximatus,Dark southern drywood termite,morphology,NM,0,yes,300
+AUT-2024-0024,2024-05-23,NM,30.630542,-87.916072,,,AL,USA,Kalotermes,approximatus,Kalotermes approximatus,Dark southern drywood termite,morphology,NM,0,yes,300
+AUT-2024-0034,2024-05-23,NM,30.676704,-88.129565,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,morphology,NM,0,yes,300
+AUT-2024-0037,2024-05-23,NM,30.628471,-87.921011,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,morphology,NM,1,yes,300
+AUT-2024-0022,2024-06-13,NM,32.968327,-85.647177,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0046,2024-06-28,Anthony Green,30.254969,-87.706271,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0042,2024-07-01,NM,34.509550,-86.957437,,,AL,USA,Reticulitermes,virginicus,Reticulitermes virginicus,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2024-0001,2024-07-02,NM,34.513355,-86.957288,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0005,2024-07-02,NM,34.509960,-86.956679,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0036,2024-07-02,Cook Pest Management,34.587204,-87.030477,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,morphology,NM,0,yes,300
+AUT-2024-0039,2024-07-02,NM,34.508233,-86.955542,,,AL,USA,Reticulitermes,hageni,Reticulitermes hageni,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2024-0041,2024-07-02,NM,34.574767,-86.946251,,,AL,USA,Reticulitermes,hageni,Reticulitermes hageni,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2024-0049,2024-07-02,Anthony Green,30.745639,-88.262975,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0079,2024-07-02,Anthony Green,30.747074,-88.275284,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0052,2024-07-03,Anthony Green,30.755649,-88.074957,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0050,2024-07-08,Anthony Green,30.663259,-88.104217,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0066,2024-07-09,Anthony Green,30.871589,-88.029730,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0051,2024-07-11,Anthony Green,30.500989,-88.234300,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0061,2024-07-11,Anthony Green,30.770020,-88.189603,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0055,2024-07-12,Anthony Green,30.603269,-88.095071,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0077,2024-07-12,Anthony Green,30.331588,-87.714529,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0073,2024-07-16,Anthony Green,30.599552,-88.062318,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0069,2024-07-22,Anthony Green,30.805208,-88.072967,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0080,2024-07-23,Anthony Green,30.471793,-88.314507,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0053,2024-07-24,Anthony Green,30.857361,-88.143351,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0063,2024-07-30,PK,30.712420,-88.103486,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0058,2024-07-31,Anthony Green,30.575494,-88.241491,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0074,2024-08-01,Anthony Green,30.862939,-88.042972,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0047,2024-08-02,Anthony Green,30.807278,-88.077354,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0075,2024-08-02,PK,31.070287,-88.050769,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0006,2024-08-04,NM,32.582608,-85.475147,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0056,2024-08-07,PK,30.709414,-88.083504,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0062,2024-08-07,Anthony Green,30.480042,-88.344451,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0048,2024-08-08,Anthony Green,30.647044,-88.103738,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0067,2024-08-09,Anthony Green,30.664540,-88.260299,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0071,2024-08-09,Anthony Green,30.601779,-88.095829,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0054,2024-08-14,Anthony Green,30.673536,-88.178937,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0081,2024-08-26,Anthony Green,30.765121,-88.136279,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0070,2024-08-27,Anthony Green,30.401462,-88.235265,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0065,2024-08-30,Anthony Green,30.758621,-88.074818,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0045,2024-09-12,Anthony Green,30.530761,-88.165592,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0007,2024-09-17,NM,32.588892,-85.419012,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0059,2024-09-20,Anthony Green,30.709757,-88.302468,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0064,2024-09-20,Anthony Green,30.708831,-88.304962,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0076,2024-09-20,Anthony Green,30.827311,-88.313987,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0068,2024-09-25,Anthony Green,30.764070,-88.213492,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0078,2024-09-25,BB,30.818978,-88.263635,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0057,2024-09-27,Anthony Green,30.979574,-88.151963,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0016,2024-09-28,NM,32.657828,-85.380654,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2024-0008,2024-10-01,NM,32.585677,-85.417706,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0017,2024-10-01,EC,32.584269,-85.415701,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0060,2024-10-01,Anthony Green,30.589595,-88.228792,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0072,2024-10-02,Anthony Green,30.571766,-88.186941,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0084,2024-10-03,Anthony Green,30.431989,-88.303303,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0089,2024-10-04,Anthony Green,30.851440,-88.051706,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0040,2024-10-05,NM,32.364978,-86.452543,,,AL,USA,Reticulitermes,hageni,Reticulitermes hageni,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2024-0087,2024-10-07,Anthony Green,30.544150,-88.273917,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0085,2024-10-08,Anthony Green,30.617200,-88.096392,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0002,2024-10-10,NM,32.587215,-85.412919,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2024-0009,2024-10-10,NM,32.585956,-85.414047,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0010,2024-10-10,NM,32.585666,-85.416051,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0011,2024-10-10,NM,32.586807,-85.425637,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,0,yes,300
+AUT-2024-0086,2024-10-14,Anthony Green,31.070956,-88.296854,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0082,2024-10-15,Anthony Green,30.626737,-88.329904,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0083,2024-10-17,Anthony Green,30.620900,-88.075094,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0088,2024-10-17,Anthony Green,30.690951,-88.103543,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0095,2024-10-21,Anthony Green,30.714378,-88.102138,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0020,2024-10-26,NM,31.773288,-85.142743,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2024-0021,2024-10-26,NM,31.773723,-85.146690,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,,yes,300
+AUT-2024-0099,2024-10-31,Anthony Green,30.816322,-88.064818,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0098,2024-11-01,Anthony Green,30.921997,-87.775186,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0013,2024-11-06,NM/EC,30.345891,-87.630521,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,,yes,300
+AUT-2024-0014,2024-11-06,NM/EC,30.339726,-87.643528,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2024-0018,2024-11-06,EC,30.284541,-87.616169,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,,yes,300
+AUT-2024-0028,2024-11-06,EC,30.283932,-87.616830,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,16s,MS,1,yes,300
+AUT-2024-0033,2024-11-06,NM/EC,30.273189,-87.649112,,,AL,USA,Kalotermes,approximatus,Kalotermes approximatus,Dark southern drywood termite,morphology,NM,0,yes,300
+AUT-2024-0035,2024-11-06,NM/EC,30.279511,-87.618189,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,morphology,NM,0,yes,300
+AUT-2024-0019,2024-11-07,NM/EC,30.281288,-87.615234,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,0,yes,300
+AUT-2024-0091,2024-11-07,Anthony Green,30.714249,-88.275188,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0100,2024-11-07,Anthony Green,30.448399,-88.277313,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0094,2024-11-12,Anthony Green,30.870409,-88.033661,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0093,2024-11-13,Anthony Green,31.093387,-88.249047,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0096,2024-11-25,Anthony Green,30.661549,-88.083745,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0101,2024-11-27,Anthony Green,30.881839,-88.049017,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0097,2024-12-27,Anthony Green,30.601866,-88.081266,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,soldier,SH,0,yes,300
+AUT-2024-0092,2024-12-30,Anthony Green,30.693808,-88.222558,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,SH,0,yes,300
+AUT-2025-0001,2025-03-01,NM,31.775658,-85.144406,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,phenology,NM,1,yes,300
+AUT-2025-0002,2025-03-01,NM,31.773323,-85.146148,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,phenology,NM,,yes,300
+AUT-2025-0003,2025-03-02,NM,31.775104,-85.145288,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,morphology,NM,,yes,300
+AUT-2025-0004,2025-03-02,NM,31.777512,-85.142257,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,morphology,NM,,yes,300
+AUT-2025-0005,2025-03-02,NM,31.774181,-85.144843,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0006,2025-03-02,NM,31.775389,-85.143056,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0007,2025-03-02,NM,31.775317,-85.141881,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,phenology,NM,,yes,300
+AUT-2025-0024,2025-03-02,NM,31.772351,-85.144342,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0008,2025-03-08,NM,30.653655,-88.187447,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0009,2025-03-08,NM,30.654369,-88.185162,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0010,2025-03-08,NM,30.654301,-88.184023,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,phenology,NM,,yes,300
+AUT-2025-0011,2025-03-08,NM,30.656054,-88.182884,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0020,2025-03-15,NM,32.583493,-85.478496,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,phenology,NM,1,yes,300
+AUT-2025-0021,2025-03-21,NM,32.672371,-85.511167,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0025,2025-04-13,NM,32.575709,-85.486974,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0026,2025-05-15,"EC, NM",33.471791,-85.806258,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,morphology,NM,,yes,300
+AUT-2025-0027,2025-05-15,"EC, NM",33.469929,-85.807311,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0028,2025-05-15,"EC, NM",33.465200,-85.807169,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0029,2025-05-15,"EC, HO, NM, BV, DY",33.471871,-85.809607,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0055,2025-05-15,"EC, HO, NM, BV, DY",33.468207,-85.812207,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,morphology,NM,,yes,300
+AUT-2025-0058,2025-05-19,Jennifer Davidson,32.470623,-84.999418,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,morphology,NM,1,yes,300
+AUT-2025-0031,2025-06-19,"EC, NM, TN",32.581972,-85.415510,,,AL,USA,Reticulitermes,virginicus,Reticulitermes virginicus,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0032,2025-06-19,"EC, NM, TN",32.584424,-85.420152,,,AL,USA,Reticulitermes,virginicus,Reticulitermes virginicus,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0039,2025-06-19,"EC, NM, TN",32.587045,-85.418466,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0045,2025-06-19,"EC, NM, TN",32.586589,-85.420053,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,,,,yes,300
+AUT-2025-0046,2025-06-19,"EC, NM, TN",32.588556,-85.422276,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,,,,yes,300
+AUT-2025-0047,2025-06-19,"EC, NM, TN",32.589732,-85.422866,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,,,,yes,300
+AUT-2025-0048,2025-06-19,"EC, NM, TN",32.585929,-85.423812,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,,,,yes,300
+AUT-2025-0049,2025-06-19,"EC, NM, TN",32.584929,-85.419293,,,AL,USA,Reticulitermes,virginicus,Reticulitermes virginicus,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0050,2025-06-19,"EC, NM, TN",32.584331,-85.418584,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0053,2025-06-19,"EC, NM, TN",32.587095,-85.424008,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,,,,yes,300
+AUT-2025-0040,2025-06-24,"EC, NM, TN",32.581001,-85.418132,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2025-0051,2025-06-24,"EC, NM, TN",32.581727,-85.419323,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0052,2025-06-24,"EC, NM, TN",32.579952,-85.422655,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0038,2025-08-31,NM,33.441609,-85.840058,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,0,yes,300
+AUT-2025-0037,2025-12-18,NM,30.709610,-88.147718,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,morphology,NM,,yes,300
+AUT-2025-0036,2025-12-19,NM,30.626354,-87.917810,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,soldier,NM,0,yes,300
+AUT-2026-0022,2026-02-20,EC,32.676239,-85.511951,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,morphology; phenology,NM,,yes,300
+AUT-2026-0023,2026-02-20,EC,32.673639,-85.510819,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,morphology; phenology,NM,,yes,300
+AUT-2026-0024,2026-03-06,EC,32.674096,-85.511295,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,morphology; phenology,NM,,yes,300
+AUT-2026-0025,2026-03-06,EC,32.675060,-85.511040,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,morphology; phenology,NM,,yes,300
+AUT-2026-0016,2026-03-14,NM,32.274842,-85.130443,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,morphology; phenology,NM,1,yes,300
+AUT-2026-0021,2026-03-24,EC,32.600231,-85.481853,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,,,,yes,300
+AUT-2026-0008,2026-03-28,EC,32.787840,-85.154312,,,AL,USA,Reticulitermes,virginicus,Reticulitermes virginicus,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0009,2026-03-28,EC,32.786524,-85.151938,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,,,,yes,300
+AUT-2026-0011,2026-03-28,NM,33.468223,-85.824413,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0026,2026-03-28,EC,32.361658,-85.286268,,,AL,USA,Reticulitermes,flavipes,Reticulitermes flavipes,Native subterranean termite,,,,yes,300
+AUT-2026-0010,2026-03-31,EC,32.596817,-85.506627,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0004,2026-04-09,EC,32.674548,-85.511264,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0019,2026-04-12,NM,32.598967,-85.873432,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0020,2026-04-12,NM,32.599219,-85.874345,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0029,2026-04-12,NM,32.598413,-85.870143,,,AL,USA,Kalotermes,approximatus,Kalotermes approximatus,Dark southern drywood termite,morphology,NM,0,yes,300
+AUT-2026-0003,2026-05-01,EC,32.682575,-85.512849,,,AL,USA,Reticulitermes,malletei,Reticulitermes malletei,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0001,2026-05-03,NM,32.458811,-85.650785,,,AL,USA,Reticulitermes,virginicus,Reticulitermes virginicus,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0005,2026-05-03,NM,32.460781,-85.651687,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0007,2026-05-03,NM,32.461275,-85.652031,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0027,2026-05-03,NM,32.461181,-85.653228,,,AL,USA,Kalotermes,approximatus,Kalotermes approximatus,Dark southern drywood termite,morphology,NM,0,yes,300
+AUT-2026-0002,2026-05-06,NM,32.473693,-85.613473,,,AL,USA,Reticulitermes,virginicus,Reticulitermes virginicus,Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0012,2026-05-06,EC,32.456656,-85.625619,,,AL,USA,Reticulitermes,nelsonae,Reticulitermes nelsonae (complex),Native subterranean termite,COI,UCR,1,yes,300
+AUT-2026-0032,2026-05-19,NM,32.577087,-85.485448,,,AL,USA,Coptotermes,formosanus,Coptotermes formosanus,Formosan subterranean termite,morphology,NM,1,yes,300
+AUT-2026-0028,2026-05-30,NM,33.332117,-86.751628,,,AL,USA,Reticulitermes,sp,Reticulitermes sp,Native subterranean termite,morphology,NM,,yes,300
+AUT-2026-0033,2026-06-11,MS,32.603386,-85.483486,,,AL,USA,Kalotermes,approximatus,Kalotermes approximatus,Dark southern drywood termite,morphology,NM,1,yes,300
