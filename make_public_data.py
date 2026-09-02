@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import csv
 import hashlib
+import json
 import math
 import secrets
 import shutil
@@ -9,20 +10,11 @@ from pathlib import Path
 
 SECRET_FILE = Path("AU-termite-samples-secret.csv")
 PUBLIC_FILE = Path("AU-termite-samples.csv")
+GOOGLE_MY_MAPS_FILE = Path("google_my_maps_AU_sample.csv")
+MAP_CONFIG_FILE = Path("map_config.json")
 SALT_FILE = Path(".privacy_salt")
 PRIVACY_RADIUS_M = 300.0
-
-VALID_TAXA = {
-    ("Reticulitermes", "flavipes"),
-    ("Reticulitermes", "hageni"),
-    ("Reticulitermes", "malletei"),
-    ("Reticulitermes", "nelsonae"),
-    ("Reticulitermes", "sp"),
-    ("Reticulitermes", "virginicus"),
-    ("Coptotermes", "formosanus"),
-    ("Kalotermes", "approximatus"),
-    ("Incisitermes", "snyderi"),
-}
+ALABAMA_COUNTRY_NAMES = {"", "USA", "US", "UNITED STATES", "UNITED STATES OF AMERICA"}
 
 PUBLIC_FIELDS = [
     "AUT_ID",
@@ -42,6 +34,11 @@ PUBLIC_FIELDS = [
     "coordinate_generalized",
     "privacy_radius_m",
 ]
+GOOGLE_MY_MAPS_FIELDS = (
+    PUBLIC_FIELDS[:11]
+    + ["scientific_name", "common_name"]
+    + PUBLIC_FIELDS[11:]
+)
 
 
 def public_file_is_already_generalized():
@@ -138,12 +135,33 @@ def duplicate_record_ids(rows):
     return sorted(record_id for record_id, count in counts.items() if count > 1)
 
 
-def invalid_taxa(rows):
+def load_map_config():
+    try:
+        with MAP_CONFIG_FILE.open("r", encoding="utf-8") as handle:
+            config = json.load(handle)
+    except OSError as error:
+        raise SystemExit(f"Could not read {MAP_CONFIG_FILE}: {error}") from error
+    except json.JSONDecodeError as error:
+        raise SystemExit(f"Could not parse {MAP_CONFIG_FILE}: {error}") from error
+    if not config.get("valid_species"):
+        raise SystemExit(f"{MAP_CONFIG_FILE} does not define valid_species.")
+    return config
+
+
+def valid_taxa(config):
+    return {
+        tuple(name.split(" ", 1))
+        for name in config["valid_species"]
+        if isinstance(name, str) and " " in name
+    }
+
+
+def invalid_taxa(rows, accepted_taxa):
     invalid = []
     for row in rows:
         genus = (row.get("genus") or "").strip()
         species = (row.get("species") or "").strip()
-        if (genus, species) not in VALID_TAXA:
+        if (genus, species) not in accepted_taxa:
             invalid.append(((row.get("AUT_ID") or "").strip(), genus, species))
     return invalid
 
@@ -177,18 +195,76 @@ def public_row(row, salt):
     return out
 
 
+def canonical_name(row):
+    return " ".join(
+        part
+        for part in [
+            (row.get("genus") or "").strip(),
+            (row.get("species") or "").strip(),
+        ]
+        if part
+    )
+
+
+def is_alabama_map_record(row):
+    if (row.get("state") or "").strip().upper() != "AL":
+        return False
+    country = (row.get("country") or "").strip().upper()
+    if country not in ALABAMA_COUNTRY_NAMES:
+        return False
+    coordinates = parse_coordinates(row)
+    if not coordinates:
+        return False
+    lat, lon = coordinates
+    return 30.1 <= lat <= 35.2 and -88.6 <= lon <= -84.8
+
+
+def google_my_maps_row(row, config):
+    name = canonical_name(row)
+    scientific_name = config.get("scientific_display_names", {}).get(name, name)
+    common_name = config.get("scientific_common_names", {}).get(name)
+    if not common_name and (row.get("genus") or "").strip() == "Reticulitermes":
+        common_name = "Native subterranean termite"
+    if not common_name:
+        genus = (row.get("genus") or "").strip()
+        common_name = config.get("taxa", {}).get(genus, {}).get("display_name", "")
+    if not scientific_name or not common_name:
+        raise RuntimeError(f"Could not determine map names for {name or '<blank taxon>'}.")
+    out = {field: (row.get(field) or "").strip() for field in PUBLIC_FIELDS}
+    out["scientific_name"] = scientific_name
+    out["common_name"] = common_name
+    return out
+
+
+def write_google_my_maps_file(public_rows, config):
+    accepted_names = set(config["valid_species"])
+    rows = [
+        google_my_maps_row(row, config)
+        for row in public_rows
+        if is_alabama_map_record(row) and canonical_name(row) in accepted_names
+    ]
+    with GOOGLE_MY_MAPS_FILE.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=GOOGLE_MY_MAPS_FIELDS)
+        writer.writeheader()
+        writer.writerows(rows)
+    return len(rows)
+
+
 def main():
     prepare_secret_file()
     salt = load_or_create_salt()
+    config = load_map_config()
     with SECRET_FILE.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
     duplicates = duplicate_record_ids(rows)
-    invalid = invalid_taxa(rows)
+    accepted_taxa = valid_taxa(config)
+    invalid = invalid_taxa(rows, accepted_taxa)
     public_rows = [public_row(row, salt) for row in rows]
     with PUBLIC_FILE.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=PUBLIC_FIELDS)
         writer.writeheader()
         writer.writerows(public_rows)
+    google_my_maps_rows = write_google_my_maps_file(public_rows, config)
     generalized = sum(parse_coordinates(row) is not None for row in rows)
     without_coordinates = len(rows) - generalized
     print()
@@ -197,6 +273,9 @@ def main():
     print(f"Coordinates generalized within {int(PRIVACY_RADIUS_M)} m: {generalized}")
     print(f"Rows without valid coordinates: {without_coordinates}")
     print("Locality and city are omitted from all public specimen rows.")
+    print()
+    print(f"Created Google My Maps file: {GOOGLE_MY_MAPS_FILE}")
+    print(f"Alabama map records written: {google_my_maps_rows}")
     if duplicates:
         print()
         print("WARNING: Duplicate AUT_ID values found in the private master:")
@@ -209,13 +288,13 @@ def main():
             name = " ".join(part for part in [genus, species] if part) or "<blank>"
             print(f"  {record_id or '<no AUT_ID>'}: {name}")
         print("Valid public taxa are:")
-        for genus, species in sorted(VALID_TAXA):
+        for genus, species in sorted(accepted_taxa):
             label = f"{genus} {species}"
             if label == "Reticulitermes nelsonae":
                 label += " (complex)"
             print(f"  {label}")
     print()
-    print("Commit/push AU-termite-samples.csv only.")
+    print(f"Commit/push {PUBLIC_FILE} and {GOOGLE_MY_MAPS_FILE}.")
     print(f"Keep {SECRET_FILE} and {SALT_FILE} local/private.")
 
 
