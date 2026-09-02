@@ -33,7 +33,7 @@ To regenerate the public specimen file on Windows:
 make_public_data.bat
 ```
 
-This creates the privacy-filtered `AU-termite-samples.csv` used by the public map.
+This creates both the privacy-filtered `AU-termite-samples.csv` used by the public map and `google_my_maps_AU_sample.csv` used for Google My Maps.
 
 ## Updating external data
 
@@ -68,7 +68,7 @@ Normal website visitors do not query the iNaturalist API directly. The map uses 
 - `google_my_maps_AU_sample.csv`: Google My Maps import file for Alabama AU specimen records
 - `iNaturalist_records.csv`: static iNaturalist Research Grade snapshot
 - `alabama_counties.geojson`: Alabama county boundaries
-- `make_public_data.py`: creates the public specimen dataset
+- `make_public_data.py`: creates the public specimen and Google My Maps datasets
 - `update_external_data.py`: updates external map data
 
 ## Reference
