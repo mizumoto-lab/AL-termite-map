@@ -33,7 +33,7 @@ To regenerate the public specimen file on Windows:
 make_public_data.bat
 ```
 
-This creates both the privacy-filtered `AU-termite-samples.csv` used by the public map and `google_my_maps_AU_sample.csv` used for Google My Maps.
+This creates the privacy-filtered `AU-termite-samples.csv` used by the public map and three specimen-layer files used for Google My Maps.
 
 ## Updating external data
 
@@ -55,7 +55,13 @@ Normal website visitors do not query the iNaturalist API directly. The map uses 
 
 `google_my_maps_counties.csv` is a convenience import file for the published Formosan county records. Its `Location` column uses county names such as `Mobile County, Alabama` so Google My Maps can place the county-level records without treating them as specimen coordinates. The marker location is only a county reference and is not a collection point.
 
-`google_my_maps_AU_sample.csv` is the compact convenience import file for AU specimens. It contains only recognized Alabama records, with common and scientific names, privacy-generalized coordinates, date, county, family, AU ID, collector, identification details, and binary alate status. Import it using the `Latitude` and `Longitude` columns; use `Category` or `Scientific name` as the marker title or styling field. The optional iNaturalist layer can be imported from `iNaturalist_records.csv` using its `lat` and `lon` columns.
+The AU specimens are divided into three compact import files so each taxonomic group can be toggled independently:
+
+- `google_my_maps_formosan.csv`: Formosan subterranean termite specimens
+- `google_my_maps_native_subterranean.csv`: native subterranean termite specimens
+- `google_my_maps_drywood.csv`: drywood termite specimens in Kalotermitidae
+
+Each file contains only recognized Alabama records, with common and scientific names, privacy-generalized coordinates, date, county, family, AU ID, collector, identification details, and binary alate status. Import each file using the `Latitude` and `Longitude` columns and choose `Scientific name` as the marker title. The optional iNaturalist layer can be imported from `iNaturalist_records.csv` using its `lat` and `lon` columns.
 
 ## Main files
 
@@ -65,7 +71,9 @@ Normal website visitors do not query the iNaturalist API directly. The map uses 
 - `AU-termite-samples.csv`: privacy-generalized AU specimen records
 - `FSTrecords.csv`: published Formosan subterranean termite county records
 - `google_my_maps_counties.csv`: Google My Maps import file for county-level records
-- `google_my_maps_AU_sample.csv`: Google My Maps import file for Alabama AU specimen records
+- `google_my_maps_formosan.csv`: Google My Maps import file for Formosan subterranean termite specimens
+- `google_my_maps_native_subterranean.csv`: Google My Maps import file for native subterranean termite specimens
+- `google_my_maps_drywood.csv`: Google My Maps import file for drywood termite specimens
 - `iNaturalist_records.csv`: static iNaturalist Research Grade snapshot
 - `alabama_counties.geojson`: Alabama county boundaries
 - `make_public_data.py`: creates the public specimen and Google My Maps datasets
