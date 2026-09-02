@@ -10,7 +10,11 @@ from pathlib import Path
 
 SECRET_FILE = Path("AU-termite-samples-secret.csv")
 PUBLIC_FILE = Path("AU-termite-samples.csv")
-GOOGLE_MY_MAPS_FILE = Path("google_my_maps_AU_sample.csv")
+GOOGLE_MY_MAPS_FILES = {
+    "formosan": Path("google_my_maps_formosan.csv"),
+    "native_subterranean": Path("google_my_maps_native_subterranean.csv"),
+    "drywood": Path("google_my_maps_drywood.csv"),
+}
 MAP_CONFIG_FILE = Path("map_config.json")
 COUNTY_FILE = Path("alabama_counties.geojson")
 SALT_FILE = Path(".privacy_salt")
@@ -342,18 +346,33 @@ def google_my_maps_row(row, config):
     }
 
 
-def write_google_my_maps_file(public_rows, config):
+def google_my_maps_layer(row):
+    genus = (row.get("genus") or "").strip()
+    family = (row.get("Family") or row.get("family") or "").strip()
+    if genus == "Coptotermes":
+        return "formosan"
+    if genus == "Reticulitermes":
+        return "native_subterranean"
+    if family == "Kalotermitidae" or genus in {"Kalotermes", "Incisitermes"}:
+        return "drywood"
+    return None
+
+
+def write_google_my_maps_files(public_rows, config):
     accepted_names = set(config["valid_species"])
-    rows = [
-        google_my_maps_row(row, config)
-        for row in public_rows
-        if is_alabama_map_record(row) and canonical_name(row) in accepted_names
-    ]
-    with GOOGLE_MY_MAPS_FILE.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=GOOGLE_MY_MAPS_FIELDS)
-        writer.writeheader()
-        writer.writerows(rows)
-    return len(rows)
+    layer_rows = {name: [] for name in GOOGLE_MY_MAPS_FILES}
+    for row in public_rows:
+        if not is_alabama_map_record(row) or canonical_name(row) not in accepted_names:
+            continue
+        layer = google_my_maps_layer(row)
+        if layer:
+            layer_rows[layer].append(google_my_maps_row(row, config))
+    for layer, path in GOOGLE_MY_MAPS_FILES.items():
+        with path.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=GOOGLE_MY_MAPS_FIELDS)
+            writer.writeheader()
+            writer.writerows(layer_rows[layer])
+    return {layer: len(rows) for layer, rows in layer_rows.items()}
 
 
 def main():
@@ -371,7 +390,7 @@ def main():
         writer = csv.DictWriter(handle, fieldnames=PUBLIC_FIELDS)
         writer.writeheader()
         writer.writerows(public_rows)
-    google_my_maps_rows = write_google_my_maps_file(public_rows, config)
+    google_my_maps_rows = write_google_my_maps_files(public_rows, config)
     generalized = sum(parse_coordinates(row) is not None for row in rows)
     without_coordinates = len(rows) - generalized
     print()
@@ -381,8 +400,9 @@ def main():
     print(f"Rows without valid coordinates: {without_coordinates}")
     print("Locality and city are omitted; county and family are retained.")
     print()
-    print(f"Created Google My Maps file: {GOOGLE_MY_MAPS_FILE}")
-    print(f"Alabama map records written: {google_my_maps_rows}")
+    print("Created Google My Maps layer files:")
+    for layer, path in GOOGLE_MY_MAPS_FILES.items():
+        print(f"  {path}: {google_my_maps_rows[layer]} records")
     if duplicates:
         print()
         print("WARNING: Duplicate AUT_ID values found in the private master:")
@@ -401,7 +421,8 @@ def main():
                 label += " (complex)"
             print(f"  {label}")
     print()
-    print(f"Commit/push {PUBLIC_FILE} and {GOOGLE_MY_MAPS_FILE}.")
+    generated_files = ", ".join(str(path) for path in GOOGLE_MY_MAPS_FILES.values())
+    print(f"Commit/push {PUBLIC_FILE}, {generated_files}.")
     print(f"Keep {SECRET_FILE} and {SALT_FILE} local/private.")
 
 
