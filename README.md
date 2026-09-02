@@ -16,7 +16,7 @@ The map supports the free Alabama Termite Identification Service and the accumul
 
 ## Privacy
 
-Exact coordinates for AU termite specimens are kept private. Public specimen coordinates are generalized by up to 300 m before publication, and exact locality information is not included in the public data file.
+Exact coordinates for AU termite specimens are kept private. Public specimen coordinates are generalized by up to 300 m before publication, and exact locality information is not included in the public data file. County and family are retained as public fields.
 
 The private files are:
 
@@ -55,7 +55,7 @@ Normal website visitors do not query the iNaturalist API directly. The map uses 
 
 `google_my_maps_counties.csv` is a convenience import file for the published Formosan county records. Its `Location` column uses county names such as `Mobile County, Alabama` so Google My Maps can place the county-level records without treating them as specimen coordinates. The marker location is only a county reference and is not a collection point.
 
-`google_my_maps_AU_sample.csv` is the convenience import file for AU specimens. It contains only Alabama records recognized by the map and adds `scientific_name` and `common_name` columns while retaining the separate `genus` and `species` fields. Import it using the `lat` and `lon` columns; use `scientific_name` or `common_name` as the marker title or styling field. The optional iNaturalist layer can be imported from `iNaturalist_records.csv` using its `lat` and `lon` columns.
+`google_my_maps_AU_sample.csv` is the compact convenience import file for AU specimens. It contains only recognized Alabama records, with common and scientific names, privacy-generalized coordinates, date, county, family, AU ID, collector, identification details, and binary alate status. Import it using the `Latitude` and `Longitude` columns; use `Category` or `Scientific name` as the marker title or styling field. The optional iNaturalist layer can be imported from `iNaturalist_records.csv` using its `lat` and `lon` columns.
 
 ## Main files
 
