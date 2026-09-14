@@ -94,8 +94,8 @@ AUT-2024-0093,2024-11-13,Anthony Green,31.093387,-88.249047,,,Mobile County,AL,U
 AUT-2024-0012,2024-11-14,NM/EC,33.286717,-110.795207,,,,AZ,USA,Heterotermitidae,Reticulitermes,tibialis,distribution,,,yes,300
 AUT-2024-0015,2024-11-14,NM/EC,33.285350,-110.792337,,,,AZ,USA,Heterotermitidae,Reticulitermes,tibialis,distribution,,,yes,300
 AUT-2024-0030,2024-11-14,NM/EC,33.277420,-111.139399,,,,AZ,USA,Kalotermitidae,Incisitermes,minor,morphology,,,yes,300
-AUT-2024-0031,2024-11-14,NM/EC,33.274531,-111.137047,,,,AZ,USA,,Marginitermes,hubbardi,morphology,,,yes,300
-AUT-2024-0032,2024-11-14,NM/EC,33.277141,-111.138620,,,,AZ,USA,,Marginitermes,hubbardi,morphology,,,yes,300
+AUT-2024-0031,2024-11-14,NM/EC,33.274531,-111.137047,,,,AZ,USA,Kalotermitidae,Marginitermes,hubbardi,morphology,,,yes,300
+AUT-2024-0032,2024-11-14,NM/EC,33.277141,-111.138620,,,,AZ,USA,Kalotermitidae,Marginitermes,hubbardi,morphology,,,yes,300
 AUT-2024-0090,2024-11-15,Anthony Green,31.355875,-88.168547,,,Washington County,AL,USA,Heterotermitidae,Reticulitermes,sp,soldier,SH,0,yes,300
 AUT-2024-0096,2024-11-25,Anthony Green,30.661549,-88.083745,,,Mobile County,AL,USA,Heterotermitidae,Coptotermes,formosanus,soldier,SH,0,yes,300
 AUT-2024-0101,2024-11-27,Anthony Green,30.881839,-88.049017,,,Mobile County,AL,USA,Heterotermitidae,Reticulitermes,sp,soldier,SH,0,yes,300
@@ -131,7 +131,7 @@ AUT-2025-0026,2025-05-15,"EC, NM",33.471791,-85.806258,,,Cleburne County,AL,USA,
 AUT-2025-0027,2025-05-15,"EC, NM",33.469929,-85.807311,,,Cleburne County,AL,USA,Heterotermitidae,Reticulitermes,nelsonae,COI,UCR,0,yes,300
 AUT-2025-0028,2025-05-15,"EC, NM",33.465200,-85.807169,,,Clay County,AL,USA,Heterotermitidae,Reticulitermes,malletei,COI,UCR,1,yes,300
 AUT-2025-0029,2025-05-15,"EC, HO, NM, BV, DY",33.471871,-85.809607,,,Cleburne County,AL,USA,Heterotermitidae,Reticulitermes,malletei,COI,UCR,1,yes,300
-AUT-2025-0055,2025-05-15,"EC, HO, NM, BV, DY",33.468207,-85.812207,,,Clay County,AL,USA,Heterotermitidae,Reticulitermes,sp,morphology,NM,,yes,300
+AUT-2025-0055,2025-05-15,"EC, HO, NM, BV, DY",33.468207,-85.812207,,,Cleburne County,AL,USA,Heterotermitidae,Reticulitermes,sp,morphology,NM,,yes,300
 AUT-2025-0056,2025-05-19,"collected by Ward Davis, Circle Pest Control, submitted by Eric Hataway, Territory Manager, Urban Pest Mangaement, Corteva Agriscience",,,,,,AL,USA,Heterotermitidae,Coptotermes,formosanus,morphology,NM,1,no_coordinate,
 AUT-2025-0058,2025-05-19,Jennifer Davidson,32.470623,-84.999418,,,Russell County,AL,USA,Heterotermitidae,Coptotermes,formosanus,morphology,NM,1,yes,300
 AUT-2025-0030,2025-05-27,"NM, TN",40.563592,-111.809393,,,,UT,USA,Heterotermitidae,Reticulitermes,tibialis,,,,yes,300
@@ -168,7 +168,7 @@ AUT-2026-0016,2026-03-14,NM,32.274842,-85.130443,,,Russell County,AL,USA,Heterot
 AUT-2026-0021,2026-03-24,EC,32.600231,-85.481853,,,Lee County,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,yes,300
 AUT-2026-0008,2026-03-28,EC,32.787840,-85.154312,,,Chambers County,AL,USA,Heterotermitidae,Reticulitermes,virginicus,COI,UCR,1,yes,300
 AUT-2026-0009,2026-03-28,EC,32.786524,-85.151938,,,Chambers County,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,yes,300
-AUT-2026-0011,2026-03-28,NM,33.468223,-85.824413,,,Clay County,AL,USA,Heterotermitidae,Reticulitermes,nelsonae,COI,UCR,1,yes,300
+AUT-2026-0011,2026-03-28,NM,33.468223,-85.824413,,,Cleburne County,AL,USA,Heterotermitidae,Reticulitermes,nelsonae,COI,UCR,1,yes,300
 AUT-2026-0026,2026-03-28,EC,32.361658,-85.286268,,,Russell County,AL,USA,Heterotermitidae,Reticulitermes,flavipes,,,,yes,300
 AUT-2026-0010,2026-03-31,EC,32.596817,-85.506627,,,Lee County,AL,USA,Heterotermitidae,Reticulitermes,malletei,COI,UCR,1,yes,300
 AUT-2026-0004,2026-04-09,EC,32.674548,-85.511264,,,Lee County,AL,USA,Heterotermitidae,Reticulitermes,malletei,COI,UCR,1,yes,300
@@ -187,10 +187,10 @@ AUT-2026-0018,2026-05-09,NM,32.807035,-84.860443,,,,GA,USA,Heterotermitidae,Reti
 AUT-2026-0032,2026-05-19,NM,32.577087,-85.485448,,,Lee County,AL,USA,Heterotermitidae,Coptotermes,formosanus,morphology,NM,1,yes,300
 AUT-2026-0028,2026-05-30,NM,33.332117,-86.751628,,,Shelby County,AL,USA,Heterotermitidae,Reticulitermes,sp,morphology,NM,,yes,300
 AUT-2026-0033,2026-06-11,MS,32.603386,-85.483486,,,Lee County,AL,USA,Kalotermitidae,Kalotermes,approximatus,morphology,NM,1,yes,300
-AUT-2026-0030,2026-06-20,NM,34.576946,-80.231552,,,,AL,USA,Heterotermitidae,Reticulitermes,sp,morphology,NM,,yes,300
-AUT-2026-0031,2026-06-20,NM,34.578316,-80.228364,,,,AL,USA,Heterotermitidae,Reticulitermes,sp,morphology,NM,,yes,300
+AUT-2026-0030,2026-06-20,NM,34.576946,-86.231552,,,Marshall County,AL,USA,Heterotermitidae,Reticulitermes,sp,morphology,NM,,yes,300
+AUT-2026-0031,2026-06-20,NM,34.578316,-86.228364,,,Marshall County,AL,USA,Heterotermitidae,Reticulitermes,sp,morphology,NM,,yes,300
 AUT-2026-0013,2026-07-09,NM,41.483203,-81.576092,,,,OH,USA,Heterotermitidae,Reticulitermes,flavipes,COI,UCR,0,yes,300
 AUT-2026-0014,2026-07-09,NM,41.428078,-81.601733,,,,OH,USA,Heterotermitidae,Reticulitermes,flavipes,COI,UCR,0,yes,300
-AUT-2026-0006,NA,NA,,,,,,NA,NA,,NA,NA,NA,NA,NA,no_coordinate,
-AUT-2026-0015,NA,NA,,,,,,NA,NA,,NA,NA,NA,NA,NA,no_coordinate,
+AUT-2026-0006,NA,NA,,,,,,NA,NA,NA,NA,NA,NA,NA,NA,no_coordinate,
+AUT-2026-0015,NA,NA,,,,,,NA,NA,NA,NA,NA,NA,NA,NA,no_coordinate,
 ,,,,,,,,,,Heterotermitidae,Reticulitermes,nelsonae,COI,UCR,0,no_coordinate,

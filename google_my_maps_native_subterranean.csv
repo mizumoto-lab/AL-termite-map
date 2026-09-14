@@ -69,7 +69,7 @@ Native subterranean termite,Reticulitermes sp,33.471791,-85.806258,2025-05-15,Cl
 Native subterranean termite,Reticulitermes nelsonae (complex),33.469929,-85.807311,2025-05-15,Cleburne County,Heterotermitidae,AUT-2025-0027,"EC, NM",COI,UCR,no
 Native subterranean termite,Reticulitermes malletei,33.465200,-85.807169,2025-05-15,Clay County,Heterotermitidae,AUT-2025-0028,"EC, NM",COI,UCR,yes
 Native subterranean termite,Reticulitermes malletei,33.471871,-85.809607,2025-05-15,Cleburne County,Heterotermitidae,AUT-2025-0029,"EC, HO, NM, BV, DY",COI,UCR,yes
-Native subterranean termite,Reticulitermes sp,33.468207,-85.812207,2025-05-15,Clay County,Heterotermitidae,AUT-2025-0055,"EC, HO, NM, BV, DY",morphology,NM,no
+Native subterranean termite,Reticulitermes sp,33.468207,-85.812207,2025-05-15,Cleburne County,Heterotermitidae,AUT-2025-0055,"EC, HO, NM, BV, DY",morphology,NM,no
 Native subterranean termite,Reticulitermes virginicus,32.581972,-85.415510,2025-06-19,Lee County,Heterotermitidae,AUT-2025-0031,"EC, NM, TN",COI,UCR,no
 Native subterranean termite,Reticulitermes virginicus,32.584424,-85.420152,2025-06-19,Lee County,Heterotermitidae,AUT-2025-0032,"EC, NM, TN",COI,UCR,no
 Native subterranean termite,Reticulitermes malletei,32.587045,-85.418466,2025-06-19,Lee County,Heterotermitidae,AUT-2025-0039,"EC, NM, TN",COI,UCR,yes
@@ -93,7 +93,7 @@ Native subterranean termite,Reticulitermes flavipes,32.274842,-85.130443,2026-03
 Native subterranean termite,Reticulitermes flavipes,32.600231,-85.481853,2026-03-24,Lee County,Heterotermitidae,AUT-2026-0021,EC,,,no
 Native subterranean termite,Reticulitermes virginicus,32.787840,-85.154312,2026-03-28,Chambers County,Heterotermitidae,AUT-2026-0008,EC,COI,UCR,yes
 Native subterranean termite,Reticulitermes flavipes,32.786524,-85.151938,2026-03-28,Chambers County,Heterotermitidae,AUT-2026-0009,EC,,,no
-Native subterranean termite,Reticulitermes nelsonae (complex),33.468223,-85.824413,2026-03-28,Clay County,Heterotermitidae,AUT-2026-0011,NM,COI,UCR,yes
+Native subterranean termite,Reticulitermes nelsonae (complex),33.468223,-85.824413,2026-03-28,Cleburne County,Heterotermitidae,AUT-2026-0011,NM,COI,UCR,yes
 Native subterranean termite,Reticulitermes flavipes,32.361658,-85.286268,2026-03-28,Russell County,Heterotermitidae,AUT-2026-0026,EC,,,no
 Native subterranean termite,Reticulitermes malletei,32.596817,-85.506627,2026-03-31,Lee County,Heterotermitidae,AUT-2026-0010,EC,COI,UCR,yes
 Native subterranean termite,Reticulitermes malletei,32.674548,-85.511264,2026-04-09,Lee County,Heterotermitidae,AUT-2026-0004,EC,COI,UCR,yes
@@ -106,3 +106,5 @@ Native subterranean termite,Reticulitermes nelsonae (complex),32.461275,-85.6520
 Native subterranean termite,Reticulitermes virginicus,32.473693,-85.613473,2026-05-06,Macon County,Heterotermitidae,AUT-2026-0002,NM,COI,UCR,yes
 Native subterranean termite,Reticulitermes nelsonae (complex),32.456656,-85.625619,2026-05-06,Macon County,Heterotermitidae,AUT-2026-0012,EC,COI,UCR,yes
 Native subterranean termite,Reticulitermes sp,33.332117,-86.751628,2026-05-30,Shelby County,Heterotermitidae,AUT-2026-0028,NM,morphology,NM,no
+Native subterranean termite,Reticulitermes sp,34.576946,-86.231552,2026-06-20,Marshall County,Heterotermitidae,AUT-2026-0030,NM,morphology,NM,no
+Native subterranean termite,Reticulitermes sp,34.578316,-86.228364,2026-06-20,Marshall County,Heterotermitidae,AUT-2026-0031,NM,morphology,NM,no
