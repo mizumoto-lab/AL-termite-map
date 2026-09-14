@@ -3,7 +3,7 @@
     "taxon": "all",
     "published_counties": true,
     "museum_specimens": true,
-    "inaturalist": false
+    "inaturalist": true
   },
   "fallback_color": "#777777",
   "valid_species": [

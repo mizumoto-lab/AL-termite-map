@@ -4,6 +4,8 @@ Public map of documented termite records in Alabama.
 
 [Free Alabama Termite Identification Service](https://mizumoto-lab.com/alabama-termites/)
 
+[See this map in Google Maps](https://www.google.com/maps/d/u/0/viewer?mid=1uSdbm_Cdmq-PsQRbd5_UKiZPakRJ8Mg&ll=32.665379522285626%2C-84.98180665309259&z=8)
+
 The map combines three sources of termite records:
 
 - **AU termite specimens** identified by termite researchers at Auburn University
